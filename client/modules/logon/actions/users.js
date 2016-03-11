@@ -23,7 +23,7 @@ export default {
 
 
         Accounts.createUser({user, email, password});
-        FlowRouter.go('/app');
+        FlowRouter.go('/userauth');
     },
 
     login({Meteor, LocalState, FlowRouter}, user, password) {

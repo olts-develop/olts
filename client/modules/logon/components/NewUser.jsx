@@ -21,7 +21,7 @@ class NewUser extends React.Component {
                         <Input ref="user" type="user" label="UserID" placeholder="UserID" />
                         <Input ref="email" type="email" label="Email" placeholder="Email" />
                         <Input ref="password" type="password" label="Password" placeholder="Password" />
-                        <Input ref="password2" type="password2" label="Confirm password" placeholder="Confirm password" />
+                        <Input ref="password2" type="password" label="Confirm password" placeholder="Confirm password" />
                         <ButtonInput onClick={this.createUser.bind(this)} bsStyle="primary" type="submit" value="Sign Up"/>
 
                     </form>

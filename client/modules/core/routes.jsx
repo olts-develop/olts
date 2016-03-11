@@ -5,6 +5,7 @@ import Layout from './components/MainLayout.jsx';
 import AppLayout from '../layout/containers/AppLayout';
 import Login from '../logon/containers/Login';
 import NewUser from '../logon/containers/NewUser'
+import UserAuth from '../authorization/components/UserAuth.jsx'
 
 export default function (injectDeps, {FlowRouter}){
     const MainLayoutCtx = injectDeps(Layout);
@@ -25,6 +26,15 @@ export default function (injectDeps, {FlowRouter}){
         action() {
             mount(MainLayoutCtx, {
                 content: () => (<NewUser />)
+            });
+        }
+    });
+
+    FlowRouter.route('/userauth', {
+        name: 'users.auth',
+        action() {
+            mount(MainLayoutCtx, {
+                content: () => (<UserAuth />)
             });
         }
     });

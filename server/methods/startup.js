@@ -2,7 +2,8 @@
 import devEmplyees from './../developinit/devEmployees';
 import devTenants from './../developinit/devTenants';
 import devOrganisations from './../developinit/devOrganisations';
-import devBaseRoles from './../developinit/devBaseRoles'
+import devBaseRoles from './../developinit/devBaseRoles';
+import devGroups from './../developinit/devGroups'
 
 
 export default function () {
@@ -17,6 +18,7 @@ export default function () {
             devTenants();
             devOrganisations();
             devBaseRoles();
+            devGroups();
 
         }
     });
