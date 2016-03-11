@@ -1,22 +1,14 @@
-import {testForInputEmailAdress} from './TestForInputEmail'
+import {testForEmailAdress} from './TestForInputEmail'
+
+
 
 export default {
-    create({Meteor, LocalState, FlowRouter}, user, password, password2) {
+
+    create({Meteor, LocalState, FlowRouter}, user, email, password, password2) {
 
 
         if (!user) {
-            return LocalState.set('CREATE_USER_ERROR', 'Email is required.');
-        }else{
-            let isMail=false;
-            email:'';
-
-           isMail =  testForEmailAdress(user);
-
-            if (!isMail){
-                email: email;
-                user: '';
-            }
-
+            return LocalState.set('CREATE_USER_ERROR', 'UserID / Email is required.');
         }
 
         if (!password) {
@@ -29,13 +21,14 @@ export default {
 
         LocalState.set('CREATE_USER_ERROR', null);
 
+
         Accounts.createUser({user, email, password});
         FlowRouter.go('/app');
     },
 
     login({Meteor, LocalState, FlowRouter}, user, password) {
-        if (!email) {
-            return LocalState.set('LOGIN_ERROR', 'Email is required.');
+        if (!user) {
+            return LocalState.set('LOGIN_ERROR', 'UserID / Email is required.');
         }
 
         if (!password) {

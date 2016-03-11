@@ -17,23 +17,14 @@ class Login extends React.Component {
                     {error ? <p style = {{color: 'red'}}>{error}</p> :null}
 
                     <form>
-                        <Input ref="user" type="user" placeholder="User / Email" />
-                        <Input ref="password" type="password" placeholder="Password" />
-
-
-                        {AppConfig.isDevelop ?
-                            <Input ref="password2" type="password" placeholder="retype password" />
-                            : null}
-                        <Row>
-                            <Col lg={3}>
-                                <ButtonInput onClick={this.login.bind(this)} bsStyle="primary" type="submit" value="Login"/>
-                            </Col>
-                            <Col lg={3}>
-                                {AppConfig.isDevelop ?
-                                    <ButtonInput onClick={this.createUser.bind(this)} bsStyle="primary" type="submit" value="Create"/>
-                                    : null}
+                        <Row className="show-grid">
+                            <Col xs={3} xsOffset={9}>
+                                <a href="/register"><Glyphicon glyph="plus"></Glyphicon> New User</a>
                             </Col>
                         </Row>
+                        <Input ref="user" type="user" label="User" placeholder="User / Email" />
+                        <Input ref="password" type="password" label="Password" placeholder="Password" />
+                        <ButtonInput onClick={this.login.bind(this)} bsStyle="primary" type="submit" value="Login"/>
 
                     </form>
 
@@ -53,15 +44,6 @@ class Login extends React.Component {
         password.getInputDOMNode().value = '';
     }
 
-    createUser(event) {
-        event.preventDefault();
-        const {create}=this.props;
-        const {user, password, password2} = this.refs;
-        create(user.getValue(),password.getValue(), password2.getValue());
-        user.getInputDOMNode().value = '';
-        password.getInputDOMNode().value = '';
-        password2.getInputDOMNode().value = '';
-    }
 
 }
 

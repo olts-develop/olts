@@ -2,6 +2,7 @@
  * Created by martin on 09.03.2016.
  */
 export default{
+
     name: 'OLTS-4.0',
     version:'0.0.1',
     isDevelop: function(){

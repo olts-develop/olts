@@ -19,14 +19,6 @@ export default function () {
         BaseRoles.insert({
             createUser: "martin",
             modUser: "martin",
-            role: "dev",
-            description: "olts_develop",
-            visible: false
-        });
-
-        BaseRoles.insert({
-            createUser: "martin",
-            modUser: "martin",
             role: "support",
             description: "olts_support",
             visible: false
