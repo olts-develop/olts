@@ -1,0 +1,21 @@
+
+.logoncontainer {
+    font-family: sans-serif;
+    background-color: white;
+    position: fixed;
+    left: 35%;
+    top: 20%;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.FormInput{
+    width: 100%;
+}
+
+
+.fifi{
+    padding-top: 20px;
+    padding-left: 20px;
+    border-right: medium solid #b3b3b3;
+}
