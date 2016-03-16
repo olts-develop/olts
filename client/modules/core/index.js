@@ -3,7 +3,9 @@
  */
 
 import routes from './routes.jsx';
+import clientconfig from './configs/clientconfig'
 
 export default {
     routes,
+    clientconfig
 };

@@ -26,10 +26,13 @@ export default function () {
         return BaseRoles.find(selector)
     });
 
-    Meteor.publish('users.single', function(uerId) {
-        if (Roles.userIsInRole(this.userId, 'SuperAdmin', 'Admin'))
-        check(uerId, String);
-        const selector = {_id: uerId, globalSelector};
-        return BaseRoles.find(selector)
+    Meteor.publish('users.single', function(userId) {
+        console.log(userId);
+        return Meteor.users.findOne(userId)
+    });
+
+    Meteor.publish('users.list', function(){
+        console.log('SERVER users.list')
+        return Meteor.users.find()
     });
 }

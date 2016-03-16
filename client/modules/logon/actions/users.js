@@ -1,13 +1,9 @@
-import {testForEmailAdress} from './TestForInputEmail'
-
-
-
 export default {
 
-    create({Meteor, LocalState, FlowRouter}, user, email, password, password2) {
+    create({Meteor, LocalState, FlowRouter}, username, email, password, password2) {
 
 
-        if (!user) {
+        if (!username) {
             return LocalState.set('CREATE_USER_ERROR', 'UserID / Email is required.');
         }
 
@@ -22,9 +18,17 @@ export default {
         LocalState.set('CREATE_USER_ERROR', null);
 
 
-        Accounts.createUser({user, email, password});
-        FlowRouter.go('/userauth');
+        console.log(username + ' '+ email+' '+password)
+
+
+        Accounts.createUser({username, email, password})
+
+
+            FlowRouter.go('/userauth');
+
+       // FlowRouter.go('/userauth',{userId: user._id});
     },
+
 
     login({Meteor, LocalState, FlowRouter}, user, password) {
         if (!user) {
@@ -45,6 +49,11 @@ export default {
 
     clearErrors({LocalState}) {
         return LocalState.set('SAVING_ERROR', null);
-    }
+    },
 
+
+    logout({Meteor, LocalState, FlowRouter}){
+        console.log('logout....................')
+        Meteor.logout();
+    }
 }

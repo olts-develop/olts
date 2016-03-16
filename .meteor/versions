@@ -7,7 +7,6 @@ aldeed:schema-deny@1.0.1
 aldeed:schema-index@1.0.1
 aldeed:simple-schema@1.5.3
 allow-deny@1.0.1-beta.12
-audit-argument-checks@1.0.4
 autoupdate@1.2.5-beta.12
 babel-compiler@6.5.0-beta.12
 babel-runtime@0.1.5-beta.12
@@ -24,6 +23,7 @@ check@1.1.1-beta.12
 chuangbo:cookie@1.1.0
 coffeescript@1.0.12-beta.12
 cosmos:browserify@0.9.4
+dburles:mongo-collection-instances@0.3.4
 ddp@1.2.2
 ddp-client@1.2.2-beta.12
 ddp-common@1.2.2
@@ -45,6 +45,7 @@ http@1.1.2-beta.12
 id-map@1.0.4
 jquery@1.11.5-beta.12
 kadira:flow-router-ssr@3.11.2
+lai:collection-extensions@0.1.4
 launch-screen@1.0.6-beta.12
 livedata@1.0.15
 localstorage@1.0.6-beta.12
@@ -58,6 +59,7 @@ meteorhacks:fast-render@2.13.0
 meteorhacks:inject-data@2.0.0
 meteorhacks:meteorx@1.4.1
 meteorhacks:picker@1.0.3
+meteortoys:toykit@2.2.1
 minifier-css@1.1.8-beta.12
 minifier-js@1.1.8-beta.12
 minimongo@1.0.11-beta.12
@@ -67,6 +69,7 @@ modules@0.5.0-beta.12
 modules-runtime@0.5.0-beta.12
 mongo@1.1.4-beta.12
 mongo-id@1.0.1
+msavin:mongol@1.6.2
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.40-beta.12
 observe-sequence@1.0.8-beta.12

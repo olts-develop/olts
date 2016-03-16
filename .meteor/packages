@@ -22,10 +22,11 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 kadira:flow-router-ssr
 reactive-dict
-audit-argument-checks
+# audit-argument-checks
 check
 accounts-password
 alanning:roles
 aldeed:simple-schema
 aldeed:collection2
 twbs:bootstrap
+msavin:mongol

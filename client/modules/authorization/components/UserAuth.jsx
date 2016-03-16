@@ -1,21 +1,45 @@
 import React from 'react';
-import { Col, Panel, Input, ButtonInput, Glyphicon } from 'react-bootstrap';
+import {Table,  Row, Col, Glyphicon } from 'react-bootstrap';
 
-class UserAuth extends React.Component {
+import UserList from './UserList.jsx';
 
-    render() {
+const UserAuth  = ({users, totalUsers}) => (
 
-        const {error} = this.props;
-        const {user} = this.props;
 
-        return (
-            <div>
-                <h1>Assign role to user {user.name}</h1>
-            </div>
+            <Row>
+                <Col xs={12}>
+                   <h1>Users</h1>
+                </Col>
 
-        )
 
-    }
-}
+                <Table>
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>email</th>
+                        <th>Roles</th>
+                    </tr>
+                    </thead>
+
+
+                    <tbody>
+                    {users.map(user => (
+
+                        <tr>
+                            <th>#</th>
+                            <th>{user.username}</th>
+                            <th>{user.emails[0].address}</th>
+                            <th>Roles</th>
+                        </tr>
+                    ))}
+                    </tbody>
+
+                </Table>
+
+                ))}
+            </Row>
+
+);
 
 export default UserAuth;

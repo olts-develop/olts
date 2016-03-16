@@ -37,10 +37,12 @@ class NewUser extends React.Component {
         const {create} = this.props;
         const {user, email, password, password2} = this.refs;
         create(user.getValue(), email.getValue(), password.getValue(), password2.getValue());
-        user.getInputDOMNode().value = '';
-        email.getInputDOMNode().value = '';
-        password.getInputDOMNode().value = '';
-        password2.getInputDOMNode().value = '';
+
+            /*user.getInputDOMNode().value = '';
+            email.getInputDOMNode().value = '';*/
+            password.getInputDOMNode().value = '';
+            password2.getInputDOMNode().value = '';
+
     }
 }
 

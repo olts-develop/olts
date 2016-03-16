@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, Panel, Input, ButtonInput, Glyphicon } from 'react-bootstrap';
+import {Grid, Row, Col, Panel, Input, ButtonInput, Glyphicon } from 'react-bootstrap';
 
 import AppConfig from '../../../configs/app'
 
@@ -17,14 +17,24 @@ class Login extends React.Component {
                     {error ? <p style = {{color: 'red'}}>{error}</p> :null}
 
                     <form>
-                        <Row className="show-grid">
+                        <Row >
                             <Col xs={3} xsOffset={9}>
                                 <a href="/register"><Glyphicon glyph="plus"></Glyphicon> New User</a>
                             </Col>
                         </Row>
                         <Input ref="user" type="user" label="User" placeholder="User / Email" />
                         <Input ref="password" type="password" label="Password" placeholder="Password" />
-                        <ButtonInput onClick={this.login.bind(this)} bsStyle="primary" type="submit" value="Login"/>
+                        <Grid>
+                            <Row>
+                                <Col xs={12} md={4}>
+                                    <ButtonInput onClick={this.login.bind(this)} bsStyle="primary" type="submit" value="Login"/>
+                                </Col>
+                                <Col xs={6} md={1}>
+                                    <ButtonInput onClick={this.logout.bind(this)} bsStyle="primary" type="submit" value="Logout"/>
+                                </Col>
+                            </Row>
+                        </Grid>
+
 
                     </form>
 
@@ -44,6 +54,11 @@ class Login extends React.Component {
         password.getInputDOMNode().value = '';
     }
 
+    logout(event) {
+        event.preventDefault();
+        const{logoutUser}=this.props;
+        logoutUser();
+    }
 
 }
 

@@ -4,8 +4,8 @@ import {mount} from 'react-mounter';
 import Layout from './components/MainLayout.jsx';
 import AppLayout from '../layout/containers/AppLayout';
 import Login from '../logon/containers/Login';
-import NewUser from '../logon/containers/NewUser'
-import UserAuth from '../authorization/components/UserAuth.jsx'
+import NewUser from '../logon/containers/NewUser';
+import UserAuth from '../authorization/containers/UserAuth';
 
 export default function (injectDeps, {FlowRouter}){
     const MainLayoutCtx = injectDeps(Layout);
@@ -34,7 +34,7 @@ export default function (injectDeps, {FlowRouter}){
         name: 'users.auth',
         action() {
             mount(MainLayoutCtx, {
-                content: () => (<UserAuth />)
+                content: () => (<UserAuth/>)
             });
         }
     });
