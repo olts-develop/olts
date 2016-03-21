@@ -8,7 +8,7 @@ class UserAuth extends React.Component {
 
     render() {
 
-        const {users, totalUsers }= this.props;
+        const {users, totalUsers, user }= this.props;
 
         return(
 
@@ -21,7 +21,7 @@ class UserAuth extends React.Component {
                             <h1>Users</h1>
                         </Col>
 
-                        <UserAuth/>
+                        {user ? <UserEdit/> : null}
 
                         <Table striped bordered condensed hover>
                             <thead>
@@ -36,7 +36,7 @@ class UserAuth extends React.Component {
 
                             <tbody>
                             {users.map(user => (
-                                <tr key={user._id} onClick ={this.selectUser.bind(this)} ref="userline">
+                                <tr key={user._id} onClick ={this.selectUser.bind(this,user)} ref={user._id}>
                                     <th>#</th>
                                     <th>{user.username}</th>
                                     <th>{user.emails[0].address}</th>
@@ -55,16 +55,15 @@ class UserAuth extends React.Component {
 
     }
 
- selectUser() {
+    selectUser(user, e) {
+        e.preventDefault();
+        const {selectSingleUser} = this.props;
+        const userId = user._id;
+        selectSingleUser(userId);
 
-     console.log('userlist clicked: ' + this.refs)
+        console.log('userlist clicked: ' + user._id)
 
- }
-
-
-
-
-
+    }
 
 };
 

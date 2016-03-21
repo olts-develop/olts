@@ -1,12 +1,12 @@
 import React from 'react';
 import {Table, Row, Col, Panel, Glyphicon, Input } from 'react-bootstrap';
 
-class UserList extends React.Component {
+class UserEdit extends React.Component {
 
 
     render() {
 
-        const {user, baseroles, groups}= this.props;
+        const {user}= this.props;
 
         return (
 
@@ -14,30 +14,24 @@ class UserList extends React.Component {
 
                 <Row>
                     <Col md={6}>
-                        <input type="select" label="Roles">
-                            {baseroles.map(baserole =>(
-                                <option key={baserole._id} value={baserole.role}/>
-                            ))}
-                            </input>
+
                         </Col>
                     <Col md={6}>
                         <input type="select" label="Groups">
-                            {groups.map(group =>(
-                                <option key={group._id} value={group.group}/>
-                            ))}
+
                         </input>
                     </Col>
                 </Row>
 
                 <Row>
                     <Col md={4}>
-                        <input type="text" label="UserId" value={user.username} readonly/>
+                        <input type="text" label="UserId" value={user.username} readOnly/>
                         </Col>
                     <Col md={4}>
-                        <input type="text" label="email" value={user.emails[0].address} readonly/>
+                        <input type="text" label="email" value={user.emails[0].address} readOnly/>
                     </Col>
                     <Col md={4}>
-                        <input type="text" label="Roles/Groups" value={user.roles} readonly/>
+                        <input type="text" label="Roles/Groups" value={user.roles} readOnly/>
                     </Col>
                 </Row>
 
@@ -45,4 +39,11 @@ class UserList extends React.Component {
 
         )
     }
-}
+
+    onChange(event) {
+        let role = e.target.value;
+        console.log('UserEdit role: ' + role);
+    }
+};
+
+export default UserEdit;

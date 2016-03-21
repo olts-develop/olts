@@ -7,7 +7,7 @@ import  {Meteor} from 'meteor/meteor';
 
 export default function() {
     Meteor.methods({
-        'userauth.create'(role, userId){
+        'userauth.create'(userId, role){
             Roles.addUsersToRoles(userId,[role]);
         }
     });

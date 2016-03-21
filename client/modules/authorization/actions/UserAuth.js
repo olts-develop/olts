@@ -2,28 +2,24 @@
  * Created by martin on 11.03.2016.
  */
 export default {
-    create({Meteor, LocalState, FlowRouter}, role,userId) {
+    selectSingleUser({Meteor, LocalState, FlowRouter}, userId) {
+
+        console.log('selectSingleUser: ' + userId);
 
         if(!userId) {
-            return LocalState.set('CREATE_USERAUTH_ERROR', 'No user, user is required.');
+            return LocalState.set('USERAUTH_ERROR', 'No user, user is required.');
         }
 
-        if(!role){
-            return LocalState.set('CREATE_USERAUTH_ERROR', 'role is required.');
-        }
+        LocalState.set('USERAUTH_ERROR', null);
 
-        Meteor.call('userauth.create', role, userId, (err) => {
-            if(err){
-                return LocalState.set('CREATE_USERAUTH_ERROR', err.massage);
-            }
-        });
 
-        FlowRouter.go('/loggin');
+        FlowRouter.go(`/useredit/${userId}`)
+
 
     },
 
     clearErrors({LocalState}) {
-        return LocalState.set('SAVING_ERROR', null);
+        return LocalState.set('USERAUTH_ERROR', null);
     }
 
 };

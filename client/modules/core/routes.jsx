@@ -6,6 +6,7 @@ import AppLayout from '../layout/containers/AppLayout';
 import Login from '../logon/containers/Login';
 import NewUser from '../logon/containers/NewUser';
 import UserAuth from '../authorization/containers/UserAuth';
+import UserEdit from '../authorization/containers/UserEdit';
 
 export default function (injectDeps, {FlowRouter}){
     const MainLayoutCtx = injectDeps(Layout);
@@ -35,6 +36,16 @@ export default function (injectDeps, {FlowRouter}){
         action() {
             mount(MainLayoutCtx, {
                 content: () => (<UserAuth/>)
+            });
+        }
+    });
+
+    FlowRouter.route('/useredit/:userId', {
+        name: 'users.edit',
+        action({userId}) {
+            console.log('/useredit/:' + userId);
+            mount(MainLayoutCtx, {
+                content: () => (<UserEdit userId={userId} />)
             });
         }
     });
