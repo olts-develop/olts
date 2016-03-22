@@ -21,7 +21,7 @@ class UserAuth extends React.Component {
                             <h1>Users</h1>
                         </Col>
 
-                        {user ? <UserEdit/> : null}
+                        
 
                         <Table striped bordered condensed hover>
                             <thead>

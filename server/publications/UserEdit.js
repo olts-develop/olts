@@ -1,12 +1,15 @@
 /**
  * Created by martin on 11.03.2016.
  */
-import {BaseRoles} from '/lib/collections'
+import BaseRoles from '/lib/schemas/authorizations/BaseRoles';
 import  {Meteor} from 'meteor/meteor';
 
 
 export default function () {
+
     Meteor.publish('baseRoles.list',function () {
+        console.log('SERVER baseRoles.list: ' + BaseRoles.find().count())
+
         return BaseRoles.find();
 
 
@@ -30,7 +33,8 @@ export default function () {
 
     Meteor.publish('user.single', function(userId) {
         console.log('SERVER user.single: ' + userId);
-        return Meteor.users.findOne(userId)
+        const selector = {_id: userId};
+        return Meteor.users.find(selector);
     });
 
    

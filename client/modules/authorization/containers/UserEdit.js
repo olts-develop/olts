@@ -2,37 +2,46 @@
  * Created by martin on 21.03.2016.
  */
 import UserEdit from '../components/UserEdit.jsx';
+//import BaseRoles from '../../../../lib/schemas/authorizations/BaseRoles';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, userId, clearErrors}, onData) => {
     const {LocalState, Meteor, Collections} = context();
     const error = LocalState.get('USER_EDIT_ERROR')
 
-    console.log('UserEdit - Composer: ' + userId);
+    let user, baseroles;
 
     if (userId !== undefined) {
-        if (Meteor.subscribe('user.single').ready()) {
-            const user = Meteor.users.findOne(userId);
-            onData(null, {user, error});
+        if (Meteor.subscribe('user.single', userId).ready()) {
+            const selector = {_id: userId};
+            user = Meteor.users.find(selector);
+            //const user = Meteor.users.findOne(userId);
+           // onData(null, {user, error});
         } else {
-            const user = Meteor.users.findOne(userId);
-            if (user) {
-                onData(null, {user});
+            const selector = {_id: userId};
+            user = Meteor.users.findOne(userId);
+            //const user = Meteor.users.findOne(userId);
+            onData(null, {user, baseroles, error});
+        }
+            /*if (user) {
+                if (Meteor.subscribe('baseRoles.list').ready()) {
+                    const baseroles = BaseRoles.find().fetch();
+                    console.log('baseroles: ' + BaseRoles.find().count())
+                    onData(null, {user, baseroles, error});
+                } else {
+                    const baseroles = BaseRoles.find().fetch();
+                    console.log('baseroles: ' + BaseRoles.find().count())
+                    if (baseroles) {
+                        onData(null, {user, baseroles});
+                    } else {
+                        onData();
+                    }
+                }
             } else {
-                onData();
+                    onData();
+
             }
-        }
-
-        if(Meteor.subscribe('baseRoles.list').ready()) {
-            const baseroles = Collections.BaseRoles.find();
-            console.log('baseroles: ' + Collections.BaseRoles.find().count())
-            onData(null,{baseroles, error});
-        }
-
-       /* if(Meteor.subscribe('baseRoles.list').ready()) {
-            const baseroles = Collections.BaseRoles.find({}, {sort: {role:1}}).fetch();
-            onData(null,{baseroles, error});
-        }*/
+                onData();*/
 
     } else {
         onData(null, {error});
