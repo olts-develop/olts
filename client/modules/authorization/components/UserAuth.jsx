@@ -1,7 +1,6 @@
 import React from 'react';
 import {Panel, Table,  Row, Col, Glyphicon } from 'react-bootstrap';
 
-import UserEdit from './UserEdit.jsx';
 
 
 class UserAuth extends React.Component {

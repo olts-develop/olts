@@ -13,36 +13,31 @@ export const composer = ({context, userId, clearErrors}, onData) => {
 
     if (userId !== undefined) {
         if (Meteor.subscribe('user.single', userId).ready()) {
-           /* const selector = {_id: userId};
-            user = Meteor.users.find(selector);*/
             user = Meteor.users.findOne(userId);
-           onData(null, {user, error});
+            //onData(null, {user, error});
         } else {
-            /*const selector = {_id: userId};
-            user = Meteor.users.findOne(userId);*/
             user = Meteor.users.findOne(userId);
-            onData(null, {user, baseroles, error});
+            //onData(null, {user, baseroles, error});
         }
-            /*if (user) {
-                if (Meteor.subscribe('baseRoles.list').ready()) {
-                    baseroles = Collections.BaseRoles.find().fetch();
-                    console.log('baseroles: ' + Collections.BaseRoles.find().count())
-                    onData(null, {user, baseroles, error});
-                } else {
-                    baseroles = Collections.BaseRoles.find().fetch();
-                    console.log('baseroles: ' + Collections.BaseRoles.find().count())
-                    if (baseroles) {
-                        onData(null, {user, baseroles});
-                    } else {
-                        onData();
-                    }
-                }
+        if (user) {
+            if (Meteor.subscribe('baseRoles.list').ready()) {
+                baseroles = Collections.BaseRoles.find().fetch();
+                console.log('baseroles: ' + Collections.BaseRoles.find().count())
+                onData(null, {user, baseroles, error});
             } else {
+                baseroles = Collections.BaseRoles.find().fetch();
+                console.log('baseroles: ' + Collections.BaseRoles.find().count())
+                if (baseroles) {
+                    onData(null, {user, baseroles});
+                } else {
                     onData();
-
+                }
             }
-                onData();*/
+        } else {
+            onData();
 
+        }
+        
     } else {
         onData(null, {error});
     }

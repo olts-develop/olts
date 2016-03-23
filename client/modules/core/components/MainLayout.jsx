@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Layout = ({content = () => null}) => (
+const Layout = ({content}) => (
 
     <div>
         <div>

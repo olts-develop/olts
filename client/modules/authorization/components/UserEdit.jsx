@@ -1,6 +1,7 @@
 import React from 'react';
 import {Table, Row, Col, Panel, Glyphicon, Input } from 'react-bootstrap';
 
+
 class UserEdit extends React.Component {
 
 
@@ -18,9 +19,9 @@ class UserEdit extends React.Component {
                         </Col>
                     <Col md={6}>
                         <Input type="select" label="Roles">
-                            <option value="erster">erster</option>
-                            <option value="zweiter">zweiter</option>
-
+                            {baseroles.map(baserole => (
+                                <option key={baserole._id} value={baserole.role}>{baserole.description}</option>
+                            ) )}
                         </Input>
                     </Col>
                 </Row>
