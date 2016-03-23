@@ -17,9 +17,11 @@ class UserEdit extends React.Component {
 
                         </Col>
                     <Col md={6}>
-                        <input type="select" label="Groups">
+                        <Input type="select" label="Roles">
+                            <option value="erster">erster</option>
+                            <option value="zweiter">zweiter</option>
 
-                        </input>
+                        </Input>
                     </Col>
                 </Row>
 
@@ -40,10 +42,7 @@ class UserEdit extends React.Component {
         )
     }
 
-    onChange(event) {
-        let role = e.target.value;
-        console.log('UserEdit role: ' + role);
-    }
+
 };
 
 export default UserEdit;

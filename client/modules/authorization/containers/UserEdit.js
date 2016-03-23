@@ -13,24 +13,24 @@ export const composer = ({context, userId, clearErrors}, onData) => {
 
     if (userId !== undefined) {
         if (Meteor.subscribe('user.single', userId).ready()) {
-            const selector = {_id: userId};
-            user = Meteor.users.find(selector);
-            //const user = Meteor.users.findOne(userId);
-           // onData(null, {user, error});
-        } else {
-            const selector = {_id: userId};
+           /* const selector = {_id: userId};
+            user = Meteor.users.find(selector);*/
             user = Meteor.users.findOne(userId);
-            //const user = Meteor.users.findOne(userId);
+           onData(null, {user, error});
+        } else {
+            /*const selector = {_id: userId};
+            user = Meteor.users.findOne(userId);*/
+            user = Meteor.users.findOne(userId);
             onData(null, {user, baseroles, error});
         }
             /*if (user) {
                 if (Meteor.subscribe('baseRoles.list').ready()) {
-                    const baseroles = BaseRoles.find().fetch();
-                    console.log('baseroles: ' + BaseRoles.find().count())
+                    baseroles = Collections.BaseRoles.find().fetch();
+                    console.log('baseroles: ' + Collections.BaseRoles.find().count())
                     onData(null, {user, baseroles, error});
                 } else {
-                    const baseroles = BaseRoles.find().fetch();
-                    console.log('baseroles: ' + BaseRoles.find().count())
+                    baseroles = Collections.BaseRoles.find().fetch();
+                    console.log('baseroles: ' + Collections.BaseRoles.find().count())
                     if (baseroles) {
                         onData(null, {user, baseroles});
                     } else {
