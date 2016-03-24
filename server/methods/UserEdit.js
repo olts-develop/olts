@@ -1,7 +1,6 @@
 /**
- * Created by martin on 11.03.2016.
+ * Created by martin on 24.03.2016.
  */
-import {BaseRoles} from '/lib/collections';
 import  {Meteor} from 'meteor/meteor';
 
 

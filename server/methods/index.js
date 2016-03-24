@@ -1,9 +1,9 @@
 import startup from './startup';
-import UserAuth from './UserAuth';
+import UserEdit from './UserEdit';
 
 
 export default function() {
     startup();
-    UserAuth();
+    UserEdit();
 
 }

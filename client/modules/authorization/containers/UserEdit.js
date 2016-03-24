@@ -2,7 +2,6 @@
  * Created by martin on 21.03.2016.
  */
 import UserEdit from '../components/UserEdit.jsx';
-//import BaseRoles from '../../../../lib/schemas/authorizations/BaseRoles';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, userId, clearErrors}, onData) => {
@@ -14,19 +13,15 @@ export const composer = ({context, userId, clearErrors}, onData) => {
     if (userId !== undefined) {
         if (Meteor.subscribe('user.single', userId).ready()) {
             user = Meteor.users.findOne(userId);
-            //onData(null, {user, error});
         } else {
             user = Meteor.users.findOne(userId);
-            //onData(null, {user, baseroles, error});
         }
         if (user) {
             if (Meteor.subscribe('baseRoles.list').ready()) {
                 baseroles = Collections.BaseRoles.find().fetch();
-                console.log('baseroles: ' + Collections.BaseRoles.find().count())
                 onData(null, {user, baseroles, error});
             } else {
                 baseroles = Collections.BaseRoles.find().fetch();
-                console.log('baseroles: ' + Collections.BaseRoles.find().count())
                 if (baseroles) {
                     onData(null, {user, baseroles});
                 } else {
@@ -37,7 +32,7 @@ export const composer = ({context, userId, clearErrors}, onData) => {
             onData();
 
         }
-        
+
     } else {
         onData(null, {error});
     }
@@ -48,7 +43,7 @@ export const composer = ({context, userId, clearErrors}, onData) => {
 };
 
 export const depsMapper = (context, actions) => ({
-    create: actions.UserEdit.create,
+    assignRole: actions.UserEdit.assignRole,
     clearErrors: actions.UserEdit.clearErrors,
     context: () => context
 })
