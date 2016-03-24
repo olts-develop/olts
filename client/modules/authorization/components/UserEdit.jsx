@@ -16,11 +16,16 @@ class UserEdit extends React.Component {
 
                 <Row>
                     <Col md={6}>
-
+                        <Input type="select" label="Roles"  ref="role" onChange={this.setRole.bind(this)}>
+                            <option selected value="NONE">-----</option>
+                            {baseroles.map(baserole => (
+                                <option key={baserole._id} value={baserole.role}>{baserole.description}</option>
+                            ) )}
+                        </Input>
                     </Col>
                     <Col md={6}>
 
-                        <Input type="select" label="Roles"  ref="role" onChange={this.setRole.bind(this)}>
+                        <Input type="select" label="Groups"  ref="group" onChange={this.setRole.bind(this)}>
                             <option selected value="NONE">-----</option>
                             {baseroles.map(baserole => (
                                 <option key={baserole._id} value={baserole.role}>{baserole.description}</option>

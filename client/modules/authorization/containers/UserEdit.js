@@ -8,7 +8,7 @@ export const composer = ({context, userId, clearErrors}, onData) => {
     const {LocalState, Meteor, Collections} = context();
     const error = LocalState.get('USER_EDIT_ERROR')
 
-    let user, baseroles;
+    let user, baseroles, groups;
 
     if (userId !== undefined) {
         if (Meteor.subscribe('user.single', userId).ready()) {
@@ -22,8 +22,16 @@ export const composer = ({context, userId, clearErrors}, onData) => {
                 onData(null, {user, baseroles, error});
             } else {
                 baseroles = Collections.BaseRoles.find().fetch();
-                if (baseroles) {
-                    onData(null, {user, baseroles});
+            }
+
+            if (Meteor.subscribe('groups.list').ready()) {
+                groups = Collections.Groups.find().fetch();
+                onData(null, {user, baseroles, groups, error});
+            } else {
+                groups = Collections.Groups.find().fetch();
+            }
+                if (baseroles | groups)
+                    onData(null, {user, baseroles, goups});
                 } else {
                     onData();
                 }
