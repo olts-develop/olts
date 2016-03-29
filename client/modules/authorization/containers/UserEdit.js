@@ -19,27 +19,24 @@ export const composer = ({context, userId, clearErrors}, onData) => {
         if (user) {
             if (Meteor.subscribe('baseRoles.list').ready()) {
                 baseroles = Collections.BaseRoles.find().fetch();
-                onData(null, {user, baseroles, error});
+                //onData(null, {user, baseroles, error});
             } else {
                 baseroles = Collections.BaseRoles.find().fetch();
             }
 
             if (Meteor.subscribe('groups.list').ready()) {
                 groups = Collections.Groups.find().fetch();
-                onData(null, {user, baseroles, groups, error});
+                //onData(null, {user, baseroles, groups, error});
             } else {
                 groups = Collections.Groups.find().fetch();
             }
-                if (baseroles | groups)
-                    onData(null, {user, baseroles, goups});
-                } else {
-                    onData();
-                }
-            }
+        }
+        if (user && (baseroles || groups)){
+            onData(null, {user, baseroles, groups});
         } else {
             onData();
-
         }
+
 
     } else {
         onData(null, {error});
@@ -52,6 +49,7 @@ export const composer = ({context, userId, clearErrors}, onData) => {
 
 export const depsMapper = (context, actions) => ({
     assignRole: actions.UserEdit.assignRole,
+    assignGroup: actions.UserEdit.assignGroup,
     clearErrors: actions.UserEdit.clearErrors,
     context: () => context
 })

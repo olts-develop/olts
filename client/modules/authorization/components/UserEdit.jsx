@@ -8,7 +8,7 @@ class UserEdit extends React.Component {
 
     render() {
 
-        const {user, baseroles}= this.props;
+        const {user, baseroles,groups}= this.props;
 
         return (
 
@@ -24,11 +24,10 @@ class UserEdit extends React.Component {
                         </Input>
                     </Col>
                     <Col md={6}>
-
-                        <Input type="select" label="Groups"  ref="group" onChange={this.setRole.bind(this)}>
+                        <Input type="select" label="Groups"  ref="group" onChange={this.setGroup.bind(this)}>
                             <option selected value="NONE">-----</option>
-                            {baseroles.map(baserole => (
-                                <option key={baserole._id} value={baserole.role}>{baserole.description}</option>
+                            {groups.map(group => (
+                                <option key={group._id} value={group.group}>{group.description}</option>
                             ) )}
                         </Input>
 
@@ -51,8 +50,20 @@ class UserEdit extends React.Component {
 
         )
     }
-    setRole(e) {
+    setGroup(e) {
        e.preventDefault();
+        const {assignRole} = this.props;
+        const userId = this.props.user._id;
+        const role= this.refs.role.getInputDOMNode().value;
+
+        assignRole(userId, role);
+
+        console.log('role clicked: ' + userId + 'role: ' + role)
+
+    }
+
+    setRole(e) {
+        e.preventDefault();
         const {assignRole} = this.props;
         const userId = this.props.user._id;
         const role= this.refs.role.getInputDOMNode().value;
