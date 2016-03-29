@@ -21,22 +21,30 @@ export default {
 
     },
 
-    assignGroup({Meteor, LocalState}, userId, group) {
+    assignGroup({Meteor, LocalState}, userId, groupId) {
         if (!userId) {
             return LocalState.set('EDIT_USER_ROLE', 'User is required.');
         }
 
-        if (!group){
+        if (!groupId){
             return LocalState.set('EDIT_USER_ROLE', 'Group is required.');
         }
 
         LocalState.set('EDIT_USER_ROLE', null);
 
-        Meteor.call('userauth.setRole', userId, group, (err) => {
-            if (err) {
-                return LocalState.set('EDIT_USER_ROLE', err.message);
-            }
-        });
+        const groups = Collections.Groups.findOne(groupId);
+
+        if (groups){
+            let groupRoles=[]
+            groups.map(group => (
+                
+                    Meteor.call('userauth.setGroup', userId, group.roles, group.name, (err) => {
+                        if (err) {
+                            return LocalState.set('EDIT_USER_ROLE', err.message);
+                        }
+                    })
+            ))
+        }
 
     },
 

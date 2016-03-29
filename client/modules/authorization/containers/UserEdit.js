@@ -19,14 +19,12 @@ export const composer = ({context, userId, clearErrors}, onData) => {
         if (user) {
             if (Meteor.subscribe('baseRoles.list').ready()) {
                 baseroles = Collections.BaseRoles.find().fetch();
-                //onData(null, {user, baseroles, error});
             } else {
                 baseroles = Collections.BaseRoles.find().fetch();
             }
 
             if (Meteor.subscribe('groups.list').ready()) {
                 groups = Collections.Groups.find().fetch();
-                //onData(null, {user, baseroles, groups, error});
             } else {
                 groups = Collections.Groups.find().fetch();
             }
