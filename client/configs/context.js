@@ -1,5 +1,6 @@
 
 import * as Collections from '/lib/collections';
+import * as DateHelper from '/general/helper/dateHelper'
 import {Meteor} from 'meteor/meteor';
 import {FlowRouter} from 'meteor/kadira:flow-router-ssr';
 import {ReactiveDict} from 'meteor/reactive-dict';
@@ -12,6 +13,7 @@ export default function () {
         FlowRouter,
         Collections,
         LocalState: new ReactiveDict(),
-        Tracker
+        Tracker,
+        DateHelper
     };
 }

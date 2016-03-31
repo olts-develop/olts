@@ -30,7 +30,7 @@ export default {
     },
 
 
-    login({Meteor, LocalState, FlowRouter}, user, password) {
+    login({Meteor, LocalState, FlowRouter, DateHelper}, user, password) {
         if (!user) {
             return LocalState.set('LOGIN_ERROR', 'UserID / Email is required.');
         }
@@ -41,7 +41,9 @@ export default {
 
         LocalState.set('LOGIN_ERROR', null);
 
-
+        const mydate=DateHelper.currentDate();
+        console.log('now: '+ moment().format('DD.MM.YYYY'))
+        console.log('currentDate: '+mydate+'   dateMDy String: '+ DateHelper.dateDMy('30.03.2016',false)+'   dateMDy date: '+ DateHelper.dateDMy('31.03.2016',true))
 
         Meteor.loginWithPassword(user, password);
         FlowRouter.go('/app');

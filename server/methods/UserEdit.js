@@ -13,7 +13,8 @@ export default function() {
 
     Meteor.methods({
         'userauth.setGroup'(userId,groupRoles,groupName){
-            Roles.addUsersToRoles(userId,[groupRoles],groupName);
+            console.log('SERVER setGroups: ' + groupName)
+            Roles.addUsersToRoles(userId,groupRoles,groupName);
         }
     });
 
