@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Panel, Input, ButtonInput, Glyphicon } from 'react-bootstrap';
 
-class NewUser extends React.Component {
+class newUser extends React.Component {
 
     render() {
         const {error} = this.props;
@@ -46,4 +46,4 @@ class NewUser extends React.Component {
     }
 }
 
-export default NewUser;
+export default newUser;

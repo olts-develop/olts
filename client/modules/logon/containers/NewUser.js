@@ -1,7 +1,7 @@
 /**
  * Created by martin on 11.03.2016.
  */
-import NewUser from '../components/NewUser.jsx';
+import newUser from '../components/newUser.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, clearErrors}, onData) => {
@@ -22,4 +22,4 @@ export const depsMapper = (context, actions) => ({
 export default composeAll(
     composeWithTracker(composer),
     useDeps(depsMapper)
-)(NewUser);
+)(newUser);

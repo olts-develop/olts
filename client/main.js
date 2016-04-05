@@ -6,7 +6,7 @@ import initContext from './configs/context';
 
 //modules
 import coreModule from './modules/core';
-import layoutModule from './modules/layout';
+import layoutModule from './modules/appLayout';
 import logonModule from './modules/logon';
 import authorizationModule from './modules/authorization';
 

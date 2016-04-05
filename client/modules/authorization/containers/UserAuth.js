@@ -1,7 +1,7 @@
 /**
  * Created by martin on 11.03.2016.
  */
-import UserAuth from '../components/UserAuth.jsx';
+import userAuth from '../components/userAuth.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, userId, clearErrors}, onData) => {
@@ -33,8 +33,8 @@ export const composer = ({context, userId, clearErrors}, onData) => {
 };
 
 export const depsMapper = (context,actions) =>({
-    selectSingleUser: actions.UserAuth.selectSingleUser,
-    clearErrors: actions.UserAuth.clearErrors,
+    selectSingleUser: actions.userAuth.selectSingleUser,
+    clearErrors: actions.userAuth.clearErrors,
     context: () => context
 });
 
@@ -42,4 +42,4 @@ export const depsMapper = (context,actions) =>({
 export default composeAll(
     composeWithTracker(composer),
     useDeps(depsMapper  )
-)(UserAuth);
+)(userAuth);

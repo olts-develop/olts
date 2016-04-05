@@ -3,7 +3,7 @@ import {Panel, Table,  Row, Col, Glyphicon } from 'react-bootstrap';
 
 
 
-class UserAuth extends React.Component {
+class userAuth extends React.Component {
 
     render() {
 
@@ -66,4 +66,4 @@ class UserAuth extends React.Component {
 
 };
 
-export default UserAuth;
+export default userAuth;

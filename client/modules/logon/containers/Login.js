@@ -1,4 +1,4 @@
-import Login from '../components/Login.jsx';
+import login from '../components/login.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 
@@ -21,4 +21,4 @@ export const depsMapper = (context, actions) => ({
 export default composeAll(
     composeWithTracker(composer),
     useDeps(depsMapper)
-)(Login);
+)(login);

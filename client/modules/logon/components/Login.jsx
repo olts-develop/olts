@@ -3,7 +3,7 @@ import {Grid, Row, Col, Panel, Input, ButtonInput, Glyphicon } from 'react-boots
 
 import AppConfig from '../../../configs/app'
 
-class Login extends React.Component {
+class login extends React.Component {
 
     render() {
 
@@ -62,4 +62,4 @@ class Login extends React.Component {
 
 }
 
-export default Login;
+export default login;
