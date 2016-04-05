@@ -2,10 +2,10 @@ import React from 'react';
 import {mount} from 'react-mounter';
 
 import Layout from './components/MainLayout.jsx';
-import appLayout from '../appLayout/containers/appLayout';
+import AppLayout from '../appLayout/containers/appLayout';
 import Login from '../logon/containers/login';
 import NewUser from '../logon/containers/newUser';
-import userAuth from '../authorization/containers/userAuth';
+import UserAuth from '../authorization/containers/userAuth';
 import UserEdit from '../authorization/containers/userEdit';
 
 export default function (injectDeps, {FlowRouter}){
@@ -35,7 +35,7 @@ export default function (injectDeps, {FlowRouter}){
         name: 'users.auth',
         action() {
             mount(MainLayoutCtx, {
-                content: () => (<userAuth/>)
+                content: () => (<UserAuth/>)
             });
         }
     });
@@ -45,7 +45,7 @@ export default function (injectDeps, {FlowRouter}){
         action({userId}) {
             console.log('/useredit/:' + userId);
             mount(MainLayoutCtx, {
-                content: () => (<userEdit userId={userId} />)
+                content: () => (<UserEdit userId={userId} />)
             });
         }
     });
@@ -55,7 +55,7 @@ export default function (injectDeps, {FlowRouter}){
         action(){
             console.log("applayout route")
             mount(MainLayoutCtx,{
-                content: () => (<appLayout />)
+                content: () => (<AppLayout />)
             });
         }
     });

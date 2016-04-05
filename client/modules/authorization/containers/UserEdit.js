@@ -1,7 +1,7 @@
 /**
  * Created by martin on 21.03.2016.
  */
-import UserEdit from '../components/UserEdit.jsx';
+import userEdit from '../components/userEdit.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, userId, clearErrors}, onData) => {
@@ -46,13 +46,13 @@ export const composer = ({context, userId, clearErrors}, onData) => {
 };
 
 export const depsMapper = (context, actions) => ({
-    assignRole: actions.UserEdit.assignRole,
-    assignGroup: actions.UserEdit.assignGroup,
-    clearErrors: actions.UserEdit.clearErrors,
+    assignRole: actions.userEdit.assignRole,
+    assignGroup: actions.userEdit.assignGroup,
+    clearErrors: actions.userEdit.clearErrors,
     context: () => context
 })
 
 export default composeAll(
     composeWithTracker(composer),
     useDeps(depsMapper)
-)(UserEdit);
+)(userEdit);
