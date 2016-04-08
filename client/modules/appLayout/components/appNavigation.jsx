@@ -12,7 +12,7 @@ class appNavigation extends React.Component {
                       <Navbar>
                             <Nav>
                                   <NavDropdown eventKey={1} id="order" title="Order">
-                                        <MenuItem eventKey={1.1}>Order</MenuItem>
+                                        <MenuItem eventKey={1.1} href="/app/order">Order</MenuItem>
                                         <MenuItem eventKey={1.2}>Agenda</MenuItem>
                                         <MenuItem eventKey={1.3}>Order action list</MenuItem>
                                         <MenuItem divider />

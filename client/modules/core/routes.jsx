@@ -8,8 +8,10 @@ import NewUser from '../logon/containers/newUser';
 import UserAuth from '../authorization/containers/userAuth';
 import UserEdit from '../authorization/containers/userEdit';
 
+
 export default function (injectDeps, {FlowRouter}){
     const MainLayoutCtx = injectDeps(Layout);
+    const AppLayoutCtx = injectDeps(AppLayout);
 
 
     FlowRouter.route('/', {
@@ -60,5 +62,5 @@ export default function (injectDeps, {FlowRouter}){
         }
     });
 
-
+   
 }
