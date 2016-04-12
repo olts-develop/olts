@@ -2,7 +2,7 @@ import React from 'react';
 import {Table, Row, Col, Panel, Glyphicon, Input } from 'react-bootstrap';
 
 
-class UserEdit extends React.Component {
+class userEdit extends React.Component {
 
 
 
@@ -76,4 +76,4 @@ class UserEdit extends React.Component {
 
 };
 
-export default UserEdit;
+export default userEdit;
