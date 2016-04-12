@@ -10,7 +10,7 @@ import layoutModule from './modules/appLayout';
 import logonModule from './modules/logon';
 import authorizationModule from './modules/authorization';
 import orderModule from './modules/order';
-
+import agendaModule from './modules/agenda';
 //init context
 const context = initContext();
 
@@ -21,4 +21,5 @@ app.loadModule(layoutModule);
 app.loadModule(logonModule);
 app.loadModule(authorizationModule);
 app.loadModule(orderModule);
+app.loadModule(agendaModule);
 app.init();

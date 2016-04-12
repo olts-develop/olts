@@ -2,7 +2,7 @@ import appLayout from '../components/appLayout.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 
-export const composer = ({context, clearErrors}, onData) => {
+export const composer = ({context, userId, clearErrors}, onData) => {
     const {LocalState, Meteor, Collections} = context();
     const error = LocalState.get('APP_LAYOUT_ERROR')
 

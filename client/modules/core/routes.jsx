@@ -7,16 +7,14 @@ import Login from '../logon/containers/login';
 import NewUser from '../logon/containers/newUser';
 import UserAuth from '../authorization/containers/userAuth';
 import UserEdit from '../authorization/containers/userEdit';
-import Order from '../order/components/order.jsx';
+
 
 
 export default function (injectDeps, {FlowRouter}){
     const MainLayoutCtx = injectDeps(Layout);
-    const AppLayoutCtx = injectDeps(AppLayout);
 
-    const appSection = FlowRouter.group({
-        prefix: "/app"
-    })
+
+
 
     FlowRouter.route('/', {
         name:'users.login',
@@ -66,14 +64,6 @@ export default function (injectDeps, {FlowRouter}){
         }
     });
 
-    appSection.route('/order', {
-        name: 'app.order',
-        action(){
-            console.log("Order route: "+  FlowRouter.getRouteName())
-            mount(AppLayoutCtx,{
-                modulecontent: () => (<Order />)
-            });
-        }
-    });
+    
 
 }
