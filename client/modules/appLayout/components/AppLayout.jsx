@@ -4,29 +4,26 @@ import {Grid, Row} from 'react-bootstrap';
 
 import AppHeader from './appHeader.jsx';
 import AppNavigation from './appNavigation.jsx'
-
+import OltAppBar from './../../LayoutTemplates/oltAppBar.jsx'
 
 class appLayout extends React.Component {
-
+      
       render() {
 
             const {employee} = this.props
-            let modulecontent = this.props.modulecontent;
+            const modulecontent = this.props.modulecontent;
 
-            if (!modulecontent){
-                  modulecontent = function () {}
-            }
 
             return(
-                  <Grid>
+                  <Grid fluid={true}>
                         <Row className="app-header">
-                              <AppHeader employee={employee} />
+                              <AppHeader employee={employee}/>
                         </Row>
                         <Row className="app-navbar">
                               <AppNavigation />
                         </Row>
                         <Row className="app-modules">
-                              {modulecontent()}
+                              {modulecontent? modulecontent(): null}
                         </Row>
                         <Row className="app-messages">
                         </Row>

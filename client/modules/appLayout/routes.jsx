@@ -9,6 +9,7 @@ import AppLayout from '../appLayout/containers/appLayout';
 import Order from '../order/components/order.jsx';
 import Agenda from '../agenda/components/agenda.jsx';
 import ActionList from '../order/components/actionlist.jsx';
+import UserAuth from '../authorization/containers/userAuth';
 
 export default function (injectDeps, {FlowRouter}) {
       const AppLayoutCtx = injectDeps(AppLayout);
@@ -20,7 +21,6 @@ export default function (injectDeps, {FlowRouter}) {
       appSection.route('/order', {
             name: 'app.order',
             action(){
-                  console.log("Order route: "+  FlowRouter.getRouteName())
                   mount(AppLayoutCtx,{
                         modulecontent: () => (<Order />)
                   });
@@ -41,6 +41,15 @@ export default function (injectDeps, {FlowRouter}) {
             action(){
                   mount(AppLayoutCtx,{
                         modulecontent: () => (<ActionList />)
+                  });
+            }
+      });
+
+      appSection.route('/userauth', {
+            name: 'app.usersauth',
+            action() {
+                  mount(AppLayoutCtx, {
+                        modulecontent: () => (<UserAuth/>)
                   });
             }
       });

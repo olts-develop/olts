@@ -41,6 +41,9 @@ class appNavigation extends React.Component {
                                   </NavDropdown>
                                   <NavItem eventKey={6} id="statistic">Statistic</NavItem>
                                   <NavItem eventKey={7} id="parameter">Parameter</NavItem>
+                                  <NavDropdown eventKey={8} id="setup" title="Setup">
+                                        <MenuItem eventKey={5.1} href="/app/userauth">User Accounts</MenuItem>
+                                  </NavDropdown>
                                   <NavItem eventKey={8} id="setup">Setup</NavItem>
                                   <NavItem eventKey={9} id="system">System</NavItem>
                             </Nav>

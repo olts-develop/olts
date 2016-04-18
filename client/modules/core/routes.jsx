@@ -13,9 +13,7 @@ import UserEdit from '../authorization/containers/userEdit';
 export default function (injectDeps, {FlowRouter}){
     const MainLayoutCtx = injectDeps(Layout);
 
-
-
-
+    
     FlowRouter.route('/', {
         name:'users.login',
         action() {
@@ -34,15 +32,7 @@ export default function (injectDeps, {FlowRouter}){
             });
         }
     });
-
-    FlowRouter.route('/userauth', {
-        name: 'users.auth',
-        action() {
-            mount(MainLayoutCtx, {
-                content: () => (<UserAuth/>)
-            });
-        }
-    });
+    
 
     FlowRouter.route('/useredit/:userId', {
         name: 'users.edit',

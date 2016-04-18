@@ -9,7 +9,8 @@
     "react-bootstrap-datetimepicker": "0.0.22",
     "react-dom": "^0.14.6",
     "react-komposer": "^1.4.1",
-    "react-mounter": "^1.0.0"
+    "react-mounter": "^1.0.0",
+    "mantra-cli": "latest"
   },
   "private": true
 }

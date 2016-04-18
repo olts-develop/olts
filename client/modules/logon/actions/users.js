@@ -16,15 +16,13 @@ export default {
         }
 
         LocalState.set('CREATE_USER_ERROR', null);
-
-
-        console.log(username + ' '+ email+' '+password)
-
-
-        Accounts.createUser({username, email, password})
-
-
-            FlowRouter.go('/userauth');
+        
+        Accounts.createUser(username, email, password, (error) => {
+            if (error){
+                return LocalState.set('CREATE_USER_ERROR', 'Could not register user ' + error)
+            }
+                FlowRouter.go('/userauth');
+            });
 
        // FlowRouter.go('/userauth',{userId: user._id});
     },
@@ -41,15 +39,13 @@ export default {
 
         LocalState.set('LOGIN_ERROR', null);
 
-        /*const mydate=DateHelper.currentDate();
-        console.log('now: '+ moment().format('DD.MM.YYYY'))
-        console.log('currentDate: '+mydate+'   dateMDy String: '+ DateHelper.dateDMy('30.03.2016',false)+'   dateMDy date: '+ DateHelper.dateDMy('31.03.2016',true))
-*/
-
-        console.log('loginWithPassword: '+ user + '  '+ password)
-
-        Meteor.loginWithPassword(user, password);
-        FlowRouter.go('/app');
+        Meteor.loginWithPassword(user, password, (error) => {
+            if (error){
+                return LocalState.set('LOGIN_ERROR', 'Login failed with: '+ error)
+            }
+            FlowRouter.go('/app');
+        });
+         return false;
     },
 
     clearErrors({LocalState}) {
@@ -58,7 +54,11 @@ export default {
 
 
     logout({Meteor, LocalState, FlowRouter}){
-        console.log('logout....................')
-        Meteor.logout();
+        Meteor.logout(function (error) {
+            if (error){
+                return LocalState.set('LOGOUT_ERROR', 'Logout failed with: '+ error)
+            }
+
+        });
     }
 }

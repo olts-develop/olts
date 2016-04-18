@@ -18,17 +18,17 @@ class userEdit extends React.Component {
                     <Col md={6}>
                         <Input type="select" label="Roles"  ref="role" onChange={this.setRole.bind(this)}>
                             <option selected value="NONE">-----</option>
-                            {baseroles.map(baserole => (
+                            {baseroles? baseroles.map(baserole => (
                                 <option key={baserole._id} value={baserole._id}>{baserole.description}</option>
-                            ) )}
+                            ) ):null}
                         </Input>
                     </Col>
                     <Col md={6}>
                         <Input type="select" label="Groups"  ref="group" onChange={this.setGroup.bind(this)}>
                             <option selected value="NONE">-----</option>
-                            {groups.map(group => (
+                            {groups? groups.map(group => (
                                 <option key={group._id} value={group._id}>{group.description}</option>
-                            ) )}
+                            ) ):null}
                         </Input>
 
                     </Col>
@@ -36,13 +36,13 @@ class userEdit extends React.Component {
 
                 <Row>
                     <Col md={4}>
-                        <input type="text" label="UserId" value={user.username} readOnly/>
+                        <input type="text" label="UserId" value={user? user.username: null} readOnly/>
                     </Col>
                     <Col md={4}>
-                        <input type="text" label="email" value={user.emails[0].address} readOnly/>
+                        <input type="text" label="email" value={user? user.emails[0].address: null} readOnly/>
                     </Col>
                     <Col md={4}>
-                        <input type="text" label="Roles/Groups" value={user.roles} readOnly/>
+                        <input type="text" label="Roles/Groups" value={user? user.roles: null} readOnly/>
                     </Col>
                 </Row>
 

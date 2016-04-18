@@ -3,7 +3,7 @@
  */
 export default{
 
-    name: 'OLTS-4.0',
+    name: 'OLTS',
     version:'0.0.1',
     isDevelop: function(){
         if (Meteor.absoluteUrl("http://localhost:3000/")) {

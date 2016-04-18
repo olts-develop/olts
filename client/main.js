@@ -11,6 +11,9 @@ import logonModule from './modules/logon';
 import authorizationModule from './modules/authorization';
 import orderModule from './modules/order';
 import agendaModule from './modules/agenda';
+import currentUserModule from './modules/currentUser';
+
+
 //init context
 const context = initContext();
 
@@ -22,4 +25,5 @@ app.loadModule(logonModule);
 app.loadModule(authorizationModule);
 app.loadModule(orderModule);
 app.loadModule(agendaModule);
+app.loadModule(currentUserModule);
 app.init();

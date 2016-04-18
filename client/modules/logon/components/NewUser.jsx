@@ -7,11 +7,10 @@ class newUser extends React.Component {
         const {error} = this.props;
 
         return (
-            <Col xs={12} sm={6} smOffset={3}>
+            <Col xs={12}>
 
-                <Panel>
-
-                    <h1>Register</h1>
+                <Panel header="Register" bsStyle="primary">
+                    
                     {error ? <p style={{color: 'red'}}>{error}</p> : null}
                     <form>
                             <Col xs={3} xsOffset={9}>

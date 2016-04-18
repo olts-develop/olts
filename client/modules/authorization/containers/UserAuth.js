@@ -4,29 +4,31 @@
 import userAuth from '../components/userAuth.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
+
 export const composer = ({context, userId, clearErrors}, onData) => {
-    const {LocalState, Meteor} = context();
+    const {LocalState, Meteor} = context();;
     const error = LocalState.get('USERAUTH_ERROR')
 
         if (Meteor.subscribe('users.list').ready()) {
             const users = Meteor.users.find({}, {sort: {createdAt: 1}}).fetch();
-            const totalUsers = Meteor.users.find().count();
-            onData(null, {users, totalUsers});
+            const currUserId = users[0]._id
+            console.log("curruserId: "+currUserId)
+            onData(null, {users,currUserId});
         }
 
-  /* if (userId !== undefined){
-        if (Meteor.subscribe('user.single').ready()) {
-            const user = Meteor.users.findOne(userId);
-            onData(null,{user, error});
-        } else {
-            const user = Meteor.users.findOne(userId);
-            if (user) {
-                onData(null, {user});
-            }else {
-                onData();
-            }
-        }
-    }*/
+  // if (userId !== undefined){
+  //       if (Meteor.subscribe('user.single').ready()) {
+  //           const user = Meteor.users.findOne(userId);
+  //           onData(null,{user, error});
+  //       } else {
+  //           const user = Meteor.users.findOne(userId);
+  //           if (user) {
+  //               onData(null, {user});
+  //           }else {
+  //               onData();
+  //           }
+  //       }
+  //   }
 
     // clearErrors when unmounting the component
     return clearErrors;
