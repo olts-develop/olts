@@ -12,7 +12,7 @@ export default {
 
         LocalState.set('USERAUTH_ERROR', null);
 
-        FlowRouter.go('/useredit/:userId', {userId: userId})
+        FlowRouter.go('/app/useredit/:userId', {userId: userId})
 
     },
 

@@ -3,9 +3,16 @@
  */
 
 import React from 'react';
-import {Grid, Row, Col, Panel, Input, ButtonInput, Glyphicon } from 'react-bootstrap';
+import {Row, Col, Panel, Button, Glyphicon, Form, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+
+const loginVals = {}
 
 class login extends React.Component {
+
+      handleChange(event){
+
+            loginVals[event.target.id] = event.target.value
+      }
 
       render() {
 
@@ -14,51 +21,59 @@ class login extends React.Component {
             return (
                   <Panel className="FormInput" >
 
-                        <form >
-                              <Row>
-                                    <Col lg={6} className="logon-right-col">
-                                          <h3>Online Travel</h3>
-                                    </Col>
+                        <Row>
+                              <Col lg={6} className="logon-right-col">
+                                    <h3>Online Travel</h3>
+                              </Col>
+                              <Form>
                                     <Col lg={6}>
                                           <Row >
-                                                <Col xs={4} xsOffset={8}>
+                                                <Col lg={4} xsOffset={8}>
                                                       <a href="/register"><Glyphicon glyph="plus"></Glyphicon> New User</a>
                                                 </Col>
                                           </Row>
-                                          <Input ref="user" type="user" label="User" placeholder="User / Email" autofocus/>
-                                          <Input ref="password" type="password" label="Password" placeholder="Password" />
 
+                                          <FormGroup controlId="user">
+                                                <ControlLabel>User</ControlLabel>
+                                                <FormControl type="user" placeholder="User / Email" onChange={this.handleChange} autofocus/>
+                                          </FormGroup>
+                                          <FormGroup controlId="password">
+                                                <ControlLabel>Password</ControlLabel>
+                                                <FormControl type="password" placeholder="Password" onChange={this.handleChange}/>
+                                          </FormGroup>
                                           <Row>
+
                                                 <Col lg={6}>
-                                                      <ButtonInput onClick={this.login.bind(this)} bsStyle="primary" type="submit" value="Login"/>
+                                                      <FormGroup>
+                                                            <Button onClick={this.login.bind(this)} bsStyle="primary" bsSize="small" type="submit">Login</Button>
+                                                      </FormGroup>
                                                 </Col>
+
                                                 <Col lg={6} className="col-align-right">
-                                                      <ButtonInput onClick={this.logout.bind(this)} bsStyle="primary" type="submit" value="Logout" />
+                                                      <FormGroup>
+                                                            <Button onClick={this.logout.bind(this)} bsStyle="primary" bsSize="small" type="submit">Logout</Button>
+                                                      </FormGroup>
                                                 </Col>
+
                                           </Row>
                                           <Row>
-                                                <Col lg={6} className="col-align-center">
+                                                <Col lg={6} className="col-align-right">
                                                       {error ? <p style = {{color: 'red'}}>{error}</p> :null}
                                                 </Col>
                                           </Row>
 
                                     </Col>
-                              </Row>
-                        </form>
+                              </Form>
+                        </Row>
 
                   </Panel>
-
-
             )
       }
 
       login(event) {
             event.preventDefault();
             const {loginUser}=this.props;
-            const {user, password} = this.refs;
-            loginUser(user.getValue(), password.getValue());
-            user.getInputDOMNode().value = '';
-            password.getInputDOMNode().value = '';
+            loginUser(loginVals.user, loginVals.password);
       }
 
       logout(event) {

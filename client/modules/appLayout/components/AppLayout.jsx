@@ -4,7 +4,7 @@ import {Grid, Row} from 'react-bootstrap';
 
 import AppHeader from './appHeader.jsx';
 import AppNavigation from './appNavigation.jsx'
-import OltAppBar from './../../LayoutTemplates/oltAppBar.jsx'
+
 
 class appLayout extends React.Component {
       
@@ -12,7 +12,6 @@ class appLayout extends React.Component {
 
             const {employee} = this.props
             const modulecontent = this.props.modulecontent;
-
 
             return(
                   <Grid fluid={true}>

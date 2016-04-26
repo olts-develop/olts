@@ -5,10 +5,6 @@ import Layout from './components/MainLayout.jsx';
 import AppLayout from '../appLayout/containers/appLayout';
 import Login from '../logon/containers/login';
 import NewUser from '../logon/containers/newUser';
-import UserAuth from '../authorization/containers/userAuth';
-import UserEdit from '../authorization/containers/userEdit';
-
-
 
 export default function (injectDeps, {FlowRouter}){
     const MainLayoutCtx = injectDeps(Layout);

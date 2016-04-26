@@ -27,7 +27,7 @@ class userAuth extends React.Component {
 
 
                               <Col>
-                                  <Table striped bordered condensed hover responsive>
+                                  <Table striped bordered condensed responsive>
                                       <thead>
                                       <tr>
                                           <th>Name</th>

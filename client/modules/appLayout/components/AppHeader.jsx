@@ -1,7 +1,7 @@
 import React from 'react';
 import {Row, Col} from 'react-bootstrap';
 
-import currentUserMenu from './../../currentUser/components/currentUserMenu.jsx'
+import CurrentUserMenu from './../../currentUser/components/currentUserMenu.jsx'
 
 const appHeader = ({employee}) => (
       <Row>
@@ -15,7 +15,7 @@ const appHeader = ({employee}) => (
             </Col>
 
             <Col lg={5} className="align-right">
-                  <currentUserMenu employee={employee}/>
+                  <CurrentUserMenu employee={employee}/>
             </Col>
 
 

@@ -10,13 +10,15 @@ import Order from '../order/components/order.jsx';
 import Agenda from '../agenda/components/agenda.jsx';
 import ActionList from '../order/components/actionlist.jsx';
 import UserAuth from '../authorization/containers/userAuth';
+import UserEdit from '../authorization/containers/userEdit';
+import Employee from '../authorization/components/employee.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
       const AppLayoutCtx = injectDeps(AppLayout);
 
       const appSection = FlowRouter.group({
             prefix: "/app"
-      })
+      });
 
       appSection.route('/order', {
             name: 'app.order',
@@ -54,4 +56,22 @@ export default function (injectDeps, {FlowRouter}) {
             }
       });
 
+      appSection.route('/employee', {
+            name: 'app.employee',
+            action() {
+                  mount(AppLayoutCtx, {
+                        modulecontent: () => (<Employee/>)
+                  });
+            }
+      });
+
+      appSection.route('/useredit/:userId', {
+            name: 'users.edit',
+            action({userId}) {
+                  console.log('/useredit/:' + userId + '  '+FlowRouter.current().path);
+                  mount(AppLayoutCtx, {
+                        modulecontent: () => (<UserEdit userId={userId} />)
+                  });
+            }
+      });
 }
