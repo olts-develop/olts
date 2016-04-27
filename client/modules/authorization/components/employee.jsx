@@ -3,9 +3,10 @@
  */
 
 import React from 'react';
-import {Form, FormGroup, ControlLabel, FormControl, Radio, Panel, Row, Col} from 'react-bootstrap'
-import DateTimeField from 'react-bootstrap-datetimepicker';
-import OltInput from './../../oltTemplates/components/oltInput.jsx'
+import {Form, FormGroup, ControlLabel, Panel, Row, Col} from 'react-bootstrap'
+import select from 'react-bootstrap-select';
+import OltInput from './../../oltTemplates/components/oltInput.jsx';
+import OltRadio from './../../oltTemplates/components/oltRadio.jsx';
 
 employeeVals = {}
 
@@ -16,40 +17,66 @@ class employee extends React.Component {
 
             employeeVals[event.target.id] = event.target.value
       }
-      
+
 
 
       render() {
 
+            const {languages}= this.props;
 
             return (
-                  <Panel className="EmployeeInput">
-                        <Form inline>
-                              <OltInput id="name" label="Name" type="text" placeholder="name of the employee" function={this.handleChange}/>
-                              {' '}
-                              <OltInput id="forename" label="Forename" type="text" placeholder="forename of the employee" function={this.handleChange}/>
-                              {' '}
-                              <OltInput id="birthday" label="Date of birth" type="date" placeholder="birthday" function={this.handleChange}/>
-                              {' '}
-                              <FormGroup controlId="gender">
-                                    <ControlLabel>Gender</ControlLabel>
-                                    {' '}
-                                    <Radio inline name="gender">
-                                          M
-                                    </Radio>
-                                    {' '}
-                                    <Radio inline name="gender">
-                                          F
-                                    </Radio>
-                                    {' '}
-                                    <Radio inline name="gender">
-                                          undefined
-                                    </Radio>
-                              </FormGroup>
-                        </Form>
-                        <p/>
-                        <Form inline>
-                              <OltInput id="test" label="Tester" type="text" placeholder="please enter test" function={this.handleChange}/>
+                  <Panel className="full-screen-input">
+                        <Form>
+                              <Row>
+                                    <Col lg={3}>
+                                          <OltInput id="name" label="Name" type="text" placeholder="name of the employee" function={this.handleChange} autofocus={true}/>
+                                    </Col>
+                                    <Col  lg={3}>
+                                          <OltInput id="forename" label="Forename" type="text" placeholder="forename of the employee" function={this.handleChange}/>
+                                    </Col>
+                                    <Col  lg={3}>
+                                          <OltInput id="birthday" label="Birthday" type="date" placeholder="birthday" function={this.handleChange}/>
+                                    </Col>
+                                    <Col  lg={3}>
+                                          <OltRadio id="gender" radios={['M','F','undefined']} inline={true} label="Gender"/>
+                                    </Col>
+                              </Row>
+                              <Row>
+                                    <Col lg={3}>
+                                          <OltInput id="mail" label="Mail" type="text" placeholder="email" function={this.handleChange}/>
+                                    </Col>
+                                    <Col  lg={3}>
+                                          <OltInput id="phone" label="Phone" type="text" placeholder="telephone" function={this.handleChange}/>
+                                    </Col>
+                                    <Col  lg={3}>
+                                          <FormGroup className="form-col-text-field">
+                                                <Row>
+                                                      <Col lg={3}className="form-col-label-right">
+                                                            <ControlLabel>Language</ControlLabel>
+                                                      </Col>
+                                                      <Col lg={9} className="form-col-text-field">
+                                                            <select id="language" className="form-col-select" onChange={this.handleChange.bind(this)} >
+                                                                  <optgroup>
+                                                                        {languages.map(lang =>(lang.sortTop==true?
+                                                                              <option>{lang.langCode} {lang.language}</option>
+                                                                              :null)
+                                                                        )};
+                                                                  </optgroup>
+                                                                  <optgroup>
+                                                                        {languages.map(lang =>(lang.sortTop==false||lang.sortTop==undefined?
+                                                                              <option>{lang.langCode} {lang.language}</option>
+                                                                              :null)
+                                                                        )};
+                                                                  </optgroup>
+                                                            </select>
+                                                      </Col>
+                                                </Row>
+                                          </FormGroup>
+                                    </Col>
+                                    <Col  lg={3}>
+
+                                    </Col>
+                              </Row>
                         </Form>
 
 

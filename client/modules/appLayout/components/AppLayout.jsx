@@ -7,7 +7,8 @@ import AppNavigation from './appNavigation.jsx'
 
 
 class appLayout extends React.Component {
-      
+
+
       render() {
 
             const {employee} = this.props
@@ -25,6 +26,7 @@ class appLayout extends React.Component {
                               {modulecontent? modulecontent(): null}
                         </Row>
                         <Row className="app-messages">
+
                         </Row>
 
 

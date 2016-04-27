@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import {FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap'
+import {FormGroup, ControlLabel, FormControl, HelpBlock, Row, Col} from 'react-bootstrap'
 
 
 const oltInput = React.createClass({
@@ -15,13 +15,10 @@ const oltInput = React.createClass({
             type: React.PropTypes.string,
             placeholder: React.PropTypes.string,
             function: React.PropTypes.func,
+            autofocus: React.PropTypes.bool,
             help: React.PropTypes.bool,
             valfunction:  React.PropTypes.func
 
-      },
-
-      defaultProps(){
-            space:"' '"
       },
 
 
@@ -30,9 +27,14 @@ const oltInput = React.createClass({
             return(
 
                         <FormGroup controlId={this.props.id}>
+                              <Row>
+                                    <Col lg={3}className="form-col-label-right">
                               <ControlLabel>{this.props.label}</ControlLabel>
-                              {' '}
-                              <FormControl type={this.props.type} placeholder={this.props.placeholder} onChange={this.props.function}/>
+                                          </Col>
+                                    <Col lg={9} className="form-col-text-field">
+                              <FormControl type={this.props.type} placeholder={this.props.placeholder} onChange={this.props.function} autoFocus={this.props.autofocus? true: false}/>
+                                   </Col>
+                                    </Row>
                         </FormGroup>                   
 
 

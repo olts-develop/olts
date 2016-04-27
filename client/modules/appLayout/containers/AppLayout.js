@@ -14,14 +14,14 @@ export const composer = ({context, clearErrors}, onData) => {
                 const employee = Collections.Employees.findOne(selector);
                 console.log('Employee subscribe: ' + employee._id + '  username: ' + employee.firstName + ' ' + employee.name)
                 onData(null, {employee, error});
-            } else {
-                const employee = Collections.Employees.findOne(selector);
-                if (employee) {
-                    //console.log('Employee subscribe: ' + employee[0]._id + '  username: '+ employee[0].firstname + ' '+ employee[0].name )
-                    onData(null, {employee});
-                } else {
-                    onData();
-                }
+            // } else {
+            //     const employee = Collections.Employees.findOne(selector);
+            //     if (employee) {
+            //         //console.log('Employee subscribe: ' + employee[0]._id + '  username: '+ employee[0].firstname + ' '+ employee[0].name )
+            //         onData(null, {employee});
+            //     } else {
+            //         onData();
+            //     }
             }
         }
         else {

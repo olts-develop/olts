@@ -11,7 +11,7 @@ import Agenda from '../agenda/components/agenda.jsx';
 import ActionList from '../order/components/actionlist.jsx';
 import UserAuth from '../authorization/containers/userAuth';
 import UserEdit from '../authorization/containers/userEdit';
-import Employee from '../authorization/components/employee.jsx';
+import Employee from '../authorization/containers/employee';
 
 export default function (injectDeps, {FlowRouter}) {
       const AppLayoutCtx = injectDeps(AppLayout);

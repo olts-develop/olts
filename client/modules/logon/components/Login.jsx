@@ -35,7 +35,7 @@ class login extends React.Component {
 
                                           <FormGroup controlId="user">
                                                 <ControlLabel>User</ControlLabel>
-                                                <FormControl type="user" placeholder="User / Email" onChange={this.handleChange} autofocus/>
+                                                <FormControl type="user" placeholder="User / Email" onChange={this.handleChange} autoFocus/>
                                           </FormGroup>
                                           <FormGroup controlId="password">
                                                 <ControlLabel>Password</ControlLabel>
