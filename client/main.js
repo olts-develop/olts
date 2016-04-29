@@ -14,6 +14,7 @@ import agendaModule from './modules/agenda';
 import currentUserModule from './modules/currentUser';
 
 
+
 //init context
 const context = initContext();
 
@@ -26,4 +27,5 @@ app.loadModule(authorizationModule);
 app.loadModule(orderModule);
 app.loadModule(agendaModule);
 app.loadModule(currentUserModule);
+
 app.init();

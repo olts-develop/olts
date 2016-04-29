@@ -15,6 +15,6 @@ export default function () {
         LocalState: new ReactiveDict(),
         Tracker,
         DateHelper,
-        AppConfig
+        AppConfig,
     };
 }

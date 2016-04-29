@@ -3,15 +3,16 @@
  */
 
 import React from 'react';
+import BootstrapSelect from 'react-bootstrap-select'
 import {Form, FormGroup, ControlLabel, Panel, Row, Col} from 'react-bootstrap'
-import select from 'react-bootstrap-select';
 import OltInput from './../../oltTemplates/components/oltInput.jsx';
 import OltRadio from './../../oltTemplates/components/oltRadio.jsx';
 
 employeeVals = {}
-
+options = []
 
 class employee extends React.Component {
+
 
       handleChange(event){
 
@@ -23,6 +24,8 @@ class employee extends React.Component {
       render() {
 
             const {languages}= this.props;
+
+
 
             return (
                   <Panel className="full-screen-input">
@@ -55,30 +58,29 @@ class employee extends React.Component {
                                                             <ControlLabel>Language</ControlLabel>
                                                       </Col>
                                                       <Col lg={9} className="form-col-text-field">
-                                                            <select id="language" className="form-col-select" onChange={this.handleChange.bind(this)} >
+                                                            <BootstrapSelect id="language" className="form-col-select" onChange={this.handleChange} >
                                                                   <optgroup>
                                                                         {languages.map(lang =>(lang.sortTop==true?
-                                                                              <option>{lang.langCode} {lang.language}</option>
+                                                                              <option key={lang.langCode} value={lang.langCode}>{lang.language}</option>
                                                                               :null)
                                                                         )};
                                                                   </optgroup>
                                                                   <optgroup>
                                                                         {languages.map(lang =>(lang.sortTop==false||lang.sortTop==undefined?
-                                                                              <option>{lang.langCode} {lang.language}</option>
+                                                                              <option key={lang.langCode} value={lang.langCode}>{lang.language}</option>
                                                                               :null)
                                                                         )};
                                                                   </optgroup>
-                                                            </select>
+                                                            </BootstrapSelect>
                                                       </Col>
                                                 </Row>
                                           </FormGroup>
                                     </Col>
                                     <Col  lg={3}>
-
+                                         
                                     </Col>
                               </Row>
                         </Form>
-
 
                   </Panel>
 

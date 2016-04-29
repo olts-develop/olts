@@ -1,4 +1,4 @@
-import login from '../components/login.jsx';
+import login from './../components/login.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 

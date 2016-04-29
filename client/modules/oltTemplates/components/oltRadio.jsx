@@ -13,7 +13,8 @@ const oltRadio = React.createClass({
             id: React.PropTypes.string,
             Radios: React.PropTypes.array,
             inline: React.PropTypes.bool,
-            label: React.PropTypes.string
+            label: React.PropTypes.string,
+            function: React.PropTypes.func
 
       },
       
@@ -28,7 +29,7 @@ const oltRadio = React.createClass({
                         <ControlLabel>{this.props.label}</ControlLabel>
                         {' '}
                         {this.props.radios.map(radio => (
-                              <Radio inline={this.props.inline? true: false} name={this.props.id}>
+                              <Radio id={this.props.id} key={radio} value={radio} inline={this.props.inline? true: false} name={this.props.id} onChange={this.props.function}>
                                     {radio}
                               </Radio>
                         ))}
