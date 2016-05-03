@@ -1,55 +1,64 @@
 import React from 'react';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import ToolBar from 'material-ui/Toolbar';
+import ToolBarGroup from 'material-ui/Toolbar/ToolbarGroup';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem'
+import Divider from 'material-ui/Divider';
+import FlatButton from 'material-ui/FlatButton'
 
 
 class appNavigation extends React.Component {
 
       render(){
-
-
+            
             return(
 
-                  <Navbar>
-                        <Nav>
-                              <NavDropdown eventKey={1} id="order" title="Order">
-                                    <MenuItem eventKey={1.1} href="/app/order">Order</MenuItem>
-                                    <MenuItem eventKey={1.2} href="/app/agenda">Agenda</MenuItem>
-                                    <MenuItem eventKey={1.3} href="/app/actionlist">Order action list</MenuItem>
-                                    <MenuItem divider />
-                                    <MenuItem eventKey={1.3}>Search allotment</MenuItem>
-                              </NavDropdown>
-                              <NavDropdown eventKey={2} id="data" title="Data">
-                                    <MenuItem eventKey={2.1}>Flight</MenuItem>
-                                    <MenuItem eventKey={2.2}>Train</MenuItem>
-                                    <MenuItem eventKey={2.3}>Bus</MenuItem>
-                                    <MenuItem eventKey={2.3}>Ship</MenuItem>
-                                    <MenuItem divider />
-                                    <MenuItem eventKey={2.4}>Car</MenuItem>
-                                    <MenuItem eventKey={2.5}>Hotel</MenuItem>
-                                    <MenuItem eventKey={2.6}>Arrangement</MenuItem>
-                                    <MenuItem eventKey={2.7}>Misc</MenuItem>
-                                    <MenuItem eventKey={2.8}>Text</MenuItem>
-                              </NavDropdown>
-                              <NavItem eventKey={3} id="customer">Customer</NavItem>
-                              <NavItem eventKey={4} id="dms">DMS</NavItem>
-                              <NavDropdown eventKey={5} id="cash" title="Cash">
-                                    <MenuItem eventKey={5.1}>Impersonal acount booking</MenuItem>
-                                    <MenuItem divider />
-                                    <MenuItem eventKey={5.2}>Cash up</MenuItem>
-                                    <MenuItem eventKey={5.3}>Cash history</MenuItem>
-                                    <MenuItem eventKey={5.4}>open cash</MenuItem>
-                              </NavDropdown>
-                              <NavItem eventKey={6} id="statistic">Statistic</NavItem>
-                              <NavItem eventKey={7} id="parameter">Parameter</NavItem>
-                              <NavDropdown eventKey={8} id="setup" title="Setup">
-                                    <MenuItem eventKey={8.1} href="/app/userauth">User Accounts</MenuItem>
-                                    <MenuItem divider />
-                                    <MenuItem eventKey={8.2} href="/app/employee">Employee</MenuItem>
-                              </NavDropdown>
-                              <NavItem eventKey={9} id="system">System</NavItem>
-                        </Nav>
+                  <ToolBar>
 
-                  </Navbar>
+                        <ToolBarGroup firstChild={true} float="left">
+                              <DropDownMenu value={5}>
+                                    <MenuItem value={1} primaryText = "Order"/>
+                                    <MenuItem value={2} primaryText = "Agenda"/>
+                                    <MenuItem value={3} primaryText = "Order action list"/>
+                                    <Divider />
+                                    <MenuItem value={4} primaryText = "Search allotment"/>
+                                    <MenuItem value={5} primaryText = "Order" disabled={true}/>
+                              </DropDownMenu>
+                              <DropDownMenu  value={9}>
+                                    <MenuItem value={1} primaryText = "Flight"/>
+                                    <MenuItem value={2} primaryText = "Train"/>
+                                    <MenuItem value={3} primaryText = "Bus"/>
+                                    <MenuItem value={3} primaryText = "Ship"/>
+                                    <Divider />
+                                    <MenuItem value={4} primaryText = "Car"/>
+                                    <MenuItem value={5} primaryText = "Hotel"/>
+                                    <MenuItem value={6} primaryText = "Arrangement"/>
+                                    <MenuItem value={7} primaryText = "Misc"/>
+                                    <MenuItem value={8} primaryText = "Text"/>
+                                    <MenuItem value={9} primaryText = "Data" disabled={true}/>
+                              </DropDownMenu>
+                              <FlatButton label="Customer" />
+                              <FlatButton label="DMS" />
+                              <DropDownMenu value={5}>
+                                    <MenuItem value={1} primaryText = "Impersonal acount booking"/>
+                                    <Divider />
+                                    <MenuItem value={2} primaryText = "Cash up"/>
+                                    <MenuItem value={3} primaryText = "Cash history"/>
+                                    <MenuItem value={4} primaryText = "open cash"/>
+                                    <MenuItem value={5} primaryText = "Cash" disabled={true}/>
+                              </DropDownMenu>
+                              <FlatButton label="Statistic"/>
+                              <FlatButton label="Parameter"/>
+                              <DropDownMenu  value={3}>
+                                    <MenuItem value={1} primaryText = "User Accounts"/>
+                                    <Divider />
+                                    <MenuItem value={2} primaryText = "Employee"/>
+                                    <MenuItem value={3} primaryText = "Setup" disabled={true}/>
+                              </DropDownMenu>
+                              <FlatButton label="System" />
+                        </ToolBarGroup>
+
+                  </ToolBar>
 
             )
       }

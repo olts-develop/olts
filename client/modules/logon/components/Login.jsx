@@ -3,77 +3,76 @@
  */
 
 import React from 'react';
-import {Row, Col, Panel, Button, Glyphicon, Form, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import {Row, Col} from 'react-bootstrap';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import TextField from 'material-ui/TextField';
+import Paper from 'material-ui/Paper'
+import FlatButton  from 'material-ui/FlatButton';
+import PersonAdd from 'material-ui/svg-icons/social/person-add';
 
-const loginVals = {}
+const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
 class login extends React.Component {
 
-      handleChange(event){
-
-            loginVals[event.target.id] = event.target.value
-      }
 
       render() {
 
             const {error} = this.props;
+            this.login = this.login.bind(this);
+            this.logout= this.logout.bind(this);
 
             return (
-                  <Panel className="FormInput" >
+                  <MuiThemeProvider muiTheme={lightMuiTheme}>
+                        <Paper className="FormInput" zDepth={3}>
 
-                        <Row>
-                              <Col lg={6} className="logon-right-col">
-                                    <h3>Online Travel</h3>
-                              </Col>
-                              <Form>
+                              <Row>
+                                    <Col lg={6} className="logon-right-col">
+                                          <h3>Online Travel</h3>
+                                    </Col>
+
                                     <Col lg={6}>
                                           <Row >
-                                                <Col lg={4} xsOffset={8}>
-                                                      <a href="/register"><Glyphicon glyph="plus"></Glyphicon> New User</a>
-                                                </Col>
+                                                <div className="col-align-right form-padding-15-right">
+                                                      <FlatButton href="/register" label="New User" labelPosition="after" icon={<PersonAdd/>} secondary={true}/>
+                                                </div>
                                           </Row>
-
-                                          <FormGroup controlId="user">
-                                                <ControlLabel>User</ControlLabel>
-                                                <FormControl type="user" placeholder="User / Email" onChange={this.handleChange} autoFocus/>
-                                          </FormGroup>
-                                          <FormGroup controlId="password">
-                                                <ControlLabel>Password</ControlLabel>
-                                                <FormControl type="password" placeholder="Password" onChange={this.handleChange}/>
-                                          </FormGroup>
                                           <Row>
+                                                <TextField ref="user" hintText="User / Email" floatingLabelText="User" className="form-padding-10-left" autoFocus/>
+                                          </Row>
+                                          <Row>
+                                                <TextField ref="password" hintText="password" floatingLabelText="Password" type="password" className="form-padding-10-left"/>
+                                          </Row>
+                                          <Row>
+                                                <div className="col-align-right form-padding-15-right">
 
-                                                <Col lg={6}>
-                                                      <FormGroup>
-                                                            <Button onClick={this.login.bind(this)} bsStyle="primary" bsSize="small" type="submit">Login</Button>
-                                                      </FormGroup>
-                                                </Col>
-
-                                                <Col lg={6} className="col-align-right">
-                                                      <FormGroup>
-                                                            <Button onClick={this.logout.bind(this)} bsStyle="primary" bsSize="small" type="submit">Logout</Button>
-                                                      </FormGroup>
-                                                </Col>
+                                                      <FlatButton onMouseUp={this.login} primary={true} type="submit" label="Login"/>
+                                                      <FlatButton onMouseUp={this.logout} primary={true} type="submit" label="Logout"/>
+                                                </div>
 
                                           </Row>
                                           <Row>
-                                                <Col lg={6} className="col-align-right">
+                                                <Col lg={8} className="col-align-right">
                                                       {error ? <p style = {{color: 'red'}}>{error}</p> :null}
                                                 </Col>
                                           </Row>
 
                                     </Col>
-                              </Form>
-                        </Row>
 
-                  </Panel>
+                              </Row>
+
+                        </Paper>
+                  </MuiThemeProvider>
             )
       }
 
       login(event) {
             event.preventDefault();
             const {loginUser}=this.props;
-            loginUser(loginVals.user, loginVals.password);
+            const {user, password} = this.refs;
+            console.log("user: "+user.getValue() + '  '+"password: "+password.getValue())
+            loginUser(user.getValue(),password.getValue())
       }
 
       logout(event) {

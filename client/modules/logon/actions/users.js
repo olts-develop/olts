@@ -27,7 +27,7 @@ export default {
                 console.log("Current User: "+ users._id)
                 
 
-               // FlowRouter.go("/useredit/:userId", {userId: response.newUserId})
+               FlowRouter.go("/useredit/:userId", {userId: response.newUserId})
             })
         } else {
             Meteor.call('user.create', username, email, (error, response) => {

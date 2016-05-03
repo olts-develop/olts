@@ -1,28 +1,29 @@
 import React from 'react';
-import {Row, Col} from 'react-bootstrap';
+import AppBar from 'material-ui/AppBar';
+import MoreVerticalIcon from 'material-ui/svg-icons/navigation/more-vert';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import IconMenu from 'material-ui/IconMenu';
+import IconButton from 'material-ui/IconButton';
+import MenuItem from 'material-ui/MenuItem';
 
 import CurrentUserMenu from './../../currentUser/components/currentUserMenu.jsx'
 
 const appHeader = ({employee}) => (
-      <Row>
 
-            <Col lg={5} className="align-left">
-                  <h3>{employee.tenant} / {employee.organisation}</h3>
-            </Col>
-
-            <Col lg={2} className="align-center">
-                  <h3>Agent Online</h3>
-            </Col>
-
-            <Col lg={5} className="align-right">
-                  <CurrentUserMenu employee={employee}/>
-            </Col>
-
-
-      </Row>
-
+      <AppBar
+            title={employee.tenant + ' / ' + employee.organization}
+            iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+            iconElementRight={
+                  <IconMenu
+                        iconButtonElement={<IconButton><MoreVerticalIcon /></IconButton>}
+                        targetOrigin={{horizontal: 'right', vertical: 'top'}}
+                        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+                  >
+                        <MenuItem primaryText="Refresh" />
+                        <MenuItem primaryText="Help" />
+                        <MenuItem primaryText="Sign out" />
+                  </IconMenu>
+            }
+      />
 );
-
-
-
 export default appHeader;

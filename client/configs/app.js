@@ -9,7 +9,7 @@ export default{
 
 export function isDevelop() {
 
-    if (Meteor.absoluteUrl("http://localhost:3000/")) {
+    if (process.env.NODE_ENV === 'development') {
         return true
     } else {
         return false
