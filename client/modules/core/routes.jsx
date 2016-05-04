@@ -1,14 +1,15 @@
 import React from 'react';
 import {mount} from 'react-mounter';
 
-import Layout from './components/MainLayout.jsx';
+import MainLayout from './components/mainLayout.jsx';
 import AppLayout from '../appLayout/containers/appLayout';
 import Login from '../logon/containers/login';
 import NewUser from '../logon/containers/newUser';
+import Tenants from '../organization/components/tenants.jsx'
 
 
 export default function (injectDeps, {FlowRouter}){
-    const MainLayoutCtx = injectDeps(Layout);
+    const MainLayoutCtx = injectDeps(MainLayout);
 
     
     FlowRouter.route('/', {
@@ -47,6 +48,16 @@ export default function (injectDeps, {FlowRouter}){
             console.log("applayout route")
             mount(MainLayoutCtx,{
                 content: () => (<AppLayout />)
+            });
+        }
+    });
+
+    FlowRouter.route('/tenant',{
+        name:'tenant',
+        action(){
+            console.log("tenant")
+            mount(MainLayoutCtx,{
+                content: () => (<Tenants />)
             });
         }
     });

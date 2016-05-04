@@ -76,5 +76,12 @@ export default {
             }
 
         });
+    },
+
+    back({Meteor, FlowRouter}){
+        if (Meteor.userId){
+            FlowRouter.go('/app');
+        }
+            FlowRouter.go('/')
     }
 }

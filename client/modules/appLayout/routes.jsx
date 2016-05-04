@@ -5,10 +5,10 @@
 import React from 'react';
 import {mount} from 'react-mounter';
 
-import AppLayout from '../appLayout/containers/appLayout';
+import AppLayout from './containers/appLayout';
 import Order from '../order/components/order.jsx';
 import Agenda from '../agenda/components/agenda.jsx';
-import ActionList from '../order/components/actionlist.jsx';
+import ActionList from '../order/components/actionList.jsx';
 import UserAuth from '../authorization/containers/userAuth';
 import UserEdit from '../authorization/containers/userEdit';
 import Employee from '../authorization/containers/employee';

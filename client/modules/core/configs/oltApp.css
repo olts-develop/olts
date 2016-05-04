@@ -23,6 +23,20 @@
     left: 20%;
 }
 
+.form-input-small{
+    width: 40%;
+    background-color: white;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+}
+
+.cell-half-form{
+    width: 50%;
+    top: 300px
+}
+
+
 
 .fifi{
     padding-top: 20px;

@@ -2,7 +2,7 @@
  * Created by martin on 27.04.2016.
  */
 
-import Languages from '/lib/schemas/general/Languages';
+import Languages from '/lib/schemas/general/languages';
 
 export default function () {
 

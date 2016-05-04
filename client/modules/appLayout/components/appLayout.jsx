@@ -7,7 +7,7 @@ import Paper from 'material-ui/Paper'
 
 
 import AppHeader from './appHeader.jsx';
-import AppNavigation from './appNavigation.jsx'
+import AppNavigation from './../components/appNavigation.jsx'
 
 
 class appLayout extends React.Component {
@@ -25,7 +25,7 @@ class appLayout extends React.Component {
                               <AppHeader employee={employee} />
                         </Row>
                         <Row className="app-navbar">
-                              <AppNavigation/>
+                              {<AppNavigation employee={employee}/>}
                         </Row>
                         <Row className="app-modules">
 

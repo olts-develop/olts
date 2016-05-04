@@ -23,6 +23,7 @@ class login extends React.Component {
             this.login = this.login.bind(this);
             this.logout= this.logout.bind(this);
 
+
             return (
                   <MuiThemeProvider muiTheme={lightMuiTheme}>
                         <Paper className="FormInput" zDepth={3}>
@@ -35,7 +36,7 @@ class login extends React.Component {
                                     <Col lg={6}>
                                           <Row >
                                                 <div className="col-align-right form-padding-15-right">
-                                                      <FlatButton href="/register" label="New User" labelPosition="after" icon={<PersonAdd/>} secondary={true}/>
+                                                      <FlatButton onMouseUp={this.register}  linkedButton = {true} label="New User" labelPosition="after" icon={<PersonAdd/>} secondary={true}/>
                                                 </div>
                                           </Row>
                                           <Row>
@@ -79,6 +80,10 @@ class login extends React.Component {
             event.preventDefault();
             const{logoutUser}=this.props;
             logoutUser();
+      }
+      
+      register() {
+            FlowRouter.go('/register')
       }
 
 };
