@@ -112,6 +112,14 @@
     padding-left: 10%;
 }
 
+.form-padding-5-left{
+    padding-left: 5%;
+}
+
 .form-padding-15-right{
     padding-right: 15%;
+}
+
+.form-padding-5-right{
+    padding-right: 5%;
 }

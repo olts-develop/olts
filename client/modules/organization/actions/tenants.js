@@ -11,14 +11,7 @@ export default {
                   return LocalState.set('TENANT_EDIT_ERROR', 'Tenant is required.');
             }
 
-           LocalState.set('TENANT_EDIT_ERROR', null);
-            
-            
-            
-            
-            
-
-            
+            LocalState.set('TENANT_EDIT_ERROR', null);
 
       },
 
@@ -38,5 +31,22 @@ export default {
             const isDevelop = AppConfig.isDevelop();
 
 
-
       },
+      
+      addTenant({LocalState}, tenant, organizsation) {
+
+            LocalState.set('TENANT_EDIT_ERROR', null)
+            
+            console.log (tenant.forEach(printjson))
+            console.log (organizsation.forEach(printjson))
+
+            return true
+            
+            
+            
+      },
+
+      clearErrors({LocalState}) {
+            return LocalState.set('TENANT_EDIT_ERROR', null);
+      }
+}

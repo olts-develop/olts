@@ -9,38 +9,55 @@ export const composer = ({context, tenantId, organizationId, clearErrors}, onDat
       const {LocalState, Meteor, Collections} = context();
       const error = LocalState.get('TENANT_EDIT_ERROR')
 
-      let tenentsList
+      onData(null,{error})
 
-      const userId = Meteor.userId();
-
-      if (userId !== undefined ) {
-
-            employee = Collections.Employees.findOne(userID = userId);
-
-            if (employee.tenant == 'olts' && employee.organization == 'developer') {
-
-                  if (Meteor.subscribe('tenants.list').ready()) {
-                        tenentsList = Collections.Tenants.find({},{sort: {tenant: 1}}).fetch();
-                  }
-
-                  onData(null, {tenantsList})
-
-            } else {
-                  onData(null, {error})
-            }
-
-      }else {
-
-            onData(null, {error})
-      }
-
-      // clearErrors when unmounting the component
-      return clearErrors;
+      // let tenentsList, organizationList
+      //
+      // const userId = Meteor.userId();
+      //
+      // if (userId !== undefined ) {
+      //
+      //       employee = Collections.Employees.findOne(userID = userId);
+      //
+      //       if (employee.tenant == 'olts' && employee.organization == 'developer') {
+      //
+      //             const selector = {}
+      //
+      //       } else {
+      //
+      //             const selector = {_id: {$in: employee.tenants.tenantId}}
+      //
+      //             if (Meteor.subscribe('tenants.list').ready()) {
+      //                   tenentsList = Collections.Tenants.find({}, {sort: {tenant: 1}}).fetch();
+      //             }
+      //       }
+      //
+      // }
+      //
+      //
+      //
+      //
+      //
+      //             if (_.size(tenentsList) > 0)
+      //
+      //             onData(null, {tenantsList})
+      //
+      //       } else {
+      //             onData(null, {error})
+      //       }
+      //
+      // }else {
+      //
+      //       onData(null, {error})
+      // }
+      //
+      // // clearErrors when unmounting the component
+      // return clearErrors;
 
 };
 
 export const depsMapper = (context, actions) => ({
-     
+      addTenant: actions.tenants.addTenant,
       context: () => context
 })
 

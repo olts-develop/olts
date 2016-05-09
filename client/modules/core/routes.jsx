@@ -5,7 +5,7 @@ import MainLayout from './components/mainLayout.jsx';
 import AppLayout from '../appLayout/containers/appLayout';
 import Login from '../logon/containers/login';
 import NewUser from '../logon/containers/newUser';
-import Tenants from '../organization/components/tenants.jsx'
+import Tenants from '../organization/containers/tenants'
 
 
 export default function (injectDeps, {FlowRouter}){

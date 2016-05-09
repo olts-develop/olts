@@ -48,3 +48,11 @@
 .col-align-left{
     text-align: left;
 }
+
+.field-20-percent{
+    width: 20%;
+}
+
+.field-80-percent{
+    width: 80%;
+}

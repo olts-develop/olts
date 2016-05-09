@@ -4,7 +4,7 @@
 
 import React from 'react';
 
-import Tenants from './../../../../lib/schemas/organizations/Tenants';
+import OltAdress from './../../oltTemplates/components/oltAdress.jsx';
 import {Row, Col} from 'react-bootstrap';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -13,10 +13,11 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
-import FlatButton  from 'material-ui/FlatButton';
 import List from 'material-ui/List';
 import ListItem from 'material-ui/List/ListItem'
 import Divider from 'material-ui/Divider';
+import FlatButton from 'material-ui/FlatButton';
+import Add from 'material-ui/svg-icons/content/add'
 
 
 const lightMuiTheme = getMuiTheme(lightBaseTheme);
@@ -24,35 +25,53 @@ const lightMuiTheme = getMuiTheme(lightBaseTheme);
 class tenants extends React.Component {
 
 
-      getDefaultOrganisation(){
-
-
-      }
-
-
       render() {
 
-            const {tenants, error} = this.props;
+            const {tenants, organizations, error} = this.props;
 
 
-            /**
-             * define events here
-             *
-             * this.function = this.function.bind(this);
-             */
-
+            this.addTenant = this.addTenant.bind(this)
 
             return (
                   <MuiThemeProvider muiTheme={lightMuiTheme}>
-                        <Paper className="form-input-small" zDepth={3}>
+                        <Paper className="FormInput" zDepth={3}>
                               <Row>
-                                    <TextField ref="tenant" hintText="Tenant" floatingLabelText= "Tenant" className="form-padding-10-left" autoFocus/>
+                                    <Col lg={5} className="form-padding-5-left">
+
+                                          <TextField ref="tenant" hintText="Tenant" floatingLabelText= "Tenant"  autoFocus/>
+
+                                    </Col>
+
+                                    <Col lg={7}  className="form-padding-5-left">
+                                          <OltAdress addressType="tenant" />
+                                    </Col>
                               </Row>
+
                               <Row>
-                                    <TextField ref="organization" hintText="Organization" floatingLabelText= "Organization" className="form-padding-10-left" />
+                                    <Divider inset={true} />
                               </Row>
+
                               <Row>
-                                    <span>   </span>
+                                    <Col lg={5} className="form-padding-5-left">
+
+                                          <TextField ref="organization" hintText="Organization" floatingLabelText= "Organization" />
+
+                                    </Col>
+
+                                    <Col lg={7}  className="form-padding-5-left">
+                                          <OltAdress addressType= "org"/>
+                                    </Col>
+                              </Row>
+
+                              <Row>
+                                    <div className="col-align-right form-padding-15-right">
+                                          <FlatButton  onMouseUp={this.addTenant} label="Add" labelPosition="after" icon={<Add/>} primary={true}/>
+                                    </div>
+                              </Row>
+
+                              <Row>
+
+                                    <Divider inset={true} />
                               </Row>
 
                               <Row>
@@ -61,12 +80,11 @@ class tenants extends React.Component {
 
 
                                                 <List>
-                                                      {tenants.map(tenant => (
+                                                      {tenants ? tenants.map(tenant => (
 
-                                                            <ListItem primaryText= {tenant.tanant} />
+                                                            <ListItem key={tenant._id} primaryText= {tenant.tanant} />
 
-                                                      )
-                                                            
+                                                      )): null}
 
                                                 </List>
                                           </Paper>
@@ -75,9 +93,11 @@ class tenants extends React.Component {
                                     <Col xs={6}>
                                           <Paper className="cell-half-form" zDepth={0} >
 
-
                                                 <List>
-                                                      <ListItem primaryText="martin" />
+
+                                                      {organizations ? organizations.map(organization => (
+                                                            <ListItem key={organization._id} primarytext = {organization.org} />
+                                                      )): null}
 
                                                 </List>
                                           </Paper>
@@ -91,6 +111,47 @@ class tenants extends React.Component {
                   </MuiThemeProvider>
             )
       }
+
+      addTenant(event) {
+            event.preventDefault();
+            const {addTenant}=this.props;
+            const {
+                  tenant, tenantcompany, tenantstreet, tenantstreet2, tenantcounty, tenantzip, tenantcity, tenantphonetype, tenantphonenumber,
+                  organization, orgcompany, orgstreet, orgstreet2, orgcounty, orgzip, orgcity, orgphonetype, orgphonenumber
+            } = this.refs;
+            const ten = {
+                  tenant: tenant.getValue(),
+                  address: {
+                        company: tenantcompany.getValue(),
+                        street: tenantstreet.getValue(),
+                        street2: tenantstreet2.getValue(),
+                        county: tenantcounty.getValue(),
+                        zip: tenantzip.getValue(),
+                        city: tenantcity.getValue(),
+                        phonetype: tenantphonetype.getValue(),
+                        phonenumber: tenantphonenumber.getValue()
+                  }
+            }
+
+            const org = {
+                  org: organization.getValue(),
+                  address: {
+                        company: orgcompany.getValue(),
+                        street: orgstreet.getValue(),
+                        street2: orgstreet2.getValue(),
+                        county: orgcounty.getValue(),
+                        zip: orgzip.getValue(),
+                        city: orgcity.getValue(),
+                        phonetype: orgphonetype.getValue(),
+                        phonenumber: orgphonenumber.getValue()
+                  }
+
+            }
+
+            addTenant(ten, org);
+      }
+
+
 
 
 };

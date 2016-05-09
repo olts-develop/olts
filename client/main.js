@@ -12,6 +12,7 @@ import authorizationModule from './modules/authorization';
 import orderModule from './modules/order';
 import agendaModule from './modules/agenda';
 import currentUserModule from './modules/currentUser';
+import organizationModule from './modules/organization';
 
 
 
@@ -27,5 +28,6 @@ app.loadModule(authorizationModule);
 app.loadModule(orderModule);
 app.loadModule(agendaModule);
 app.loadModule(currentUserModule);
+app.loadModule(organizationModule);
 
 app.init();

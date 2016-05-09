@@ -3,7 +3,7 @@
  */
 
 
-import Tenants from './../../lib/schemas/organizations/Tenants';
+import Tenants from './../../lib/schemas/organizations/tenants';
 
 
 export default function () {
