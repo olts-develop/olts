@@ -4,7 +4,7 @@
 
 import React from 'react';
 
-import OltAdress from './../../oltTemplates/components/oltAdress.jsx';
+import OltAddress from './../../oltTemplates/container/oltAddress';
 import {Row, Col} from 'react-bootstrap';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -28,13 +28,18 @@ class tenants extends React.Component {
       render() {
 
             const {tenants, organizations, error} = this.props;
-
+            this.tentantId = tenants? this.props.tenants._id:undefined
+            this.organizationId = organizations? this.props.organizations._id: undefined
 
             this.addTenant = this.addTenant.bind(this)
+
 
             return (
                   <MuiThemeProvider muiTheme={lightMuiTheme}>
                         <Paper className="FormInput" zDepth={3}>
+
+                              {error ? <p style = {{color: 'red'}}>{error}</p> :null}
+
                               <Row>
                                     <Col lg={5} className="form-padding-5-left">
 
@@ -43,7 +48,14 @@ class tenants extends React.Component {
                                     </Col>
 
                                     <Col lg={7}  className="form-padding-5-left">
-                                          <OltAdress addressType="tenant" />
+                                          <TextField ref="company" hintText="Company name" floatingLabelText="Company"/>
+                                          <TextField ref="street" hintText="Street" floatingLabelText="Street"/>
+                                          <TextField ref="street2" hintText="c/o" floatingLabelText="c/o"/>
+                                          <TextField ref="county" hintText="Country" floatingLabelText="Country"/>
+                                          <TextField ref="zip" hintText="Zip" floatingLabelText="Zip"/>
+                                          <TextField ref="city" hintText="City" floatingLabelText="City"/>
+                                          <TextField ref="phonetype" hintText="Phone type" floatingLabelText="Phone type"/>
+                                          <TextField ref="phonenumber" type="tel" hintText="Number" floatingLabelText="Phonenumber"/>
                                     </Col>
                               </Row>
 
@@ -59,7 +71,14 @@ class tenants extends React.Component {
                                     </Col>
 
                                     <Col lg={7}  className="form-padding-5-left">
-                                          <OltAdress addressType= "org"/>
+                                          <TextField ref="orgAdrcompany" hintText="Company name" floatingLabelText="Company"/>
+                                          <TextField ref="orgAdrstreet" hintText="Street" floatingLabelText="Street"/>
+                                          <TextField ref="orgAdrstreet2" hintText="c/o" floatingLabelText="c/o"/>
+                                          <TextField ref="orgAdrcounty" hintText="Country" floatingLabelText="Country"/>
+                                          <TextField ref="orgAdrzip" hintText="Zip" floatingLabelText="Zip"/>
+                                          <TextField ref="orgAdrcity" hintText="City" floatingLabelText="City"/>
+                                          <TextField ref="orgAdrphonetype" hintText="Phone type" floatingLabelText="Phone type"/>
+                                          <TextField ref="orgAdrphonenumber" type="tel" hintText="Number" floatingLabelText="Phonenumber"/>
                                     </Col>
                               </Row>
 
@@ -105,7 +124,7 @@ class tenants extends React.Component {
 
                               </Row>
 
-
+:
                         </Paper>
 
                   </MuiThemeProvider>
@@ -116,39 +135,42 @@ class tenants extends React.Component {
             event.preventDefault();
             const {addTenant}=this.props;
             const {
-                  tenant, tenantcompany, tenantstreet, tenantstreet2, tenantcounty, tenantzip, tenantcity, tenantphonetype, tenantphonenumber,
-                  organization, orgcompany, orgstreet, orgstreet2, orgcounty, orgzip, orgcity, orgphonetype, orgphonenumber
+                  tenant, company, street, street2, county, zip, city, phonetype, phonenumber,
+                  organization, orgAdrcompany, orgAdrstreet, orgAdrstreet2, orgAdrcounty, orgAdrzip, orgAdrcity, orgAdrphonetype, orgAdrphonenumber
             } = this.refs;
+
+            const tentantId = this.props.tentantId;
+            const organizationId = this.props.organizationId
             const ten = {
                   tenant: tenant.getValue(),
                   address: {
-                        company: tenantcompany.getValue(),
-                        street: tenantstreet.getValue(),
-                        street2: tenantstreet2.getValue(),
-                        county: tenantcounty.getValue(),
-                        zip: tenantzip.getValue(),
-                        city: tenantcity.getValue(),
-                        phonetype: tenantphonetype.getValue(),
-                        phonenumber: tenantphonenumber.getValue()
+                        company: company.getValue(),
+                        street: street.getValue(),
+                        street2: street2.getValue(),
+                        county: county.getValue(),
+                        zip: zip.getValue(),
+                        city: city.getValue(),
+                        phonetype: phonetype.getValue(),
+                        phonenumber: phonenumber.getValue()
                   }
             }
 
             const org = {
                   org: organization.getValue(),
                   address: {
-                        company: orgcompany.getValue(),
-                        street: orgstreet.getValue(),
-                        street2: orgstreet2.getValue(),
-                        county: orgcounty.getValue(),
-                        zip: orgzip.getValue(),
-                        city: orgcity.getValue(),
-                        phonetype: orgphonetype.getValue(),
-                        phonenumber: orgphonenumber.getValue()
+                        company: orgAdrcompany.getValue(),
+                        street: orgAdrstreet.getValue(),
+                        street2: orgAdrstreet2.getValue(),
+                        county: orgAdrcounty.getValue(),
+                        zip: orgAdrzip.getValue(),
+                        city: orgAdrcity.getValue(),
+                        phonetype: orgAdrphonetype.getValue(),
+                        phonenumber: orgAdrphonenumber.getValue()
                   }
 
             }
 
-            addTenant(ten, org);
+            addTenant(tentantId, ten, organizationId, org);
       }
 
 

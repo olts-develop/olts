@@ -33,14 +33,27 @@ export default {
 
       },
       
-      addTenant({LocalState}, tenant, organizsation) {
+      addTenant({LocalState, Collections}, tenantId ,tenant, organizationId , organizsation) {
 
             LocalState.set('TENANT_EDIT_ERROR', null)
-            
-            console.log (tenant.forEach(printjson))
-            console.log (organizsation.forEach(printjson))
 
-            return true
+            Meteor.call('tenant.add', tenant, (err, result) => {
+                  if (err) {
+                        return LocalState.set('TENANT_EDIT_ERROR', err.message);
+                  }
+                  if (result.tenantId) {
+                        console.log("New tendentID: "+ result.tenantId)
+                  }
+
+
+            });
+
+
+
+            console.log (tenant)
+            console.log (organizsation)
+
+            
             
             
             

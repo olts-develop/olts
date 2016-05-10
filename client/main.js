@@ -13,6 +13,7 @@ import orderModule from './modules/order';
 import agendaModule from './modules/agenda';
 import currentUserModule from './modules/currentUser';
 import organizationModule from './modules/organization';
+import oltTemplates from './modules/oltTemplates';
 
 
 
@@ -29,5 +30,6 @@ app.loadModule(orderModule);
 app.loadModule(agendaModule);
 app.loadModule(currentUserModule);
 app.loadModule(organizationModule);
+app.loadModule(oltTemplates);
 
 app.init();
