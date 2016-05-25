@@ -11,56 +11,39 @@ export default function() {
 
       Meteor.methods({
 
-            'tenant.add'(tenant){
+            'tenant.add'(code ,description){
 
                   currentUser =  Meteor.user();
 
-                  //console.log("SERVER tenant.add - tenent: "+tenant)
+                  const newTenat = {
+                        code: code,
+                        description : description
+                  }
 
-                  currentTenant= {
-                        tenant: tenant.tenant,
-                        address: {
-                              company: tenant.address.company,
-                              street: tenant.address.street,
-                              street2: tenant.address.street2,
-                              county: tenant.address.county,
-                              zip: tenant.address.zip,
-                              city: tenant.address.city,
-                              phone: [{
-                                    phoneType: tenant.address.phonetype,
-                                    phoneNumber: tenant.address.phonenumber
-                              }]
-
-            }
-
-
-            };
 
                  // console.log("SERVER tenant.add - currTenent: "+currentTenent)
 
                   if (currentUser == undefined){
-                        throw new Meteor.Error('LOGGED-OUT','No current user found','You must be looged in')
-                        return tenentId;
+                        throw new Meteor.Error('LOGGED-OUT','No current user found','You must be looged in');
+                        return;
 
-                        // else test it current user is oltdevelop or oltsupport
+                        // else test it current user is OLTS
 
                   }
 
-                  console.log("SERVER tenant.add - currUser: "+currentUser);
-                  console.log("SERVER tenant.add - insert tenants");
+                 
 
-
-                  Tenants.insert(currentTenant, function(error,result){
+                  Tenants.insert(newTenat, function(error,result){
 
                         if (error != undefined){
 
-                              console.log("SERVER tenant.add - error" + error.error+"  /  "+error.message)
+                              console.log("SERVER tenant.add - error" + error.error+"  /  "+error.message);
 
                               throw new Meteor.Error('TENENT-INSERT-ERROR',error.message)
 
                         }
 
-                        console.log("SERVER tenant.add - new tenantTd:   " + result)
+                        console.log("SERVER tenant.add - new tenantTd:   " + result);
 
                         return result;
 
@@ -69,10 +52,10 @@ export default function() {
 
             },
 
-            'tenant.update'(tenantId, tenant){
+           /* 'tenant.update'(tenantId, tenant){
                   currentUser =  Meteor.user();
 
-                  console.log("SERVER tenant.add - tenentId: "+tenentId+" tenent: "+tenent)
+                  console.log("SERVER tenant.add - tenentId: "+tenentId+" tenent: "+tenent);
 
                   currentTenent= {
                         _id: tenantId,
@@ -91,17 +74,17 @@ export default function() {
 
                   };
 
-                  console.log("SERVER tenant.add - currTenent: "+currentTenent)
+                  console.log("SERVER tenant.add - currTenent: "+currentTenent);
 
                   if (currentUser == undefined){
-                        throw new Meteor.Error('LOGGED-OUT','No current user found','You must be looged in')
+                        throw new Meteor.Error('LOGGED-OUT','No current user found','You must be looged in');
                         return tenentId;
 
                         // else test it current user is oltdevelop or oltsupport
 
                   }
 
-                  console.log("SERVER tenant.add - currUser: "+currentUser)
+                  console.log("SERVER tenant.add - currUser: "+currentUser);
 
                   if (tenantId != undefined){
 
@@ -111,7 +94,7 @@ export default function() {
                   }
                   if (dbTenant._id != undefined){
 
-                        console.log("SERVER tenant.add - vgl tenants")
+                        console.log("SERVER tenant.add - vgl tenants");
 
                         if (!_.isEqual(dbTenant,currentTenent)){
 
@@ -126,7 +109,7 @@ export default function() {
                                     "phonenumber":currentTenent.address.phonenumber
                               }
 
-                              }})
+                              }});
 
                               return tenantId;
 
@@ -134,7 +117,7 @@ export default function() {
 
                   }
 
-            }
+            }*/
 
       });
 }

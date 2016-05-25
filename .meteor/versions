@@ -7,6 +7,7 @@ aldeed:schema-deny@1.0.1
 aldeed:schema-index@1.0.1
 aldeed:simple-schema@1.5.3
 allow-deny@1.0.4
+amplify@1.0.0
 autoupdate@1.2.9
 babel-compiler@6.6.4
 babel-runtime@0.1.8
@@ -19,8 +20,10 @@ boilerplate-generator@1.0.8
 caching-compiler@1.0.4
 caching-html-compiler@1.0.6
 callback-hook@1.0.8
+cfs:http-methods@0.0.32
 check@1.2.1
 chuangbo:cookie@1.1.0
+coffeescript@1.0.17
 dburles:mongo-collection-instances@0.3.4
 ddp@1.2.5
 ddp-client@1.2.7
@@ -36,6 +39,7 @@ email@1.0.12
 es5-shim@4.5.10
 fastclick@1.0.11
 geojson-utils@1.0.8
+gildaspk:simpleschema-tapi18n-labels@0.0.2
 hot-code-push@1.0.4
 html-tools@1.0.9
 htmljs@1.0.9
@@ -45,7 +49,6 @@ jquery@1.11.8
 kadira:flow-router-ssr@3.13.0
 lai:collection-extensions@0.1.4
 launch-screen@1.0.11
-less@2.6.0
 livedata@1.0.18
 localstorage@1.0.9
 logging@1.0.12
@@ -56,6 +59,7 @@ meteorhacks:fast-render@2.14.0
 meteorhacks:inject-data@2.0.0
 meteorhacks:meteorx@1.4.1
 meteorhacks:picker@1.0.3
+meteorspark:util@0.2.0
 meteortoys:toykit@2.2.1
 minifier-css@1.1.11
 minifier-js@1.1.11
@@ -89,6 +93,9 @@ spacebars-compiler@1.0.11
 srp@1.0.8
 standard-minifier-css@1.0.6
 standard-minifier-js@1.0.6
+tap:i18n@1.8.0
+tap:i18n-db@0.4.0
+tap:i18n-ui@0.8.0
 templating@1.1.9
 templating-tools@1.0.4
 tracker@1.0.13

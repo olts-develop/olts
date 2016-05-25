@@ -5,7 +5,8 @@ import MainLayout from './components/mainLayout.jsx';
 import AppLayout from '../appLayout/containers/appLayout';
 import Login from '../logon/containers/login';
 import NewUser from '../logon/containers/newUser';
-import Tenants from '../organization/containers/tenants'
+import Tenants from '../organization/containers/addTenants'
+import UserAuth from '../authorization/containers/userAuth'
 
 
 export default function (injectDeps, {FlowRouter}){
@@ -27,6 +28,15 @@ export default function (injectDeps, {FlowRouter}){
         action() {
             mount(MainLayoutCtx, {
                 content: () => (<NewUser />)
+            });
+        }
+    });
+
+    FlowRouter.route('/userauth', {
+        name: 'users.userauth',
+        action() {
+            mount(MainLayoutCtx, {
+                content: () => (<UserAuth />)
             });
         }
     });

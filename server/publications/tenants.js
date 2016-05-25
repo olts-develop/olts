@@ -8,19 +8,15 @@ import  {Meteor} from 'meteor/meteor';
 export default function () {
 
       Meteor.publish('tenants.list', function () {
-            console.log('SERVER tenants.list: ' + Tenants.find().count())
 
-            return Tenants.find({},{sort: {tenant: 1}}).fetch();
+            return Tenants.find({},{sort: {code: 1}});
       });
 
       Meteor.publish('tenant.single', function (tenantId) {
-            console.log('SERVER tenants.single: ' + tenantId)
-            
-            check(tenantId, String);
-            
-            const selector = {_id: tenantId};
+            console.log('SERVER tenant.single: ' + tenantId)
 
-            return Tenants.find(selector);
+
+            return Tenants.findOne(tenantId);
       });
                  
 }

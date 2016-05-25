@@ -31,5 +31,9 @@ twbs:bootstrap
 msavin:mongol
 alanning:roles
 momentjs:moment
-less
+tap:i18n
+tap:i18n-ui
+tap:i18n-db
+gildaspk:simpleschema-tapi18n-labels
+
 

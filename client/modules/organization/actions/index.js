@@ -3,9 +3,9 @@
  */
 
 
-import tenants from './tenants';
+import addtenants from './addTenants';
 
 
 export default {
-      tenants
+      addtenants
 }

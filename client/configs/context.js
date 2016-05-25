@@ -7,6 +7,7 @@ import {ReactiveDict} from 'meteor/reactive-dict';
 import {Tracker} from 'meteor/tracker';
 import * as AppConfig from './app';
 
+
 export default function () {
     return {
         Meteor,
@@ -16,5 +17,6 @@ export default function () {
         Tracker,
         DateHelper,
         AppConfig,
+
     };
 }
