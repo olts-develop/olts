@@ -14,9 +14,11 @@ export default function () {
 
       Meteor.publish('tenant.single', function (tenantId) {
             console.log('SERVER tenant.single: ' + tenantId)
+            
+            const selector = {_id: tenantId}
 
 
-            return Tenants.findOne(tenantId);
+            return Tenants.find(selector);
       });
                  
 }

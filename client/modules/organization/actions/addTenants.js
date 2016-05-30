@@ -2,9 +2,17 @@
  * Created by mk on 04.05.16.
  */
 
+
+import tenantReduxActions from './reduxActions';
+
+
+
 export default {
 
       handleChange({LocalState}, field, value){
+
+           
+
             let nextState = {}
             nextState[field] = value
             LocalState.set(nextState)
@@ -13,6 +21,7 @@ export default {
 
 
       addTenant({LocalState}, code ,description) {
+            
 
             if (!code) {
                   return LocalState.set('TENANT_EDIT_ERROR', 'Tenant code is required.');
@@ -35,6 +44,10 @@ export default {
       },
 
       getTenant({LocalState}, tenantId){
+            
+            let normalizedTenant = normalize(Tenants)
+            console.log("normalizedTenant: "+normalizedTenant)
+            
 
             if (!tenantId) {
                   return LocalState.set('TENANT_EDIT_ERROR', 'Please select a tenant from the list.');

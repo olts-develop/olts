@@ -4,6 +4,9 @@
 import {createApp} from 'mantra-core';
 import initContext from './configs/context';
 
+//Redux
+import {combineReducers} from 'redux'
+
 //modules
 import coreModule from './modules/core';
 import layoutModule from './modules/appLayout';
@@ -15,10 +18,12 @@ import currentUserModule from './modules/currentUser';
 import organizationModule from './modules/organization';
 import oltTemplates from './modules/oltTemplates';
 
-
+const reducer = combineReducers({
+      ...organizationModule.reducers
+})
 
 //init context
-const context = initContext();
+const context = initContext({reducer});
 
 //create App
 const app = createApp(context);

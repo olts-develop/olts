@@ -6,8 +6,10 @@ import {FlowRouter} from 'meteor/kadira:flow-router-ssr';
 import {ReactiveDict} from 'meteor/reactive-dict';
 import {Tracker} from 'meteor/tracker';
 import * as AppConfig from './app';
+import {createStore} from 'redux';
 
-
+// export default function ({reducer}){
+//     const Store = createStore(reducer);
 export default function () {
     return {
         Meteor,
@@ -16,7 +18,9 @@ export default function () {
         LocalState: new ReactiveDict(),
         Tracker,
         DateHelper,
-        AppConfig,
+        AppConfig
+        // Store: Store,
+        // dispatch: Store.dispatch
 
     };
 }

@@ -4,8 +4,10 @@
 
 import React from 'react';
 
+//react-bootstrap
 import {Row, Col} from 'react-bootstrap';
 
+//Material-UI
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -17,12 +19,15 @@ import ListItem from 'material-ui/List/ListItem'
 import FlatButton from 'material-ui/FlatButton';
 import Add from 'material-ui/svg-icons/content/add'
 
+//redux-form
+import {reduxForm} from 'redux-form';
 
 const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
 
+
 class tenants extends React.Component {
-      
+
 
       render() {
 
@@ -43,7 +48,7 @@ class tenants extends React.Component {
                                     <Col lg={5} className="form-padding-5-left">
 
 
-                                          <TextField ref="code" hintText="Tenant code" floatingLabelText= "Code" key = {tenant? this.props.tenant.code: undefined} onChange={this.handleChange.bind(this, tenant)} name="code" autoFocus/>
+                                          <TextField ref="code" hintText="Tenant code" floatingLabelText= "Code" key = {tenant? this.props.tenant.code: undefined} onChange={this.handleChange} name="code" autoFocus/>
                                           <TextField ref="description" hintText="Tenant name/description" floatingLabelText= "Description" />
 
                                           <div className="col-align-right form-padding-15-right">
@@ -88,13 +93,11 @@ class tenants extends React.Component {
             getTenant(tenantId);
       }
 
-      handleChange (tenant, event) {
+      handleChange (event) {
             event.preventDefault();
             const {handleChange}=this.props;
             const {code} = this.refs;
-            this.setState('tenant.code', code.getValue())
-            console.log("handleChange: "+ tenant.code)
-            //handleChange('code', code.getValue())
+            handleChange('code', code.getValue())
       };
 
 

@@ -4,8 +4,10 @@
 
 import routes from '../core/routes.jsx';
 import actions from './actions';
+import tenantReducer from './reducers/tenantReducer'
 
 export default {
       routes,
-      actions
+      actions,
+      tenantReducer
 };

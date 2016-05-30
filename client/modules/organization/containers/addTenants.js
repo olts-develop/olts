@@ -8,6 +8,7 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 export const composer = ({context, clearErrors}, onData) => {
       const {LocalState, Meteor, Collections} = context();
       const error = LocalState.get('TENANT_EDIT_ERROR');
+      const formStatus = LocalState.get('FORM_STATUS');
       const tenantId = LocalState.get('tenantId');
 
       let tenants,tenant
