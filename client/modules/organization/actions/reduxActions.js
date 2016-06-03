@@ -1,34 +1,37 @@
 /**
- * Created by mk on 30.05.16.
+ * Created by mk on 31.05.16.
  */
 
 import {
       TENANT_CREATE,
       TENANT_EDIT,
       TENANT_GETALL,
-      TENANT_GETONE
+      TENANT_GETONE,
+      TENANT_SAVING,
+      TENANT_SAVE_DONE,
+      TENANT_SAVE_ERROR,
+      TENANT_SAVE_RESET
 } from './actionTypes';
 
 export default {
-
-      getOneTenant(tenantId) {
-            console.log('reduxActions - getOneTenant: '+tenantId);
-            return {type: TENANT_GETONE, tenantId}
+      
+      createTenant(tenant) {
+            return {type: TENANT_CREATE, tenant}
       },
 
-      editTenant(data) {
-            console.log('reduxActions - editTenant: '+data);
-            return {type: TENANT_EDIT, data}
+      resetTenantSaveStatus(){
+            return{type: TENANT_SAVE_RESET}
+      },
+      
+      createTenantSaving(){
+            return{type: TENANT_SAVING};
       },
 
-      createTenant(data) {
-            console.log('reduxActions - createTenant: '+data);
-            return {type: TENANT_CREATE, data}
+      createTenantSaved(){
+            return{type: TENANT_SAVE_DONE}
       },
-
-      getAllTenant(data) {
-            console.log('reduxActions - getAllTenant: '+data);
-            return {type: TENANT_GETALL, data}
+      
+      createTenantError(error) {
+            return{type: TENANT_SAVE_ERROR, error}
       }
-
 }

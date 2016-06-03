@@ -1,13 +1,15 @@
 /**
  * Created by martin on 07.03.2016.
  */
+
+//Mantra
 import {createApp} from 'mantra-core';
 import initContext from './configs/context';
 
 //Redux
 import {combineReducers} from 'redux'
 
-//modules
+//Modules
 import coreModule from './modules/core';
 import layoutModule from './modules/appLayout';
 import logonModule from './modules/logon';
@@ -18,11 +20,15 @@ import currentUserModule from './modules/currentUser';
 import organizationModule from './modules/organization';
 import oltTemplates from './modules/oltTemplates';
 
+//Reducers
 const reducer = combineReducers({
       ...organizationModule.reducers
 })
 
-//init context
+/**init context
+ * Application Context is available to all actions and containers,
+ * so this is the place for shared variables in your app.
+ * */
 const context = initContext({reducer});
 
 //create App

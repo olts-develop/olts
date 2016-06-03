@@ -21,12 +21,22 @@ import Add from 'material-ui/svg-icons/content/add'
 
 //redux-form
 import {reduxForm} from 'redux-form';
+import {TenantsFields} from '/lib/schemas/organizations/tenants'
 
 const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
 
 
 class tenants extends React.Component {
+
+      constructor(props){
+            super(props);
+      }
+      
+      componentWillMount(){
+            const {resetSaveStatus} = this.props;
+            resetSaveStatus();
+      }
 
 
       render() {

@@ -3,16 +3,21 @@
  */
 
 
-import {combineReducer} from 'redux';
+import {combineReducers} from 'redux';
 import {
       TENANT_CREATE,
       TENANT_EDIT,
       TENANT_GETALL,
-      TENANT_GETONE
-} from './actionTypes';
-import Tenants from '/lib/schemas/organizations/tenants';
+      TENANT_GETONE,
+      TENANT_SAVING,
+      TENANT_SAVE_DONE,
+      TENANT_SAVE_ERROR,
+      TENANT_SAVE_RESET
+} from './../actions/actionTypes';
 
-function tenantInfo(state = Tenants, action) {
+import * as StateFlags from '/client/configs/appStateFlags';
+
+function tenantInfo(state = {}, action) {
       switch(action.type) {
             case TENANT_CREATE:
                   return Object.assign({}, state, action.data);
@@ -24,18 +29,53 @@ function tenantInfo(state = Tenants, action) {
 }
 
 
-function tenantGet(state = Tenants, action) {
+function tenantGet(state = {}, action) {
       switch (action.type) {
             case TENANT_GETALL:
                   return Object.assign({}, state, action.data);
             
             case TENANT_GETONE:
                   return Object.assign({}, state, action.tenantId)
+            default:
+                  return state;
       }
       
 }
 
-export default combineReducer({
+function saveStatus(state=0, action){
+      switch (action.type) {
+            case TENANT_SAVING:
+                  return StateFlags.CRUD;
+            case TENANT_SAVE_DONE:
+                  return StateFlags.Done;
+            case TENANT_SAVE_ERROR:
+                  return Object.assign({}, state, {
+                             saveStatus: StateFlags.Error,
+                              errText: action.error
+                  })
+
+
+                  
+            case TENANT_SAVE_RESET:
+                  return StateFlags.Reset
+            default:
+                  return state;
+      }
+}
+
+function createOrEdit(state = 0, action) {
+      switch (action.type){
+            case TENANT_EDIT:
+                  return StateFlags.CRUD;
+            default:
+                  return state;
+      }
+
+}
+
+export default combineReducers({
       tenantInfo,
-      tenantGet
+      tenantGet,
+      saveStatus,
+      createOrEdit
 });

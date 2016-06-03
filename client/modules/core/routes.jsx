@@ -5,7 +5,7 @@ import MainLayout from './components/mainLayout.jsx';
 import AppLayout from '../appLayout/containers/appLayout';
 import Login from '../logon/containers/login';
 import NewUser from '../logon/containers/newUser';
-import Tenants from '../organization/containers/addTenants'
+import Tenants from '../organization/containers/tenants'
 import UserAuth from '../authorization/containers/userAuth'
 
 

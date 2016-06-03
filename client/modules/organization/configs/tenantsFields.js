@@ -3,15 +3,11 @@
 //  */
 //
 //
-import Tenants from './../../../../lib/schemas/organizations/tenants';
-import {normalize} from 'normalizr';
+// import Tenants from './../../../../lib/schemas/organizations/tenants';
+// import {normalize} from 'normalizr';
 
-export const TenantInfo = {
-      
-      code: '',
-      description: ''
-      
-}
+import {BaseSuperFields} from '/lib/baseschema/BaseSuper'
 
-export const TenentFields = ['code','description']
+
+export const TenantInfoFields = ['code','description',BaseSuperFields]
 

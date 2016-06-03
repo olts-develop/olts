@@ -3,9 +3,11 @@
  */
 
 
-import addtenants from './addTenants';
+import tenantsLogicActions from './logicActions';
+import tenantsReduxActions from './reduxActions';
 
 
 export default {
-      addtenants
+      tenantsLogicActions,
+      tenantsReduxActions
 }

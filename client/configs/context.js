@@ -6,11 +6,30 @@ import {FlowRouter} from 'meteor/kadira:flow-router-ssr';
 import {ReactiveDict} from 'meteor/reactive-dict';
 import {Tracker} from 'meteor/tracker';
 import * as AppConfig from './app';
+import * as StateFlags from './appStateFlags';
+
+/**Redux*/
 import {createStore} from 'redux';
 
-// export default function ({reducer}){
-//     const Store = createStore(reducer);
-export default function () {
+
+
+/**Material-ui
+ * TODO this should go in future version of Materieal-UI
+ **/
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin()
+
+/**
+ * reducers comes from main,js --> const context = initContext({reducers});
+ *
+ * @param reducers
+ * @returns {{Meteor: Meteor, FlowRouter: *, LocalState: *, Tracker: Tracker, AppConfig, StateFlags, Store: *}}
+ */
+
+export default function ({reducer}){
+    
+    const Store = createStore(reducer);
+
     return {
         Meteor,
         FlowRouter,
@@ -18,9 +37,10 @@ export default function () {
         LocalState: new ReactiveDict(),
         Tracker,
         DateHelper,
-        AppConfig
-        // Store: Store,
-        // dispatch: Store.dispatch
+        AppConfig,
+        StateFlags,
+        Store: Store,
+        dispatch: Store.dispatch
 
     };
 }

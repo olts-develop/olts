@@ -4,10 +4,13 @@
 
 import routes from '../core/routes.jsx';
 import actions from './actions';
-import tenantReducer from './reducers/tenantReducer'
+import reducers from './reducers'
 
 export default {
       routes,
       actions,
-      tenantReducer
+      reducers,
+      load(context){
+            
+      }
 };
