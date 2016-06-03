@@ -27,8 +27,8 @@ injectTapEventPlugin()
  */
 
 export default function ({reducer}){
-    
-    const Store = createStore(reducer);
+
+    const Store = createStore(reducers, {}, window.devToolsExtension ? window.devToolsExtension() : undefined)
 
     return {
         Meteor,
