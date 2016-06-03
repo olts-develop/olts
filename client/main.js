@@ -21,7 +21,8 @@ import organizationModule from './modules/organization';
 import oltTemplates from './modules/oltTemplates';
 
 //Reducers
-const reducer = combineReducers({
+
+const reducers = combineReducers({
       ...organizationModule.reducers
 })
 
@@ -29,7 +30,7 @@ const reducer = combineReducers({
  * Application Context is available to all actions and containers,
  * so this is the place for shared variables in your app.
  * */
-const context = initContext({reducer});
+const context = initContext({reducers});
 
 //create App
 const app = createApp(context);

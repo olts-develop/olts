@@ -26,7 +26,7 @@ injectTapEventPlugin()
  * @returns {{Meteor: Meteor, FlowRouter: *, LocalState: *, Tracker: Tracker, AppConfig, StateFlags, Store: *}}
  */
 
-export default function ({reducer}){
+export default function ({reducers}){
 
     const Store = createStore(reducers, {}, window.devToolsExtension ? window.devToolsExtension() : undefined)
 

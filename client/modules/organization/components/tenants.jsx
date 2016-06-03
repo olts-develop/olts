@@ -29,36 +29,26 @@ const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
 class tenants extends React.Component {
 
-      constructor(props){
-            super(props);
-      }
-      
-      componentWillMount(){
-            const {resetSaveStatus} = this.props;
-            resetSaveStatus();
-      }
-
-
       render() {
 
-            const {tenants, tenant, error} = this.props;
+            const {tenants, error} = this.props;
 
             this.addTenant = this.addTenant.bind(this)
             /*this.updateTenant = this.updateTenant.bind(this)*/
-            this.handleChange = this.handleChange.bind(this)
+            /*this.handleChange = this.handleChange.bind(this)*/
 
 
             return (
                   <MuiThemeProvider muiTheme={lightMuiTheme}>
                         <Paper className="FormInput" zDepth={3}>
 
-                              {error ? <p style = {{color: 'red'}}>{error}</p> :null}
+                              {error? <p style = {{color: 'red'}}>{error}</p> :null}
 
                               <Row>
                                     <Col lg={5} className="form-padding-5-left">
 
 
-                                          <TextField ref="code" hintText="Tenant code" floatingLabelText= "Code" key = {tenant? this.props.tenant.code: undefined} onChange={this.handleChange} name="code" autoFocus/>
+                                          <TextField ref="code" hintText="Tenant code" floatingLabelText= "Code" name="code" autoFocus/>
                                           <TextField ref="description" hintText="Tenant name/description" floatingLabelText= "Description" />
 
                                           <div className="col-align-right form-padding-15-right">
@@ -103,12 +93,12 @@ class tenants extends React.Component {
             getTenant(tenantId);
       }
 
-      handleChange (event) {
-            event.preventDefault();
-            const {handleChange}=this.props;
-            const {code} = this.refs;
-            handleChange('code', code.getValue())
-      };
+      // handleChange (event) {
+      //       event.preventDefault();
+      //       const {handleChange}=this.props;
+      //       const {code} = this.refs;
+      //       handleChange('code', code.getValue())
+      // };
 
 
 };

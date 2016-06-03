@@ -9,11 +9,14 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, clearErrors}, onData) => {
       const {Store, Meteor, Collections} = context();
+      const tenantState = Store.getState();
+      const error = tenantState.tenant.tenantReducer.saveStatus.errText
 
       let tenants
-
+      
+      
       const unsubscribe = Store.subscribe(() => {
-            const tenantState = Store.getState();
+            //const tenantState = Store.getState();
 
             if (Meteor.userId() != undefined) {
 
@@ -23,14 +26,12 @@ export const composer = ({context, clearErrors}, onData) => {
                         tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
                   }
 
-                  onData(null, {tenants})
+                  onData(null, {tenants, error})
             } else {
-                  onData(null)
+                  onData(null,error)
             }
       });
 
-
-      const tenantState = Store.getState();
 
       if (Meteor.userId() != undefined) {
 
@@ -40,7 +41,7 @@ export const composer = ({context, clearErrors}, onData) => {
                   tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
             }
 
-            onData(null, {tenants})
+            onData(null, {tenants, error})
       } else {
             onData(null,{})
       }

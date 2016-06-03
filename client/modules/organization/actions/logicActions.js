@@ -41,21 +41,16 @@ export default {
             }
 
             Tenants.insert(newTenant, function(error,result){
+                        dispatch(tenantReduxActions.createTenant(newTenant))
 
-                  dispatch(tenantReduxActions.createTenant(newTenant))
+                        if (error) {
 
-                  if (error){
-                        
-                        let errText = error.error+"  /  "+error.message
+                              let errText = error.error + "  /  " + error.message
 
-                        dispatch(tenantReduxActions.createTenantError(errText));
+                              dispatch(tenantReduxActions.createTenantError(errText));
 
+                        }
 
-                        let localState=Store.getState()
-
-                        console.log("State addtenant: "+localState)
-
-                  }
 
                   console.log("SERVER tenant.add - new tenantTd:   " + result);
 
