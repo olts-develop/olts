@@ -7,19 +7,44 @@ import  {Meteor} from 'meteor/meteor';
 
 export default function () {
 
-      Meteor.publish('tenants.list', function () {
+      Meteor.methods({
 
-            return Tenants.find({},{sort: {code: 1}});
+            'tenants.list'(){
+                  console.log('SERVER tenant list')
+                  return new Promise((resolve, reject) => {
+                        try {
+                             let tenants = Tenants.find({}, {sort: {code: 1}});
+
+                              resolve(tenants);
+
+                        } catch (ex) {
+                              reject(ex)
+                        }
+
+                  });
+
+            },
+
+            'tenant.single'(tenantId) {
+                  return new Promise((resolve, reject) => {
+                        try {
+
+                              const selector = {_id: tenantId}
+                             const tenant = Tenants.find(selector);
+
+                              resove(tenant);
+
+                        } catch (ex) {
+                              reject(ex)
+
+                        }
+
+                  })
+
+
+            }
       });
 
-      Meteor.publish('tenant.single', function (tenantId) {
-            console.log('SERVER tenant.single: ' + tenantId)
-            
-            const selector = {_id: tenantId}
-
-
-            return Tenants.find(selector);
-      });
-                 
 }
-      
+
+

@@ -24,7 +24,7 @@ export default function() {
                  // console.log("SERVER tenant.add - currTenent: "+currentTenent)
 
                   if (currentUser == undefined){
-                        throw new Meteor.Error('LOGGED-OUT','No current user found','You must be looged in');
+                        throw new Meteor.Error('LOGGED-OUT','No current user found','You must be logged in');
                         return;
 
                         // else test it current user is OLTS
@@ -53,22 +53,22 @@ export default function() {
             },
             
             
-            'tenant.single'(tenantId) {
-
-                  currentUser =  Meteor.user();
-
-                  if (currentUser == undefined){
-                        throw new Meteor.Error('LOGGED-OUT','No current user found','You must be looged in to edit tenants');
-                        return;
-
-                        // else test it current user is OLTS
-
-                  }
-                  
-                  tenant = Tenants.findOne(tenantId)
-                  
-                  
-            }
+            // 'tenant.single'(tenantId) {
+            //
+            //       currentUser =  Meteor.user();
+            //
+            //       if (currentUser == undefined){
+            //             throw new Meteor.Error('LOGGED-OUT','No current user found','You must be looged in to edit tenants');
+            //             return;
+            //
+            //             // else test it current user is OLTS
+            //
+            //       }
+            //      
+            //       tenant = Tenants.findOne(tenantId)
+            //      
+            //      
+            // }
             
 
            /* 'tenant.update'(tenantId, tenant){

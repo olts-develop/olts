@@ -60,15 +60,15 @@ export default {
             })
 
             
-            // Meteor.call('tenant.add', code ,description, (error) => {
-            //       if (error) {
-            //             return() => {
-            //                   dispatch(tenantReduxActions.createTenantError( err.message))
-            //             }
-            //       } else {
-            //             //dispatch(tenantReduxActions)
-            //       }
-            //
-            // });
+            Meteor.call('tenant.add', code ,description, (error) => {
+                  if (error) {
+                        return() => {
+                              dispatch(tenantReduxActions.createTenantError( err.message))
+                        }
+                  } else {
+                        //dispatch(tenantReduxActions)
+                  }
+            
+            });
       }
 }

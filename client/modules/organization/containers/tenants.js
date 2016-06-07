@@ -4,6 +4,7 @@
 
 import Tenants from '../components/tenants';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
+import {callMeteorMethod} from '../../../../helpers/callMeteorMethodHelper';
 
 
 
@@ -34,12 +35,20 @@ export const composer = ({context, clearErrors}, onData) => {
 
 
       if (Meteor.userId() != undefined) {
+            
+            tenants = Meteor.call('tenants.list');
 
-            if (Meteor.subscribe('tenants.list').ready()) {
-                  tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
-            } else {
-                  tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
-            }
+            // Meteor.promise('tenants.list')
+            //       .then(tenants)
+            //       .catch(error)
+
+            //Meteor.call('tenants.list',{},tenants, error)
+
+            // if (Meteor.subscribe('tenants.list').ready()) {
+            //       tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
+            // } else {
+            //       tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
+            // }
 
             onData(null, {tenants, error})
       } else {
