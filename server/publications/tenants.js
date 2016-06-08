@@ -3,6 +3,7 @@
  */
 
 import {Tenants} from '/lib/collections';
+import {tenantsList} from '/appMethods/tenants';
 import  {Meteor} from 'meteor/meteor';
 
 export default function () {
@@ -11,17 +12,13 @@ export default function () {
 
             'tenants.list'(){
                   console.log('SERVER tenant list')
-                  return new Promise((resolve, reject) => {
-                        try {
-                             let tenants = Tenants.find({}, {sort: {code: 1}});
-
-                              resolve(tenants);
-
-                        } catch (ex) {
-                              reject(ex)
-                        }
-
-                  });
+                  
+                  return tenantsList().then((tenants) => {
+                        return tenants;
+                  }).catch(( error ) =>{
+                        throw new Meteor.Error(error)
+                  })
+                  
 
             },
 
@@ -30,7 +27,7 @@ export default function () {
                         try {
 
                               const selector = {_id: tenantId}
-                             const tenant = Tenants.find(selector);
+                              const tenant = Tenants.find(selector);
 
                               resove(tenant);
 
