@@ -13,62 +13,62 @@ export default function() {
 
             'tenant.add'(code ,description){
 
-                  currentUser =  Meteor.user();
+                  return new Promise(( resolve, reject) => {
 
-                  const newTenant = {
-                        code: code,
-                        description : description
-                  }
+                        currentUser =  Meteor.user();
 
-
-                 // console.log("SERVER tenant.add - currTenent: "+currentTenent)
-
-                  if (currentUser == undefined){
-                        throw new Meteor.Error('LOGGED-OUT','No current user found','You must be logged in');
-                        return;
-
-                        // else test it current user is OLTS
-
-                  }
-
-                 
-
-                  Tenants.insert(newTenant, function(error,result){
-
-                        if (error != undefined){
-
-                              console.log("SERVER tenant.add - error" + error.error+"  /  "+error.message);
-
-                              throw new Meteor.Error('TENENT-INSERT-ERROR',error.message)
-
+                        const newTenant = {
+                              code: code,
+                              description : description
                         }
 
-                        console.log("SERVER tenant.add - new tenantTd:   " + result);
+                        if (currentUser == undefined){
+                              //throw new Meteor.Error('LOGGED-OUT','No current user found','You must be looged in');
+                             reject('LOGGED-OUT','No current user found','You must be looged in')
 
-                        return result;
+                              // else test it current user is OLTS
+                        }
+
+                        Tenants.insert(newTenant, function(error,result){
+
+                              if (error != undefined){
+
+                                    console.log("SERVER tenant.add - error" + error.error+"  /  "+error.message);
+
+                                    //throw new Meteor.Error('TENENT-INSERT-ERROR',error.message)
+                                    reject('TENENT-INSERT-ERROR',error.message)
+
+                              }
+
+                              console.log("SERVER tenant.add - new tenantTd:   " + result);
+
+                              resolve(result);
+
+                        })
 
                   })
+
 
 
             },
             
             
-            // 'tenant.single'(tenantId) {
-            //
-            //       currentUser =  Meteor.user();
-            //
-            //       if (currentUser == undefined){
-            //             throw new Meteor.Error('LOGGED-OUT','No current user found','You must be looged in to edit tenants');
-            //             return;
-            //
-            //             // else test it current user is OLTS
-            //
-            //       }
-            //      
-            //       tenant = Tenants.findOne(tenantId)
-            //      
-            //      
-            // }
+            'tenant.single'(tenantId) {
+
+                  currentUser =  Meteor.user();
+
+                  if (currentUser == undefined){
+                        throw new Meteor.Error('LOGGED-OUT','No current user found','You must be looged in to edit tenants');
+                        return;
+
+                        // else test it current user is OLTS
+
+                  }
+                  
+                  tenant = Tenants.findOne(tenantId)
+                  
+                  
+            }
             
 
            /* 'tenant.update'(tenantId, tenant){
