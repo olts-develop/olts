@@ -5,7 +5,7 @@
 import Tenants from '../components/tenants';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import {callMeteorMethod} from '../../../../helpers/callMeteorMethodHelper';
-import {tenantsList} from '/appMethods/tenants';
+
 
 
 

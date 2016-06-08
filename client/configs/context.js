@@ -1,6 +1,5 @@
 
 import * as Collections from '/lib/collections';
-import * as AppMethods from '/lib/appMethods'
 import * as DateHelper from '/helpers/dateHelper';
 import {Meteor} from 'meteor/meteor';
 import {FlowRouter} from 'meteor/kadira:flow-router-ssr';
@@ -42,8 +41,6 @@ export default function ({reducers}){
         AppConfig,
         StateFlags,
         Store: Store,
-        dispatch: Store.dispatch,
-        AppMethods
-
+        dispatch: Store.dispatch
     };
 }
