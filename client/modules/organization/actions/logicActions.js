@@ -9,66 +9,87 @@ import Tenants from './../../../../lib/schemas/organizations/tenants';
 
 
 export default {
-      
+
       resetSaveStatus({dispatch}) {
-                  dispatch(tenantReduxActions.resetTenantSaveStatus())
+            dispatch(tenantReduxActions.resetTenantSaveStatus())
       },
-      
+
       addTenant({dispatch, Store}, code, description) {
-            
+
             if (!code) {
-                  return() => {
+                  return () => {
                         dispatch(tenantReduxActions.createTenantError('Tenant code is required.'));
                   }
             }
 
             if (!description) {
-                  return() => {
+                  return () => {
                         dispatch(tenantReduxActions.createTenantError('Tenant description is required.'));
                   }
             }
 
             dispatch(tenantReduxActions.createTenantSaving());
 
-            let localState=Store.getState()
+            let localState = Store.getState()
 
-            console.log("State addtenant: "+localState)
-                                                                                                                                                           
+            console.log("State addtenant: " + localState)
+
 
             let newTenant = {
                   code: code,
                   description: description
             }
 
-            Tenants.insert(newTenant, function(error,result){
-                        dispatch(tenantReduxActions.createTenant(newTenant))
+            dispatch(tenantReduxActions.createTenant(newTenant))
 
-                        if (error) {
+            Meteor.call('tenant.add', newTenant, (result, error) => {
 
-                              let errText = error.error + "  /  " + error.message
 
-                              dispatch(tenantReduxActions.createTenantError(errText));
+                  if (error) {
 
+                        let errText = error.error + "  /  " + error.message
+
+                        dispatch(tenantReduxActions.createTenantError(errText));
+
+                  } else {
+
+
+                        if (result) {
+
+                              dispatch(tenantReduxActions.createTenant(result))
                         }
-
+                  }
 
                   console.log("SERVER tenant.add - new tenantTd:   " + result);
 
                   //dispatch(tenantReduxActions.createTenant(result))
 
 
-            })
+            });
 
-            
-            // Meteor.call('tenant.add', code ,description, (error) => {
-            //       if (error) {
-            //             return() => {
-            //                   dispatch(tenantReduxActions.createTenantError( err.message))
-            //             }
-            //       } else {
-            //             //dispatch(tenantReduxActions)
-            //       }
-            //
-            // });
+      },
+
+      getTenant({dispatch}, tenantId) {
+
+            console.log("SERVER getTenant:   " + tenantId);
+
+            if (tenantId){
+                  return () => {
+                        dispatch(tenantReduxActions.getTenantOne(tenantId));
+                  }
+            }
+            return() => {
+                  dispatch(tenantReduxActions.editTenantError('Please select a tenant from list'))
+            }
+
+      },
+
+      editTenantStatus({dispatch},tenant){
+            //TODO test whether Store tenantId = tenant.id
+            if (tenant != undefined){
+                  dispatch(tenantReduxActions.editTenant(tenant))
+            }
+
+
       }
 }

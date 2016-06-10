@@ -14,12 +14,22 @@ export default function () {
 
       Meteor.publish('tenant.single', function (tenantId) {
             console.log('SERVER tenant.single: ' + tenantId)
+
+            const currentUser =  Meteor.user();
+
+            if (currentUser == undefined){
+                  throw new Meteor.Error('LOGGED-OUT','No current user found','You must be looged in to edit tenants');
+                  return;
+
+                  // else test it current user is OLTS
+
+            }
             
             const selector = {_id: tenantId}
 
 
             return Tenants.find(selector);
       });
-                 
+
 }
       

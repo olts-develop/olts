@@ -11,8 +11,9 @@ export const composer = ({context, clearErrors}, onData) => {
       const {Store, Meteor, Collections} = context();
       const tenantState = Store.getState();
       const error = tenantState.tenant.tenantReducer.saveStatus.errText
-
-      let tenants
+      const tenantId = tenantState.tenant.tenantReducer.tenantGet.tenantId;
+      
+      let tenants, tenant
       
       
       const unsubscribe = Store.subscribe(() => {
@@ -40,8 +41,17 @@ export const composer = ({context, clearErrors}, onData) => {
             } else {
                   tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
             }
+            
+            // if (tenantId != undefined) {
+            //       if (Meteor.subscribe('tenants.single', tenantId)){
+            //             tenant = Collections.Tenants.findOne(tenantId);
+            // }else {
+            //             tenant = Collections.Tenants.findOne(tenantId);
+            //       }
+            //
+            // }
 
-            onData(null, {tenants, error})
+            onData(null, {tenants, tenant, error})
       } else {
             onData(null,{})
       }

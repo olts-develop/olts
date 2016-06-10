@@ -28,10 +28,17 @@ const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
 
 class tenants extends React.Component {
+      
+      componentWillReceiveProps() {
+            const {tenant} = this.props
+            const {editTenantStatus} = this.props;
+            editTenantStatus(tenant)
+
+      }
 
       render() {
 
-            const {tenants, error} = this.props;
+            const {tenants, tenant, error} = this.props;
 
             this.addTenant = this.addTenant.bind(this)
             /*this.updateTenant = this.updateTenant.bind(this)*/
@@ -83,6 +90,7 @@ class tenants extends React.Component {
             const {addTenant}=this.props;
             const {code, description} = this.refs;
             addTenant(code.getValue(), description.getValue());
+            
       }
 
 

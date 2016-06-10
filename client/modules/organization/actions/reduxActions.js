@@ -10,28 +10,42 @@ import {
       TENANT_SAVING,
       TENANT_SAVE_DONE,
       TENANT_SAVE_ERROR,
-      TENANT_SAVE_RESET
+      TENANT_SAVE_RESET,
+      TENANT_EDIT_ERROR
 } from './actionTypes';
 
 export default {
-      
+
       createTenant(tenant) {
             return {type: TENANT_CREATE, tenant}
       },
 
       resetTenantSaveStatus(){
-            return{type: TENANT_SAVE_RESET}
+            return {type: TENANT_SAVE_RESET}
       },
-      
+
       createTenantSaving(){
-            return{type: TENANT_SAVING};
+            return {type: TENANT_SAVING};
       },
 
       createTenantSaved(){
-            return{type: TENANT_SAVE_DONE}
+            return {type: TENANT_SAVE_DONE}
+      },
+
+      createTenantError(error) {
+            return {type: TENANT_SAVE_ERROR, error}
+      },
+
+      editTenant(tenantId, tenant){
+            return {type: TENANT_EDIT,tenantId,tenant}
+      },
+
+      editTenantError(error) {
+            return {type: TENANT_EDIT_ERROR, error}
+
       },
       
-      createTenantError(error) {
-            return{type: TENANT_SAVE_ERROR, error}
+      getTenantOne(tenantId){
+            return {type: TENANT_GETONE, tenantId}
       }
 }

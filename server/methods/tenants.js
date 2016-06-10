@@ -11,15 +11,9 @@ export default function() {
 
       Meteor.methods({
 
-            'tenant.add'(code ,description){
+            'tenant.add'(newTenant){
 
                   currentUser =  Meteor.user();
-
-                  const newTenant = {
-                        code: code,
-                        description : description
-                  }
-
 
                  // console.log("SERVER tenant.add - currTenent: "+currentTenent)
 
@@ -53,22 +47,7 @@ export default function() {
             },
             
             
-            'tenant.single'(tenantId) {
-
-                  currentUser =  Meteor.user();
-
-                  if (currentUser == undefined){
-                        throw new Meteor.Error('LOGGED-OUT','No current user found','You must be looged in to edit tenants');
-                        return;
-
-                        // else test it current user is OLTS
-
-                  }
-                  
-                  tenant = Tenants.findOne(tenantId)
-                  
-                  
-            }
+            
             
 
            /* 'tenant.update'(tenantId, tenant){

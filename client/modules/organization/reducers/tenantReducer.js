@@ -20,9 +20,9 @@ import * as StateFlags from '/client/configs/appStateFlags';
 function tenantInfo(state = {}, action) {
       switch(action.type) {
             case TENANT_CREATE:
-                  return Object.assign({}, state, action.data);
+                  return Object.assign({}, state, action.tenant);
             case TENANT_EDIT:
-                  return Object.assign({}, state, action.data);
+                  return Object.assign({}, state, action.tenant);
             default:
                   return state;
       }
@@ -35,6 +35,7 @@ function tenantGet(state = {}, action) {
                   return Object.assign({}, state, action.data);
             
             case TENANT_GETONE:
+                  console.log('SERVER TENANT_GETONE:' +action.tenantId)
                   return Object.assign({}, state, action.tenantId)
             default:
                   return state;
@@ -66,7 +67,12 @@ function saveStatus(state=0, action){
 function createOrEdit(state = 0, action) {
       switch (action.type){
             case TENANT_EDIT:
-                  return StateFlags.CRUD;
+                  return Object.assign({}, state, {
+                        editStatus: StateFlags.CRUD,
+                        tenantId: action.tenentId,
+                        tenant: action.tenant
+                  })
+
             default:
                   return state;
       }
