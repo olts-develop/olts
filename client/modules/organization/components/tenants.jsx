@@ -29,6 +29,12 @@ const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
 class tenants extends React.Component {
       
+      componentWillMount(){
+            const {initTenant} = this.props;
+            initTenant();
+            
+      }
+      
       componentWillReceiveProps() {
             const {tenant} = this.props
             const {editTenantStatus} = this.props;

@@ -9,6 +9,18 @@ import Tenants from './../../../../lib/schemas/organizations/tenants';
 
 
 export default {
+      
+      initTenant({dispatch}) {
+            dispatch(tenantReduxActions.resetTenantSaveStatus())
+            dispatch(tenantReduxActions.getTenantOne(''));
+            let tenant = {
+                  code:'',
+                  description:''
+            }
+
+            dispatch(tenantReduxActions.createTenant(tenant));
+            
+      },
 
       resetSaveStatus({dispatch}) {
             dispatch(tenantReduxActions.resetTenantSaveStatus())
@@ -16,16 +28,12 @@ export default {
 
       addTenant({dispatch, Store}, code, description) {
 
-            if (!code) {
-                  return () => {
-                        dispatch(tenantReduxActions.createTenantError('Tenant code is required.'));
-                  }
+            if (!code) {                  
+                        dispatch(tenantReduxActions.createTenantError('Tenant code is required.'));                  
             }
 
-            if (!description) {
-                  return () => {
-                        dispatch(tenantReduxActions.createTenantError('Tenant description is required.'));
-                  }
+            if (!description) {                 
+                        dispatch(tenantReduxActions.createTenantError('Tenant description is required.'));                  
             }
 
             dispatch(tenantReduxActions.createTenantSaving());
@@ -71,16 +79,14 @@ export default {
 
       getTenant({dispatch}, tenantId) {
 
-            console.log("SERVER getTenant:   " + tenantId);
+            console.log("locicAction getTenant:   " + tenantId);
 
             if (tenantId){
-                  return () => {
                         dispatch(tenantReduxActions.getTenantOne(tenantId));
-                  }
-            }
-            return() => {
+            }else {
                   dispatch(tenantReduxActions.editTenantError('Please select a tenant from list'))
             }
+
 
       },
 

@@ -35,8 +35,10 @@ function tenantGet(state = {}, action) {
                   return Object.assign({}, state, action.data);
             
             case TENANT_GETONE:
-                  console.log('SERVER TENANT_GETONE:' +action.tenantId)
-                  return Object.assign({}, state, action.tenantId)
+                  console.log('tenantReducer TENANT_GETONE:' +action.tenantId);
+                  return Object.assign({}, state, {
+                        tenantID: action.tenantId
+                  });
             default:
                   return state;
       }

@@ -42,14 +42,14 @@ export const composer = ({context, clearErrors}, onData) => {
                   tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
             }
             
-            // if (tenantId != undefined) {
-            //       if (Meteor.subscribe('tenants.single', tenantId)){
-            //             tenant = Collections.Tenants.findOne(tenantId);
-            // }else {
-            //             tenant = Collections.Tenants.findOne(tenantId);
-            //       }
-            //
-            // }
+            if (tenantId != undefined) {
+                  if (Meteor.subscribe('tenants.single', tenantId)){
+                        tenant = Collections.Tenants.findOne(tenantId);
+            }else {
+                        tenant = Collections.Tenants.findOne(tenantId);
+                  }
+
+            }
 
             onData(null, {tenants, tenant, error})
       } else {
