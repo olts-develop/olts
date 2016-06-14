@@ -1,24 +1,33 @@
 import login from './../components/login.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
-
 export const composer = ({context, clearErrors}, onData) => {
-    const {LocalState} = context();
-    const error = LocalState.get('LOGIN_ERROR');
-    onData(null, {error});
+      const {Store} = context();
+      const state = Store.getState();
+      const error = state.logon.logonReducer.logedin.loginError;
 
-    // clearErrors when unmounting the component
-    return clearErrors;
+      onData(null, {error});
+
+      const unsubscribe = Store.subscribe(() => {
+            const state = Store.getState().logon;
+            const error = state.logonReducer.logedin.loginError;
+            onData(null, {error});
+      });
+
+
+      return  unsubscribe
+
 };
 
-export const depsMapper = (context, actions) => ({
-    loginUser: actions.users.login,
-    clearErrors: actions.users.clearErrors,
-    logoutUser: actions.users.logout,
-    context: () => context
-});
+
+export const depsMapper = (context, actions) => {
+      return {
+            ...actions.usersLogicActions,
+            context: () => context
+      }
+};
 
 export default composeAll(
-    composeWithTracker(composer),
-    useDeps(depsMapper)
+      composeWithTracker(composer),
+      useDeps(depsMapper)
 )(login);

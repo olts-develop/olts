@@ -12,7 +12,7 @@ export default {
       
       initTenant({dispatch}) {
             dispatch(tenantReduxActions.resetTenantSaveStatus())
-            dispatch(tenantReduxActions.getTenantOne(''));
+            dispatch(tenantReduxActions.getTenantOne());
             let tenant = {
                   code:'',
                   description:''
@@ -82,9 +82,10 @@ export default {
             console.log("locicAction getTenant:   " + tenantId);
 
             if (tenantId){
-                        dispatch(tenantReduxActions.getTenantOne(tenantId));
+                  return (dispatch(tenantReduxActions.getTenantOne(tenantId)));
+
             }else {
-                  dispatch(tenantReduxActions.editTenantError('Please select a tenant from list'))
+                  return (dispatch(tenantReduxActions.editTenantError('Please select a tenant from list')));
             }
 
 

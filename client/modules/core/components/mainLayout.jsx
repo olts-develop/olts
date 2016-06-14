@@ -3,11 +3,11 @@ import React from 'react';
 
 const Layout = ({content}) => (
 
-    <div >
-        <div>
-            {content()}
-        </div>
-    </div>
+      <div >
+            <div>
+                  {content()}
+            </div>
+      </div>
 
 );
 

@@ -29,29 +29,29 @@ const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
 class tenants extends React.Component {
       
-      componentWillMount(){
-            const {initTenant} = this.props;
-            initTenant();
-            
-      }
+      // componentWillMount(){
+      //       const {initTenant} = this.props;
+      //       initTenant();
+      //
+      // }
       
-      componentWillReceiveProps() {
-            const {tenant} = this.props
-            const {editTenantStatus} = this.props;
-            editTenantStatus(tenant)
-
-      }
+      // componentWillReceiveProps() {
+      //       const {tenant} = this.props
+      //       const {editTenantStatus} = this.props;
+      //       editTenantStatus(tenant)
+      //
+      // }
 
       render() {
 
-            const {tenants, tenant, error} = this.props;
+            const {tenants, tenant, error, store} = this.props;
 
             this.addTenant = this.addTenant.bind(this)
             /*this.updateTenant = this.updateTenant.bind(this)*/
             /*this.handleChange = this.handleChange.bind(this)*/
 
 
-            return (
+            return (                   
                   <MuiThemeProvider muiTheme={lightMuiTheme}>
                         <Paper className="FormInput" zDepth={3}>
 

@@ -3,22 +3,20 @@
  */
 
 import Tenants from '../components/tenants';
-import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
-
+import {useDeps, composeAll, composeWithTracker} from 'mantra-core';
 
 
 export const composer = ({context, clearErrors}, onData) => {
       const {Store, Meteor, Collections} = context();
-      const tenantState = Store.getState();
-      const error = tenantState.tenant.tenantReducer.saveStatus.errText
-      const tenantId = tenantState.tenant.tenantReducer.tenantGet.tenantId;
+      const state = Store.getState();
+      const error = state.tenant.tenantReducer.saveStatus.errText;
+      const tenantId = state.tenant.tenantReducer.tenantGet.tenantId;
       
       let tenants, tenant
       
       
       const unsubscribe = Store.subscribe(() => {
-            //const tenantState = Store.getState();
-
+            
             if (Meteor.userId() != undefined) {
 
                   if (Meteor.subscribe('tenants.list').ready()) {
@@ -27,7 +25,7 @@ export const composer = ({context, clearErrors}, onData) => {
                         tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
                   }
 
-                  onData(null, {tenants, error})
+                  onData(null, {tenants, tenant, error})
             } else {
                   onData(null,error)
             }

@@ -1,5 +1,8 @@
-import users from './users';
+
+import usersLogicActions from './logicActions';
+import userReduxActions from './reduxActions'
 
 export default {
-    users
+    usersLogicActions,
+    userReduxActions
 };

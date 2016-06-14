@@ -9,6 +9,9 @@ import initContext from './configs/context';
 //Redux
 import {combineReducers} from 'redux'
 
+//Redux-form
+//import {reducer as formReducer} from 'redux-form';
+
 //Modules
 import coreModule from './modules/core';
 import layoutModule from './modules/appLayout';
@@ -21,15 +24,11 @@ import organizationModule from './modules/organization';
 import oltTemplates from './modules/oltTemplates';
 
 //Reducers
-
 const reducers = combineReducers({
-      ...organizationModule.reducers
+      ...organizationModule.reducers,
+      ...logonModule.reducers
 })
 
-/**init context
- * Application Context is available to all actions and containers,
- * so this is the place for shared variables in your app.
- * */
 const context = initContext({reducers});
 
 //create App
