@@ -6,53 +6,46 @@ import Tenants from '../components/tenants';
 import {useDeps, composeAll, composeWithTracker} from 'mantra-core';
 
 
-export const composer = ({context, clearErrors}, onData) => {
+export const composer = ({context}, onData) => {
       const {Store, Meteor, Collections} = context();
-      const state = Store.getState();
-      const error = state.tenant.tenantReducer.saveStatus.errText;
-      const tenantId = state.tenant.tenantReducer.tenantGet.tenantId;
-      
-      let tenants, tenant
+      const state = Store.getState().tenant;
+      const error = state.tenantReducer.status.error;
+      const tenantId = state.tenantReducer.select.tenantId;
+
+      onData(null,{error})
       
       
       const unsubscribe = Store.subscribe(() => {
-            
-            if (Meteor.userId() != undefined) {
 
-                  if (Meteor.subscribe('tenants.list').ready()) {
-                        tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
-                  } else {
-                        tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
-                  }
+            const state = Store.getState().tenant;
+            const error = state.tenantReducer.status.error;
 
-                  onData(null, {tenants, tenant, error})
-            } else {
-                  onData(null,error)
-            }
+            onData(null,{error})
+
       });
 
 
-      if (Meteor.userId() != undefined) {
-
-            if (Meteor.subscribe('tenants.list').ready()) {
-                  tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
-            } else {
-                  tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
-            }
-            
-            if (tenantId != undefined) {
-                  if (Meteor.subscribe('tenants.single', tenantId)){
-                        tenant = Collections.Tenants.findOne(tenantId);
-            }else {
-                        tenant = Collections.Tenants.findOne(tenantId);
-                  }
-
-            }
-
-            onData(null, {tenants, tenant, error})
-      } else {
-            onData(null,{})
-      }
+      // if (Meteor.userId() != undefined) {
+      //
+      //       if (Meteor.subscribe('tenants.list').ready()) {
+      //             tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
+      //       } else {
+      //             tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
+      //       }
+      //
+      //       if (tenantId != undefined) {
+      //             if (Meteor.subscribe('tenants.single', tenantId)){
+      //                   tenant = Collections.Tenants.findOne(tenantId);
+      //       }else {
+      //                   tenant = Collections.Tenants.findOne(tenantId);
+      //             }
+      //
+      //       }
+      //
+      //       onData(null, {tenants, tenant, error})
+      // } else {
+      //       onData(null,{})
+      // }
 
       const cleanup = () => {
             unsubscribe();

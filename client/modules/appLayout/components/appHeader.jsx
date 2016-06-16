@@ -6,12 +6,12 @@ import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import MenuItem from 'material-ui/MenuItem';
 
-import CurrentUserMenu from './../../currentUser/components/currentUserMenu.jsx'
+//import CurrentUserMenu from './../../currentUser/components/currentUserMenu.jsx'
 
-const appHeader = ({employee}) => (
+const appHeader = () => (
 
       <AppBar
-            title={employee.tenant + ' / ' + employee.organization}
+           /* title={employee.tenant + ' / ' + employee.organization}*/
             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
             iconElementRight={
                   <IconMenu

@@ -3,49 +3,73 @@
  */
 
 import {
-      TENANT_CREATE,
+      TENANT_STATUS,
+      TENANT_ADD,
       TENANT_EDIT,
-      TENANT_GETALL,
-      TENANT_GETONE,
-      TENANT_SAVING,
-      TENANT_SAVE_DONE,
-      TENANT_SAVE_ERROR,
-      TENANT_SAVE_RESET,
-      TENANT_EDIT_ERROR
+      TENANT_UPDATE,
+      TENANT_DELETE,
+      TENANT_SELECT,
+      TENANT_FATAL,
+      TENANT_RESET,
+      TENANT_INIT,
+      TENANT_ERROR,
+      TENANT_SELECT_BY_ID,
+      TENANT_SELECT_BY_SEARCH,
+      TENANT_SELECT_ALL
+
 } from './actionTypes';
 
 export default {
+      
+      setTenantStatus(status){
+            return {type: TENANT_STATUS, status}
+      },
 
       createTenant(tenant) {
-            return {type: TENANT_CREATE, tenant}
+            return {type: TENANT_ADD, tenant}
       },
 
-      resetTenantSaveStatus(){
-            return {type: TENANT_SAVE_RESET}
+      editTenant(tenant){
+            return {type: TENANT_EDIT,tenant}
       },
 
-      createTenantSaving(){
-            return {type: TENANT_SAVING};
-      },
-
-      createTenantSaved(){
-            return {type: TENANT_SAVE_DONE}
-      },
-
-      createTenantError(error) {
-            return {type: TENANT_SAVE_ERROR, error}
-      },
-
-      editTenant(tenantId, tenant){
-            return {type: TENANT_EDIT,tenantId,tenant}
-      },
-
-      editTenantError(error) {
-            return {type: TENANT_EDIT_ERROR, error}
-
+      updateTenant(tenant){
+            return {type: TENANT_UPDATE,tenant}
       },
       
-      getTenantOne(tenantId){
-            return {type: TENANT_GETONE, tenantId}
+      deleteTenant(tenant){
+            return {type: TENANT_DELETE, tenant}
+      },       
+      
+      selectTenant(tanants){
+            return {type: TENANT_SELECT, tenants}
+      },
+
+      setTenantFatalError(fatal) {
+            return {type: TENANT_FATAL, fatal}
+      },
+      
+      resetTenant(){
+            return{type: TENANT_RESET}
+      },
+
+      initTenant(){
+            return{type: TENANT_INIT}
+      },
+
+      setTenantError(error) {
+            return {type: TENANT_ERROR, error}
+      },
+
+      selectTenantById(tenantId){
+            return {type: TENANT_SELECT_BY_ID, tenantId}
+      },
+
+      selectTenantBySearch(search){
+            return {type: TENANT_SELECT_BY_SEARCH, search}
+      },
+
+      selectTenantAll() {
+            return {type: TENANT_SELECT_ALL}
       }
 }

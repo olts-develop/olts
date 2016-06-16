@@ -10,7 +10,4 @@ export default {
       routes,
       actions,
       reducers,
-      load(context){
-            
-      }
 };

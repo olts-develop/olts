@@ -1,5 +1,8 @@
+
 import React from 'react';
+
 import {Row} from 'react-bootstrap';
+
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper'
@@ -15,17 +18,17 @@ class appLayout extends React.Component {
 
       render() {
 
-            const {employee} = this.props
-            const modulecontent = this.props.modulecontent;
+            const {error} = this.props
+            // const modulecontent = this.props.modulecontent;
 
             return(
                   <MuiThemeProvider muiTheme={getMuiTheme()}>
                   <Paper  zDepth={1}>
                         <Row className="app-header">
-                              <AppHeader employee={employee} />
+                              <AppHeader />
                         </Row>
                         <Row className="app-navbar">
-                              {<AppNavigation employee={employee}/>}
+                              <AppNavigation />
                         </Row>
                         <Row className="app-modules">
 
@@ -40,5 +43,7 @@ class appLayout extends React.Component {
             )
       }
 
+
+      
 };
  export default appLayout

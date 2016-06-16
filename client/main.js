@@ -26,7 +26,8 @@ import oltTemplates from './modules/oltTemplates';
 //Reducers
 const reducers = combineReducers({
       ...organizationModule.reducers,
-      ...logonModule.reducers
+      ...logonModule.reducers,
+      ...layoutModule.reducers
 })
 
 const context = initContext({reducers});

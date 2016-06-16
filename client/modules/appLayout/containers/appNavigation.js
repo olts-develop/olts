@@ -3,25 +3,47 @@
  */
 
 
-import appNavigation from './../components/appNavigation.jsx';
+import AppNavigation from './../components/appNavigation';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 
-export const composer = ({context, employee, clearErrors}, onData) => {
-      const {LocalState, Meteor, Collections} = context();
-      //const error = LocalState.get('APP_NAVIGATION_ERROR')
+export const composer = ({context, employee}, onData) => {
+      const {Store, Meteor, Collections} = context();
+      const error = ''
       
       if (employee._id){
             console.log("employee: "+ employee.name)
       }
 
-      onData(employee)
+      onData(null, error)
 
-      // clearErrors when unmounting the component
-      //return clearErrors;
+      const unsubscribe = Store.subscribe(() => {
+
+            const error = ''
+            
+            onData(null, error)
+
+      });
+
+      const cleanup = () => {
+            unsubscribe();
+      }
+
+      return cleanup;
       
-}
+};
+
+
+export const depsMapper = (context, actions) => {
+      return {
+            ...actions.navLogicActions,
+            context: () => context
+      }
+};
+
+
 export default composeAll(
       composeWithTracker(composer),
-      useDeps()
-)(appNavigation);
+      useDeps(depsMapper)
+)(AppNavigation);
+

@@ -4,9 +4,15 @@
  * define all state flags for the whole app here
  */
 
-export const CRUD = 1;
-export const Done = 2;
-export const Error = -1;
-export const Fatal = -99;
-export const Reset = 0;
+export const ADD = 'ADD';
+export const EDIT = 'EDIT';
+export const UPDATE = 'UPDATE';
+export const SELECT = 'SELECT';
+export const ERROR = 'ERROR';
+export const FATAL = 'FATAL';
+export const RESET = 'RESET';
+export const INIT = 'INIT';
+
+
+
 

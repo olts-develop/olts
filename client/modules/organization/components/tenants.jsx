@@ -19,22 +19,20 @@ import ListItem from 'material-ui/List/ListItem'
 import FlatButton from 'material-ui/FlatButton';
 import Add from 'material-ui/svg-icons/content/add'
 
-//redux-form
-import {reduxForm} from 'redux-form';
-import {TenantsFields} from '/lib/schemas/organizations/tenants'
+import TenantList from './../containers/tenantList'
 
 const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
 
 
 class tenants extends React.Component {
-      
+
       // componentWillMount(){
       //       const {initTenant} = this.props;
       //       initTenant();
       //
       // }
-      
+
       // componentWillReceiveProps() {
       //       const {tenant} = this.props
       //       const {editTenantStatus} = this.props;
@@ -51,7 +49,7 @@ class tenants extends React.Component {
             /*this.handleChange = this.handleChange.bind(this)*/
 
 
-            return (                   
+            return (
                   <MuiThemeProvider muiTheme={lightMuiTheme}>
                         <Paper className="FormInput" zDepth={3}>
 
@@ -70,15 +68,8 @@ class tenants extends React.Component {
                                     </Col>
 
                                     <Col xs={6} >
-                                          <Paper zDepth={0} >
-                                                <List>
-                                                      {tenants ? tenants.map(tenant => (
-
-                                                            <ListItem key={tenant._id} primaryText= {tenant.code} onClick={this.selectItem.bind(this,tenant)}/>
-
-                                                      )): null}
-
-                                                </List>
+                                          <Paper className="FormInput" zDepth={1}>
+                                                {<TenantList />}
                                           </Paper>
                                     </Col>
 
@@ -96,16 +87,16 @@ class tenants extends React.Component {
             const {addTenant}=this.props;
             const {code, description} = this.refs;
             addTenant(code.getValue(), description.getValue());
-            
+
       }
 
 
-      selectItem(tenant, event) {
-            event.preventDefault();
-            const {getTenant} = this.props;
-            const tenantId = tenant._id;
-            getTenant(tenantId);
-      }
+      // selectItem(tenant, event) {
+      //       event.preventDefault();
+      //       const {getTenant} = this.props;
+      //       const tenantId = tenant._id;
+      //       getTenant(tenantId);
+      // }
 
       // handleChange (event) {
       //       event.preventDefault();

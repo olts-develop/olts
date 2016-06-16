@@ -2,14 +2,14 @@ import appLayout from '../components/appLayout.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 
-export const composer = ({context, clearErrors}, onData) => {
-    const {LocalState, Meteor, Collections} = context();
-    const error = LocalState.get('APP_LAYOUT_ERROR')
-    
-        const activeUser = Meteor.user()
+export const composer = ({context}, onData) => {
+    const { Meteor} = context();
+
+    const error = {}
+       // const activeUser = Meteor.user()
 
 
-        onData();
+        onData(null, error);
 
         // if (activeUser._id !== undefined) {
         //     const selector = {userID: activeUser.username}
@@ -29,12 +29,19 @@ export const composer = ({context, clearErrors}, onData) => {
         // }
         // else {
         //     onData(null, {error});
-        // }
+        //
     
     //return clearErrors;
 };
 
+export const depsMapper = (context, actions) => {
+    return {
+        ...actions.navLogicActions,
+        context: () => context
+    }
+};
+
 export default composeAll(
       composeWithTracker(composer),
-      useDeps()
+      useDeps(depsMapper)
 )(appLayout);

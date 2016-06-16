@@ -8,39 +8,36 @@ import {Random} from 'meteor/random';
 import Tenants from './../../../../lib/schemas/organizations/tenants';
 
 
+
+
 export default {
       
       initTenant({dispatch}) {
-            dispatch(tenantReduxActions.resetTenantSaveStatus())
-            dispatch(tenantReduxActions.getTenantOne());
-            let tenant = {
-                  code:'',
-                  description:''
-            }
-
-            dispatch(tenantReduxActions.createTenant(tenant));
-            
+            dispatch(tenantReduxActions.initTenant())
       },
 
-      resetSaveStatus({dispatch}) {
-            dispatch(tenantReduxActions.resetTenantSaveStatus())
+      resetStatus({dispatch}) {
+            dispatch(tenantReduxActions.resetTenant())
       },
 
-      addTenant({dispatch, Store}, code, description) {
+      addTenant({dispatch, StateFlags}, code, description) {
 
-            if (!code) {                  
-                        dispatch(tenantReduxActions.createTenantError('Tenant code is required.'));                  
+
+            if (!code) {
+                        dispatch(tenantReduxActions.setTenantError('Tenant code is required'))
             }
 
             if (!description) {                 
-                        dispatch(tenantReduxActions.createTenantError('Tenant description is required.'));                  
+                        dispatch(tenantReduxActions.setTenantError('Tenant description is required.'));
             }
 
-            dispatch(tenantReduxActions.createTenantSaving());
+            if (!code||!description){
+                  return (dispatch(tenantReduxActions.setTenantStatus(StateFlags.ERROR)));
+            }
 
-            let localState = Store.getState()
+            dispatch(tenantReduxActions.setTenantStatus(StateFlags.ADD));
 
-            console.log("State addtenant: " + localState)
+
 
 
             let newTenant = {
@@ -56,8 +53,9 @@ export default {
                   if (error) {
 
                         let errText = error.error + "  /  " + error.message
+                        dispatch(tenantReduxActions.setTenantStatus(StateFlags.ERROR))
 
-                        dispatch(tenantReduxActions.createTenantError(errText));
+                        return (dispatch(tenantReduxActions.setTenantError(errText)));
 
                   } else {
 
@@ -77,15 +75,17 @@ export default {
 
       },
 
-      getTenant({dispatch}, tenantId) {
-
+      getTenant({dispatch, StateFlags}, tenantId) {
+            
             console.log("locicAction getTenant:   " + tenantId);
 
             if (tenantId){
-                  return (dispatch(tenantReduxActions.getTenantOne(tenantId)));
+                  dispatch(tenantReduxActions.setTenantStatus(StateFlags.ERROR))
+
+                  return (dispatch(tenantReduxActions.selectTenantById(tenantId)));
 
             }else {
-                  return (dispatch(tenantReduxActions.editTenantError('Please select a tenant from list')));
+                  return (dispatch(tenantReduxActions.setTenantError('Please select a tenant from list')));
             }
 
 

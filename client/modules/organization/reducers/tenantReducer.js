@@ -5,82 +5,127 @@
 
 import {combineReducers} from 'redux';
 import {
-      TENANT_CREATE,
+      TENANT_STATUS,
+      TENANT_ADD,
       TENANT_EDIT,
-      TENANT_GETALL,
-      TENANT_GETONE,
-      TENANT_SAVING,
-      TENANT_SAVE_DONE,
-      TENANT_SAVE_ERROR,
-      TENANT_SAVE_RESET
+      TENANT_UPDATE,
+      TENANT_DELETE,
+      TENANT_SELECT,
+      TENANT_FATAL,
+      TENANT_RESET,
+      TENANT_INIT,
+      TENANT_ERROR,
+      TENANT_SELECT_BY_ID,
+      TENANT_SELECT_BY_SEARCH,
+      TENANT_SELECT_ALL
 } from './../actions/actionTypes';
 
-import * as StateFlags from '/client/configs/appStateFlags';
+import * as StateFlags from './../../../configs/appStateFlags'
 
-function tenantInfo(state = {}, action) {
+
+function status( state = {}, action) {
+
       switch(action.type) {
-            case TENANT_CREATE:
+            case TENANT_STATUS:
                   return {
                         ...state,
-                        tenant: action.tenant
+                        status: action.status
                   };
-            case TENANT_EDIT:
+
+            case TENANT_FATAL:
                   return {
                         ...state,
-                        tenant: action.tenant
+                        error: action.fatal
                   };
+
+
+            case TENANT_ERROR:
+                  return {
+                        ...state,
+                        error: action.error
+                  };
+
+            case TENANT_INIT:
+                  return {
+                        status: StateFlags.INIT,
+                        error:{},
+                        fatal:{}
+                  };
+
+            case TENANT_RESET:
+                  return {
+                        status: StateFlags.RESET,
+                        error:{},
+                        fatal:{}
+                  };
+
+
+
             default:
                   return state;
       }
 }
 
 
-function tenantGet(state = {}, action) {
+function select(state = {}, action) {
       switch (action.type) {
-            case TENANT_GETALL:
-                  return Object.assign({}, state, action.data);
+            case TENANT_SELECT_BY_ID:
+                  return {
+                        ...state,
+                        tenantId: action.tenantId
+                  };
             
-            case TENANT_GETONE:
+            case TENANT_SELECT_BY_SEARCH:
                   
                   return {
                         ...state,
-                        tenantID: action.tenantId
+                        search: action.search
                   };
+            
+            case TENANT_SELECT_ALL:
+                  return {
+                        ...state,
+                        selectAll: true
+                  };
+
+            case TENANT_SELECT:
+                  return {
+                        ...state,
+                        tenants: action.tenants
+                  };
+            
             default:
                   return state;
+
       }
       
-}
-
-function saveStatus(state=0, action){
-      switch (action.type) {
-            case TENANT_SAVING:
-                  return StateFlags.CRUD;
-            case TENANT_SAVE_DONE:
-                  return StateFlags.Done;
-            case TENANT_SAVE_ERROR:
-                  return Object.assign({}, state, {
-                             saveStatus: StateFlags.Error,
-                              errText: action.error
-                  })
-
-
-                  
-            case TENANT_SAVE_RESET:
-                  return StateFlags.Reset
-            default:
-                  return state;
-      }
 }
 
 function createOrEdit(state = 0, action) {
       switch (action.type){
             case TENANT_EDIT:
-                  return Object.assign({}, state, {
-                        editStatus: StateFlags.CRUD,
-                        tenantId: action.tenantId,
+                  return {
+                        ...state,
                         tenant: action.tenant
-                  })
+                  };
+
+            case TENANT_UPDATE:
+                  return {
+                        ...state,
+                        tenant: action.tenant
+                  };
+
+            case TENANT_ADD:
+                  return {
+                        ...state,
+                        tenant: action.tenant
+                  };
+
+            case TENANT_DELETE:
+                  return {
+                        ...state,
+                        tenantId: action.tenant
+                  };
 
             default:
                   return state;
@@ -89,8 +134,7 @@ function createOrEdit(state = 0, action) {
 }
 
 export default combineReducers({
-      tenantInfo,
-      tenantGet,
-      saveStatus,
+      status,
+      select,
       createOrEdit
 });

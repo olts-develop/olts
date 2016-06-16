@@ -16,7 +16,6 @@ import * as Collections from '/lib/collections';
 
 import {Meteor} from 'meteor/meteor';
 import {FlowRouter} from 'meteor/kadira:flow-router-ssr';
-import {ReactiveDict} from 'meteor/reactive-dict'; //TODO to be removed
 import {Tracker} from 'meteor/tracker';
 
 /**global vars and helper methods for the app*/
@@ -39,15 +38,12 @@ const defaultState = {};
 
 export default function ({reducers}){
 
-      //console.log('reducers: '+reducers)
-
     const Store = createStore(reducers, defaultState, window.devToolsExtension ? window.devToolsExtension() : undefined);
 
     return {
         Meteor,
         FlowRouter,
         Collections,
-        //LocalState: new ReactiveDict(), //TODO to be removed
         Tracker,
         DateHelper,
         AppConfig,

@@ -15,7 +15,11 @@ export const composer = ({context, clearErrors}, onData) => {
       });
 
 
-      return  unsubscribe
+      const cleanup = () => {
+            unsubscribe();
+      }
+
+      return  cleanup;
 
 };
 

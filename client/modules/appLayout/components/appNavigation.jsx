@@ -1,4 +1,7 @@
+
 import React from 'react';
+
+//Material-UI
 import ToolBar from 'material-ui/Toolbar';
 import ToolBarGroup from 'material-ui/Toolbar/ToolbarGroup';
 import DropDownMenu from 'material-ui/DropDownMenu';
@@ -9,9 +12,10 @@ import FlatButton from 'material-ui/FlatButton'
 
 class appNavigation extends React.Component {
 
+     
       render(){
 
-            const {employee} = this.props
+            const {error} = this.props
 
             return(
 
@@ -55,12 +59,14 @@ class appNavigation extends React.Component {
                               </DropDownMenu>
                               <FlatButton label="Statistic"/>
                               <FlatButton label="Parameter"/>
-                              <DropDownMenu  value={0}>
+                              <DropDownMenu  ref="Setup" value={0} onChange={this.handleChange}>
                                     <MenuItem value={0} primaryText = "Setup" disabled={true}/>
                                     <Divider />
                                     <MenuItem value={1} primaryText = "User Accounts"/>
                                     <Divider />
                                     <MenuItem value={2} primaryText = "Employee"/>
+                                    <Divider />
+                                    <MenuItem value={3} primaryText = "Tenants"/>
 
                               </DropDownMenu>
                               <FlatButton label="System" />
@@ -70,6 +76,14 @@ class appNavigation extends React.Component {
 
             )
       }
-};
+
+
+      handleChange(event, index, value) {
+            event.preventDefault();
+            const {navHandleChange} = this.props;
+            navHandleChange(index, value, 'menu')
+      }
+      
+}
 
 export default appNavigation;
