@@ -7,7 +7,7 @@
 export const ADD = 'ADD';
 export const EDIT = 'EDIT';
 export const UPDATE = 'UPDATE';
-export const SELECT = 'SELECT';
+export const SELECTED = 'SELECTED';
 export const ERROR = 'ERROR';
 export const FATAL = 'FATAL';
 export const RESET = 'RESET';

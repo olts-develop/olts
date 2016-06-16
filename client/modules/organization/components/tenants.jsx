@@ -67,7 +67,7 @@ class tenants extends React.Component {
                                           </div>
                                     </Col>
 
-                                    <Col xs={6} >
+                                    <Col lg={6} >
                                           <Paper className="FormInput" zDepth={1}>
                                                 {<TenantList />}
                                           </Paper>

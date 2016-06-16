@@ -10,7 +10,7 @@ export const composer = ({context, clearErrors}, onData) => {
       const {Store, Meteor, Collections} = context();
       const state = Store.getState().tenant.tenantReducer;
       const error = state.status.error;
-      //const selectState = state.tenantGet.selectState;
+      //const tenantId = state.select.tenantId;
 
       let tenants
 

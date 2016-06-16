@@ -62,17 +62,24 @@ export default {
 
                         if (result) {
 
-                              dispatch(tenantReduxActions.createTenant(result))
+                              dispatch(tenantReduxActions.createTenant(result));
+                              dispatch(tenantReduxActions.setTenantStatus(StateFlags.RESET));
                         }
                   }
 
                   console.log("SERVER tenant.add - new tenantTd:   " + result);
 
-                  //dispatch(tenantReduxActions.createTenant(result))
+                  
 
 
             });
 
+      },
+      
+      updateTenant({dispatch, StateFlags}, tenant){
+            dispatch(tenantReduxActions.setTenantStatus(StateFlags.UPDATE))
+            dispatch(tenantReduxActions.editTenant(tenant))
+            
       },
 
       getTenant({dispatch, StateFlags}, tenantId) {
@@ -80,7 +87,7 @@ export default {
             console.log("locicAction getTenant:   " + tenantId);
 
             if (tenantId){
-                  dispatch(tenantReduxActions.setTenantStatus(StateFlags.ERROR))
+                  dispatch(tenantReduxActions.setTenantStatus(StateFlags.SELECTED))
 
                   return (dispatch(tenantReduxActions.selectTenantById(tenantId)));
 
