@@ -74,14 +74,14 @@ function select(state = {}, action) {
                         ...state,
                         tenantId: action.tenantId
                   };
-            
+
             case TENANT_SELECT_BY_SEARCH:
-                  
+
                   return {
                         ...state,
                         search: action.search
                   };
-            
+
             case TENANT_SELECT_ALL:
                   return {
                         ...state,
@@ -91,14 +91,14 @@ function select(state = {}, action) {
             case TENANT_SELECT:
                   return {
                         ...state,
-                        tenants: action.tenants
+                        tenants: action.tenant
                   };
-            
+
             default:
                   return state;
 
       }
-      
+
 }
 
 function createOrEdit(state = 0, action) {

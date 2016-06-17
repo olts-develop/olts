@@ -20,15 +20,24 @@ export default {
             dispatch(tenantReduxActions.resetTenant())
       },
 
+      setUpdateStatus({dispatch, StateFlag}, tenant){
+            dispatch(tenantReduxActions.selectTenant(tenant))
+      },
+
+      handleChange({dispatch}, tenant) {
+            console.log('handleChange: '+tenant.code+'    '+tenant.description)
+            dispatch(tenantReduxActions.editTenant(tenant))
+      },
+
       addTenant({dispatch, StateFlags}, code, description) {
 
 
             if (!code) {
-                        dispatch(tenantReduxActions.setTenantError('Tenant code is required'))
+                        dispatch(tenantReduxActions.setTenantError('code', 'Tenant code is required'))
             }
 
             if (!description) {                 
-                        dispatch(tenantReduxActions.setTenantError('Tenant description is required.'));
+                        dispatch(tenantReduxActions.setTenantError('description','Tenant description is required.'));
             }
 
             if (!code||!description){
@@ -89,7 +98,8 @@ export default {
             if (tenantId){
                   dispatch(tenantReduxActions.setTenantStatus(StateFlags.SELECTED))
 
-                  return (dispatch(tenantReduxActions.selectTenantById(tenantId)));
+                  dispatch(tenantReduxActions.selectTenantById(tenantId));
+                  return (tenantId);
 
             }else {
                   return (dispatch(tenantReduxActions.setTenantError('Please select a tenant from list')));

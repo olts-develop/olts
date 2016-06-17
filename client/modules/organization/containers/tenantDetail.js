@@ -24,48 +24,34 @@ export const composer = ({context}, onData) => {
         }else {
             tenant = Collections.Tenants.findOne(tenantId);
         }
-
-
-
-        onData(null, {tenant, tenantState, error})
+        onData(null, {tenant, tenantId, tenantState, error})
     } else {
-        onData(null,{})
+        onData(null,{error})
     }
-
-    onData(null,{error})
 
 
     const unsubscribe = Store.subscribe(() => {
 
-        const state = Store.getState().tenant;
-        const error = state.tenantReducer.status.error;
+        const state = Store.getState().tenant.tenantReducer;
+        const error = state.status.error;
+        const tenantState = state.status.status
+        const tenantId = state.select.tenantId;
 
-        onData(null,{error})
+        if (tenantId != undefined && tenant == undefined) {
+            const selector = {_id: tenantId};
+
+            if (Meteor.subscribe('tenants.single', tenantId)){
+                tenant = Collections.Tenants.find(selector);
+            }else {
+                tenant = Collections.Tenants.find(selector);
+            }
+            onData(null, {tenant, tenantState, error})
+        } else {
+            onData(null, {error})
+        }
 
     });
 
-
-// if (Meteor.userId() != undefined) {
-//
-//       if (Meteor.subscribe('tenants.list').ready()) {
-//             tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
-//       } else {
-//             tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
-//       }
-//
-//       if (tenantId != undefined) {
-//             if (Meteor.subscribe('tenants.single', tenantId)){
-//                   tenant = Collections.Tenants.findOne(tenantId);
-//       }else {
-//                   tenant = Collections.Tenants.findOne(tenantId);
-//             }
-//
-//       }
-//
-//       onData(null, {tenants, tenant, error})
-// } else {
-//       onData(null,{})
-// }
 
     const cleanup = () => {
         unsubscribe();

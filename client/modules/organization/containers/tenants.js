@@ -20,32 +20,10 @@ export const composer = ({context}, onData) => {
             const state = Store.getState().tenant;
             const error = state.tenantReducer.status.error;
 
-            onData(null,{error})
+            onData(null,{tenantId, error})
 
       });
 
-
-      // if (Meteor.userId() != undefined) {
-      //
-      //       if (Meteor.subscribe('tenants.list').ready()) {
-      //             tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
-      //       } else {
-      //             tenants = Collections.Tenants.find({}, {sort: {code: 1}}).fetch();
-      //       }
-      //
-      //       if (tenantId != undefined) {
-      //             if (Meteor.subscribe('tenants.single', tenantId)){
-      //                   tenant = Collections.Tenants.findOne(tenantId);
-      //       }else {
-      //                   tenant = Collections.Tenants.findOne(tenantId);
-      //             }
-      //
-      //       }
-      //
-      //       onData(null, {tenants, tenant, error})
-      // } else {
-      //       onData(null,{})
-      // }
 
       const cleanup = () => {
             unsubscribe();

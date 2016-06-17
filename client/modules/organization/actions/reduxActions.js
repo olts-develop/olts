@@ -41,8 +41,8 @@ export default {
             return {type: TENANT_DELETE, tenant}
       },       
       
-      selectTenant(tanants){
-            return {type: TENANT_SELECT, tenants}
+      selectTenant(tenant){
+            return {type: TENANT_SELECT, tenant}
       },
 
       setTenantFatalError(fatal) {
@@ -57,8 +57,8 @@ export default {
             return{type: TENANT_INIT}
       },
 
-      setTenantError(error) {
-            return {type: TENANT_ERROR, error}
+      setTenantError(field, error) {
+            return {type: TENANT_ERROR, field, error}
       },
 
       selectTenantById(tenantId){

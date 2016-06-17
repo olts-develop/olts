@@ -20,6 +20,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Add from 'material-ui/svg-icons/content/add'
 
 import TenantList from './../containers/tenantList'
+import TenantDetail from './../containers/tenantDetail'
 
 const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
@@ -42,7 +43,7 @@ class tenants extends React.Component {
 
       render() {
 
-            const {tenants, tenant, error, store} = this.props;
+            const {tenants, tenant, tenantId, error, store} = this.props;
 
             this.addTenant = this.addTenant.bind(this)
             /*this.updateTenant = this.updateTenant.bind(this)*/
@@ -58,13 +59,8 @@ class tenants extends React.Component {
                               <Row>
                                     <Col lg={5} className="form-padding-5-left">
 
+                                          {<TenantDetail />}
 
-                                          <TextField ref="code" hintText="Tenant code" floatingLabelText= "Code" name="code" autoFocus/>
-                                          <TextField ref="description" hintText="Tenant name/description" floatingLabelText= "Description" />
-
-                                          <div className="col-align-right form-padding-15-right">
-                                                <FlatButton  onMouseUp={this.addTenant} label="Add" labelPosition="after" icon={<Add/>} primary={true}/>
-                                          </div>
                                     </Col>
 
                                     <Col lg={6} >
