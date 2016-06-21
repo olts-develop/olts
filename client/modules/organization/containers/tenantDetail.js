@@ -14,11 +14,11 @@ export const composer = ({context}, onData) => {
     const state = Store.getState().tenant.tenantReducer;
     const error = state.status.error;
     const tenantId = state.select.tenantId;
-    const tenantState = state.status.status
+    const tenantState = state.status.status;
     
     let tenant
 
-    if (tenantId != undefined) {
+    if (tenantId != undefined && tenant == undefined) {
         if (Meteor.subscribe('tenants.single', tenantId)){
             tenant = Collections.Tenants.findOne(tenantId);
         }else {
@@ -26,7 +26,8 @@ export const composer = ({context}, onData) => {
         }
         onData(null, {tenant, tenantId, tenantState, error})
     } else {
-        onData(null,{error})
+        tenant = state.createOrEdit.tenant
+        onData(null,{tenant, tenantState, error})
     }
 
 
@@ -47,7 +48,8 @@ export const composer = ({context}, onData) => {
             }
             onData(null, {tenant, tenantState, error})
         } else {
-            onData(null, {error})
+            tenant = state.createOrEdit.tenant
+            onData(null,{tenant, tenantState, error})
         }
 
     });
