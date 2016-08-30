@@ -1,10 +1,10 @@
 /**
  * Created by martin on 16.03.2016.
  */
-import UserAuth from './UserAuth';
-import UserEdit from './UserEdit'
+import userAuth from './userAuth';
+import userEdit from './userEdit'
 
 export default {
-    UserAuth,
-    UserEdit
+    userAuth,
+    userEdit
 };

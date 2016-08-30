@@ -15,6 +15,7 @@ export default function () {
             createUser: "martin",
             modUser: "martin",
             group: "AgentOnlineUser",
+            roles:["order,adress"],
             description: "Agent Online User",
         });
 
@@ -22,6 +23,7 @@ export default function () {
             createUser: "martin",
             modUser: "martin",
             group: "AgentOnlineAdmin",
+            roles:["SuperAdmin"],
             description: "AgentOnlineAdmin",
         });
 
@@ -29,6 +31,7 @@ export default function () {
             createUser: "martin",
             modUser: "martin",
             group: "SuperAdmin",
+            roles:["olts_develop"],
             description: "SuperAdmin",
         });
 
@@ -36,6 +39,7 @@ export default function () {
             createUser: "martin",
             modUser: "martin",
             group: "Admin",
+            roles:["admin"],
             description: "Admin",
         });
 

@@ -6,11 +6,16 @@ import  {Meteor} from 'meteor/meteor';
 
 export default function() {
     Meteor.methods({
-        'userauth.create'(userId, role){
+        'userauth.setRole'(userId, role){
             Roles.addUsersToRoles(userId,[role]);
         }
     });
 
-
+    Meteor.methods({
+        'userauth.setGroup'(userId,groupRoles,groupName){
+            console.log('SERVER setGroups: ' + groupName)
+            Roles.addUsersToRoles(userId,groupRoles,groupName);
+        }
+    });
 
 }

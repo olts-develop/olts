@@ -2,20 +2,29 @@
  * Created by martin on 15.03.2016.
  */
 import {Meteor} from 'meteor/meteor';
-//import {check} from 'meteor/check';
+import Random from 'meteor-random';
 
+let newUserId = '';
 
 export default function() {
     Meteor.methods({
-        'create.user'(username, email){
+        'user.create'(username, email){
 
             console.log('SERVER user: ' + username)
 
-            newUserId=Accounts.createUser(username, email);
+            const password = Random.id([8])
+            console.log('SERVER user password: ' + password)
+            newUserId = Accounts.createUser(username, email, password);
 
-            Accounts.sendEnrollmentEmail(newUserId,email);
-
+            if (newUserId) {
+                Accounts.sendEnrollmentEmail(newUserId);
+            } else {
+                console.log('ERROR SERVER user no newUserId: ' + username)
             }
-        })
+
+        }
+    });
+    console.log('SERVER Return newUserId: ', newUserId);
+    return {newUserId};
 
 }

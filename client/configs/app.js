@@ -3,12 +3,16 @@
  */
 export default{
 
-    name: 'OLTS-4.0',
-    version:'0.0.1',
-    isDevelop: function(){
-        if (Meteor.absoluteUrl("http://localhost:3000/")) {
-            return true
-        } else false
+    name: 'OLTS',
+    version:'0.0.1'
+}
+
+export function isDevelop() {
+
+    if (process.env.NODE_ENV === 'development') {
+        return true
+    } else {
+        return false
     }
 
 }

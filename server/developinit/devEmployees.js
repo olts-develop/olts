@@ -1,11 +1,11 @@
-import Employees from '/lib/schemas/Employee';
+import Employees from '/lib/schemas/employees';
 
 export default function () {
 
     if (Employees.find().count() == 0) {
 
         var empl = {
-            userID: "martin",
+            userID: "TYw45Kxo93SeLe3yd",
             createUser: "martin",
             modUser: "martin",
             name: "Krüger",

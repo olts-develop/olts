@@ -1,12 +1,17 @@
 import {Employees} from '/lib/collections'
 
 export default function() {
-    Meteor.publish('employee', function(employeeId){
+    Meteor.publish('employee.single', function(employeeId){
         const selector = {_id: employeeId};
-        return Employee.find(selector);
+        return Employees.find(selector);
     });
 
-    Meteor.publish('employees', function(){
-        return Employee.find();
+    Meteor.publish('employees.list', function(){
+        return Employees.find();
     });
+    
+    Meteor.publish('employee.select', function(selector){
+        console.log('SERVER employee selector: ' + selector)
+        return Employees.find(selector);
+    })
 }

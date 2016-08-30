@@ -1,6 +1,6 @@
 export default {
 
-    create({Meteor, LocalState, FlowRouter}, username, email, password, password2) {
+    create({Meteor, LocalState, FlowRouter, AppConfig, Collections}, username, email, password, password2) {
 
 
         if (!username) {
@@ -11,22 +11,36 @@ export default {
             return LocalState.set('CREATE_USER_ERROR', 'Password is required.');
         }
 
-        if (password != password2){
+        if (password != password2) {
             return LocalState.set('CREATE_USER_ERROR', 'Passwords do not match.');
         }
 
         LocalState.set('CREATE_USER_ERROR', null);
 
+        const isDevelop = AppConfig.isDevelop();
 
-        console.log(username + ' '+ email+' '+password)
+        if (isDevelop) {
+            Accounts.createUser({username, email, password}, (error) => {
+                if (error) {
+                    return LocalState.set('CREATE_USER_ERROR', 'Could not register user ' + error.message)
+                }
+                console.log("Current User: "+ users._id)
+                
 
+               FlowRouter.go("/useredit/:userId", {userId: response.newUserId})
+            })
+        } else {
+            Meteor.call('user.create', username, email, (error, response) => {
+                if (error) {
+                    return LocalState.set('CREATE_USER_ERROR', 'Could not register user ' + error.message)
+                }
+                if (response.newUserId) {
+                    FlowRouter.go("/app/useredit/:userId", {userId: response.newUserId})
+                }
 
-        Accounts.createUser({username, email, password})
+            })
+        }
 
-
-            FlowRouter.go('/userauth');
-
-       // FlowRouter.go('/userauth',{userId: user._id});
     },
 
 
@@ -41,10 +55,13 @@ export default {
 
         LocalState.set('LOGIN_ERROR', null);
 
-
-
-        Meteor.loginWithPassword(user, password);
-        FlowRouter.go('/app');
+        Meteor.loginWithPassword(user, password, (error) => {
+            if (error){
+                return LocalState.set('LOGIN_ERROR', 'Login failed with: '+ error)
+            }
+            FlowRouter.go('/app');
+        });
+        return false;
     },
 
     clearErrors({LocalState}) {
@@ -53,7 +70,18 @@ export default {
 
 
     logout({Meteor, LocalState, FlowRouter}){
-        console.log('logout....................')
-        Meteor.logout();
+        Meteor.logout(function (error) {
+            if (error){
+                return LocalState.set('LOGOUT_ERROR', 'Logout failed with: '+ error)
+            }
+
+        });
+    },
+
+    back({Meteor, FlowRouter}){
+        if (Meteor.userId){
+            FlowRouter.go('/app');
+        }
+            FlowRouter.go('/')
     }
 }

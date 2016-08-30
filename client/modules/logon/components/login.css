@@ -1,0 +1,58 @@
+
+
+.logoncontainer {
+    font-family: sans-serif;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+
+
+
+
+}
+
+.FormInput{
+    width: 60%;
+    font-family: sans-serif;
+    background-color: white;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+}
+
+
+.fifi{
+    padding-top: 20px;
+    padding-left: 20px;
+    border-right: medium solid #b3b3b3;
+}
+
+.logon-right-col{
+    height: 300px;
+    border: 1px gainsboro;
+    border-right-style: solid;
+    border-top-style: none;
+    border-left-style: none;
+    border-bottom: none;
+    text-align: center;
+}
+
+.col-align-right{
+    text-align: right;
+}
+
+.col-align-center{
+    text-align: center;
+}
+
+.col-align-left{
+    text-align: left;
+}
+
+.field-20-percent{
+    width: 20%;
+}
+
+.field-80-percent{
+    width: 80%;
+}

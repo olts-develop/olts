@@ -1,17 +1,18 @@
 import React from 'react';
 import {mount} from 'react-mounter';
 
-import Layout from './components/MainLayout.jsx';
-import AppLayout from '../layout/containers/AppLayout';
-import Login from '../logon/containers/Login';
-import NewUser from '../logon/containers/NewUser';
-import UserAuth from '../authorization/containers/UserAuth';
-import UserEdit from '../authorization/containers/UserEdit';
+import MainLayout from './components/mainLayout.jsx';
+import AppLayout from '../appLayout/containers/appLayout';
+import Login from '../logon/containers/login';
+import NewUser from '../logon/containers/newUser';
+import Tenants from '../organization/containers/addTenants'
+import UserAuth from '../authorization/containers/userAuth'
+
 
 export default function (injectDeps, {FlowRouter}){
-    const MainLayoutCtx = injectDeps(Layout);
+    const MainLayoutCtx = injectDeps(MainLayout);
 
-
+    
     FlowRouter.route('/', {
         name:'users.login',
         action() {
@@ -32,13 +33,14 @@ export default function (injectDeps, {FlowRouter}){
     });
 
     FlowRouter.route('/userauth', {
-        name: 'users.auth',
+        name: 'users.userauth',
         action() {
             mount(MainLayoutCtx, {
-                content: () => (<UserAuth/>)
+                content: () => (<UserAuth />)
             });
         }
     });
+    
 
     FlowRouter.route('/useredit/:userId', {
         name: 'users.edit',
@@ -60,5 +62,15 @@ export default function (injectDeps, {FlowRouter}){
         }
     });
 
+    FlowRouter.route('/tenant',{
+        name:'tenant',
+        action(){
+            console.log("tenant")
+            mount(MainLayoutCtx,{
+                content: () => (<Tenants />)
+            });
+        }
+    });
 
+    
 }

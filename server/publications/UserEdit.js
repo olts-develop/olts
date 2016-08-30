@@ -1,7 +1,7 @@
 /**
  * Created by martin on 11.03.2016.
  */
-import {BaseRoles} from '/lib/collections';
+import {BaseRoles, Groups} from '/lib/collections';
 import  {Meteor} from 'meteor/meteor';
 
 
@@ -23,6 +23,12 @@ export default function () {
          }
          }*/
 
+    });
+    
+    Meteor.publish('groups.list', function () {
+        console.log('SERVER groups.list: ' + Groups.find().count())
+        
+        return Groups.find();
     });
 
     Meteor.publish('baseRoles.single', function(baseRoleId) {
