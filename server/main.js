@@ -1,7 +1,5 @@
+/**
+ * Created by martin on 20.10.2016.
+ */
 
-import publications from './publications';
-import methods from './methods';
-
-
-publications();
-methods();
+import '../imports/server/main'
