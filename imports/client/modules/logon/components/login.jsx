@@ -48,7 +48,7 @@ class login extends React.Component {
                                           <Row>
                                                 <div className="col-align-right form-padding-15-right">
 
-                                                      <FlatButton onMouseUp={this.login} primary={true} type="submit" label="Login"/>
+                                                      <FlatButton onClick={this.login} primary={true} type="submit" label="Login"/>
                                                       <FlatButton onMouseUp={this.logout} primary={true} type="submit" label="Logout"/>
                                                 </div>
 

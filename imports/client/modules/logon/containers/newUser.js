@@ -4,19 +4,34 @@
 import newUser from '../components/newUser.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
+
 export const composer = ({context, clearErrors}, onData) => {
-    const {LocalState} = context();
-    const error = LocalState.get('CREATE_USER_ERROR');
+    const {Store} = context();
+    const state = Store.getState();
+    const error = state.logon.logonReducer.createUser.userLoginError;
+
     onData(null, {error});
 
-    // clearErrors when unmounting the component
-    return clearErrors;
+    const unsubscribe = Store.subscribe(() => {
+        const state = Store.getState().logon;
+        const error = state.logonReducer.createUser.userLoginError;
+        onData(null, {error});
+    });
+
+
+    const cleanup = () => {
+        unsubscribe();
+    }
+
+    return  cleanup;
+
 };
 
 export const depsMapper = (context, actions) => ({
-    create: actions.users.create,
+    ...actions.usersLogicActions,
+   /* create: actions.users.create,
     clearErrors: actions.users.clearErrors,
-    back: actions.users.back,
+    back: actions.users.back,*/
     context: () => context
 });
 
