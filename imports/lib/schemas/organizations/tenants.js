@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Created by martin on 19.04.2016.
- */
+ *!/
 
 import {Mongo} from 'meteor/mongo';
 
@@ -31,3 +32,4 @@ export default Tenants;
 
 // TODO ist das der richtige Weg?
 export const TenantsFields = Schema.Tenants._schemaKeys;
+*/

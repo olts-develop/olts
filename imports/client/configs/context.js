@@ -27,6 +27,10 @@ import * as StateFlags from './appStateFlags'; //TODO How to use in reducers wit
 /**Redux*/
 import {createStore} from 'redux';
 
+/**Apollo*/
+import ApolloClient from 'apollo-client';
+
+
 /**Material-ui
  * TODO this should go in future version of Materieal-UI
  **/
@@ -38,6 +42,7 @@ const defaultState = {};
 
 export default function ({reducers}){
 
+    const Client = new ApolloClient();
     const Store = createStore(reducers, defaultState, window.devToolsExtension ? window.devToolsExtension() : undefined);
 
     return {
@@ -48,6 +53,7 @@ export default function ({reducers}){
         DateHelper,
         AppConfig,
         StateFlags,
+        Client,
         Store: Store,
         dispatch: Store.dispatch
 
