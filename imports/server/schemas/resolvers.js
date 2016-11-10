@@ -7,11 +7,10 @@ import {merge} from 'lodash';
 /** --- resolvers ---  */
 import tenantResolvers from './tenants/resolvers';
 
-const rootResolvers = {...};
-
 const resolvers = merge(
-      rootResolvers,
       tenantResolvers
       );
+
+console.log('Schemas resolvers : '+ resolvers)
 
 export default resolvers;

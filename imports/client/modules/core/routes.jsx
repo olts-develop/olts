@@ -5,7 +5,6 @@ import {mount} from 'react-mounter';
 import MainLayout from './components/mainLayout.jsx';
 import Login from '../logon/containers/login';
 import NewUser from '../logon/containers/newUser';
-import Tenants from '../tenant/containers/tenants'
 
 
 export default function (injectDeps, {FlowRouter}){
@@ -27,16 +26,6 @@ export default function (injectDeps, {FlowRouter}){
         action() {
             mount(MainLayoutCtx, {
                 content: () => (<NewUser />)
-            });
-        }
-    });
-
-    FlowRouter.route('/tenant',{
-        name:'tenant',
-        action(){
-            console.log("tenant")
-            mount(MainLayoutCtx,{
-                content: () => (<Tenants />)
             });
         }
     });

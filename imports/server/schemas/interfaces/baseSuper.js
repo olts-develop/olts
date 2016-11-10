@@ -15,4 +15,4 @@ const baseSchema = [`
             
 `];
 
-export default [...baseSchema ]
+export default baseSchema

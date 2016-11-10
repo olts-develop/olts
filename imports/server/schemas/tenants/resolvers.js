@@ -2,7 +2,7 @@
  * Created by martin on 07.11.2016.
  */
 
-import {Tenants} from './schema';
+import {Tenants} from './../../../lib/collections';
 
 import setBaseSuper from '../interfaces/setBaseSuper'
 

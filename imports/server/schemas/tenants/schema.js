@@ -2,10 +2,9 @@
  * Created by martin on 07.11.2016.
  */
 
-import {baseSuper} from './../interfaces/baseSuper'
-
 const tenantSchema = [`
-      type Tenant implements baseSuper{
+
+      type Tenant {
             _id: String
             createUser: String
             createUserId: String
@@ -20,12 +19,11 @@ const tenantSchema = [`
       
       type Query {
             allTenants: [Tenant]
-            getTenant: (_id: String, code: String, isActive: Boolean): [Tenant]
+            getTenant(_id: String, code: String, isActive: Boolean): Tenant
       }
       
       type Mutation {
-            createTenant(code: String, description: String, isActive: Boolean): [Tenant]
-            modifyTenant(_id: String, code: String, description: String, isActive: Boolean): [Tenant]
+            createTenant(code: String, description: String, isActive: Boolean): Tenant
       }
       
       schema {

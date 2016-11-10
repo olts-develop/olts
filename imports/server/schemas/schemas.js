@@ -4,6 +4,15 @@
  * Mongo Schemas
  */
 
-import {Mongo} from 'meteor/mongo';
 
-export const Tenants = new Mongo.Collection('tenants');
+/** --- schemas ---  */
+import tenantSchema from './tenants/schema';
+
+const schema = [
+      ...tenantSchema
+]
+
+
+console.log('Schemas Server : '+ schema)
+
+export default schema;

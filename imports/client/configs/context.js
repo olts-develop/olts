@@ -34,8 +34,8 @@ import ApolloClient from 'apollo-client';
 /**Material-ui
  * TODO this should go in future version of Materieal-UI
  **/
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
+/*import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();*/
 
 
 const defaultState = {};
