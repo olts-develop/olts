@@ -13,12 +13,11 @@ import {combineReducers} from 'redux'
 //Modules
 import coreModule from './modules/core';
 import logonModule from './modules/logon';
-import organizationModule from './modules/tenant';
+
 
 
 //Reducers
 const reducers = combineReducers({
-      ...organizationModule.reducers,
       ...logonModule.reducers,
 })
 
@@ -28,6 +27,5 @@ const context = initContext({reducers});
 const app = createApp(context);
 app.loadModule(coreModule);
 app.loadModule(logonModule);
-app.loadModule(organizationModule);
 
 app.init();

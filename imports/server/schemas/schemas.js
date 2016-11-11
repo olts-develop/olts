@@ -13,6 +13,6 @@ const schema = [
 ]
 
 
-console.log('Schemas Server : '+ schema)
+//console.log('Schemas Server : '+ schema)
 
 export default schema;

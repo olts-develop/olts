@@ -1,6 +1,8 @@
 {
   "name": "olts-4.0",
   "version": "0.0.1",
+  "private": true,
+
   "dependencies": {
     "apollo-client": "^0.3.12",
     "apollo-server": "^0.2.8",
@@ -27,8 +29,13 @@
     "react-redux": "^4.4.5",
     "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.5.2",
+    "react-apollo": "^0.5.16",
     "redux-form": "^5.2.5",
     "redux-thunk": "^2.1.0"
   },
-  "private": true
+
+  "devDependencies": {
+    "babel-preset-meteor": "^6.12.0"
+  }
+
 }

@@ -5,6 +5,7 @@ export const composer = ({context, clearErrors}, onData) => {
       const {Store} = context();
       const state = Store.getState();
       const error = state.logon.logonReducer.logedin.loginError;
+      const logedIn = state.logon.logonReducer.logedin;
 
       onData(null, {error});
 

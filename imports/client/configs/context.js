@@ -15,7 +15,7 @@
 import * as Collections from '/imports/lib/collections';
 
 import {Meteor} from 'meteor/meteor';
-import {FlowRouter} from 'meteor/kadira:flow-router-ssr';
+import {FlowRouter} from 'meteor/kadira:flow-router';
 import {Tracker} from 'meteor/tracker';
 
 /**global vars and helper methods for the app*/

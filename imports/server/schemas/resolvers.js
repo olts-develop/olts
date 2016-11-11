@@ -11,6 +11,6 @@ const resolvers = merge(
       tenantResolvers
       );
 
-console.log('Schemas resolvers : '+ resolvers)
+//console.log('Schemas resolvers : '+ resolvers)
 
 export default resolvers;

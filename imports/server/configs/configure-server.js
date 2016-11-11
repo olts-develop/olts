@@ -3,8 +3,6 @@
  */
 
 import express from 'express';
-/*import Schema from './../schemas/tenants/resolvers';
-import Resolvers from './../schemas/tenants/schema';*/
 
 import { apolloExpress, graphiqlExpress } from 'apollo-server';
 import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
@@ -27,8 +25,6 @@ function configureGraphQLServer(options = {}) {
       const GRAPHQL_PORT = port;
 
       const graphQLServer = express();
-
-      console.log('typeDefs: ' + schema)
 
       const executableSchema = makeExecutableSchema({
             typeDefs: schema,
