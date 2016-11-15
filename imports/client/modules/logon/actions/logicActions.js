@@ -77,7 +77,7 @@ export default {
             dispatch (userReduxActions.userLoginRoute('/app'));
 
             //FlowRouter.go('/app');
-            FlowRouter.go('/tenant');
+            FlowRouter.go('/tenants');
         });
         return false;
     },

@@ -4,7 +4,7 @@
 
 import express from 'express';
 
-import { apolloExpress, graphiqlExpress } from 'apollo-server';
+import { graphqlExpress , graphiqlExpress } from 'graphql-server-express';
 import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
 import bodyParser from 'body-parser';
 
@@ -33,7 +33,7 @@ function configureGraphQLServer(options = {}) {
             printErrors: true,
       });
 
-      graphQLServer.use(`/${urlName}`,bodyParser.json(), apolloExpress({
+      graphQLServer.use(`/${urlName}`,bodyParser.json(), graphqlExpress({
             schema: executableSchema,
             context: context
       }));

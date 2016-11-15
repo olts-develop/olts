@@ -3,43 +3,48 @@
  */
 
 import Tenants from '../components/tenants';
-import {useDeps, composeAll, composeWithTracker} from 'mantra-core';
+import { compose, composeAll } from 'react-komposer-plus';
+import { useDeps } from 'mantra-plus';
+import gql from 'graphql-tag';
 
+const mapQueryToProps = ({ context}, onData, id) => {
+      const {Client} = context();
 
-export const composer = ({context}, onData) => {
-      const {Store, Meteor, Collections} = context();
-      const state = Store.getState().tenant.tenantReducer;
-      const error = state.status.error;
-      const tenantId = state.select.tenantId;
+      const query = `
+            query tenant {
+                  getTenant{
+                        _id
+                        code
+                        description
+                        isActive
+                  }
+            }
+      `;
 
-      onData(null,{error})
-      
-      
-      const unsubscribe = Store.subscribe(() => {
+      const taggedQuery = gql`${query}`;
 
-            const state = Store.getState().tenant;
-            const error = state.tenantReducer.status.error;
-
-            onData(null,{tenantId, error})
-
+      Client.query({
+            query: taggedQuery,
+            forceFetch: true,
+      }).then ((graphQlResult) =>{
+            onData(null, {
+                  tenant: graphQlResult.data.getTanant(_id=id),
+                  errors: graphQlResult.errors,
+            });
+      }).catch((ex) => {
+            onData(ex);
       });
-
-
-      const cleanup = () => {
-            unsubscribe();
-      }
-
-      return cleanup;
 };
 
-export const depsMapper = (context, actions) => {
-      return {
+
+
+const mapDepsToProps = (context, actions) => ({
             ...actions.tenantsLogicActions,
             context: () => context
-      }
-};
+
+});
 
 export default composeAll(
-      composeWithTracker(composer),
-      useDeps(depsMapper)
+      compose(mapQueryToProps()),
+      useDeps(mapDepsToProps())
 )(Tenants);

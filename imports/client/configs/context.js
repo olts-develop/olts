@@ -29,6 +29,7 @@ import {createStore} from 'redux';
 
 /**Apollo*/
 import ApolloClient from 'apollo-client';
+import {meteorClientConfig} from 'meteor/apollo';
 
 
 /**Material-ui
@@ -42,7 +43,7 @@ const defaultState = {};
 
 export default function ({reducers}){
 
-    const Client = new ApolloClient();
+    const Client = new ApolloClient(meteorClientConfig);
     const Store = createStore(reducers, defaultState, window.devToolsExtension ? window.devToolsExtension() : undefined);
 
     return {
