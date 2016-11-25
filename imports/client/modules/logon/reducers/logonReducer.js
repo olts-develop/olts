@@ -42,7 +42,7 @@ function logedin(state = {}, action) {
                         ...state,
                         loginRoute: action.route
                   };
-            
+
             default:
                   return state;
       }
@@ -73,6 +73,5 @@ function createUser(state={}, action) {
 export default combineReducers({
       logedin,
       createUser
-      
 });
 

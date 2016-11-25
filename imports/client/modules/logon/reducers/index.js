@@ -3,10 +3,7 @@
  */
 
 import logonReducer from './logonReducer';
-import {combineReducers} from 'redux';
 
 export default {
-      logon: combineReducers({
-            logonReducer
-      })
+      logonReducer
 };

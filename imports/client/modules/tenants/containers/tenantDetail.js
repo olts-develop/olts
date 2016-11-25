@@ -1,75 +1,54 @@
 /**
- * Created by martin on 16.06.2016.
- */
-/**
- * Created by mk on 31.05.16.
+ * Created by martin on 23.11.2016.
  */
 
-import TenantDetail from '../components/tenantDetail';
-import {useDeps, composeAll, composeWithTracker} from 'mantra-core';
+import {useDeps} from 'mantra-core';
+import {withRedux, composeAll} from 'react-komposer-plus';
+import {qraphql} from 'react-apollo';
+import qgl from 'graphql-tag';
+import tenantDetail from '../components/tenantDetail';
 
-
-export const composer = ({context}, onData) => {
-    const {Store, Meteor, Collections} = context();
-    const state = Store.getState().tenant.tenantReducer;
-    const error = state.status.error;
-    const tenantId = state.select.tenantId;
-    const tenantState = state.status.status;
-    
-    let tenant
-
-    if (tenantId != undefined && tenant == undefined) {
-        if (Meteor.subscribe('tenants.single', tenantId)){
-            tenant = Collections.Tenants.findOne(tenantId);
-        }else {
-            tenant = Collections.Tenants.findOne(tenantId);
-        }
-        onData(null, {tenant, tenantId, tenantState, error})
-    } else {
-        tenant = state.createOrEdit.tenant
-        onData(null,{tenant, tenantState, error})
-    }
-
-
-    const unsubscribe = Store.subscribe(() => {
-
-        const state = Store.getState().tenant.tenantReducer;
-        const error = state.status.error;
-        const tenantState = state.status.status
-        const tenantId = state.select.tenantId;
-
-        if (tenantId != undefined && tenant == undefined) {
-            const selector = {_id: tenantId};
-
-            if (Meteor.subscribe('tenants.single', tenantId)){
-                tenant = Collections.Tenants.find(selector);
-            }else {
-                tenant = Collections.Tenants.find(selector);
+const GET_TENANT_DETAIL = qgl`
+      query getTenantDetail ($id: String, $code: String){
+      getTenant(_id: $id, code: $code)
+            {
+                  _id
+                  createUser
+                  createUserId
+                  createDate
+                  modUser
+                  modUserId
+                  modDate
+                  code
+                  description
+                  isActive
             }
-            onData(null, {tenant, tenantState, error})
-        } else {
-            tenant = state.createOrEdit.tenant
-            onData(null,{tenant, tenantState, error})
-        }
+      }`;
 
-    });
+const WITH_GET_TENANT_DETAIL = graphql(GET_TENANT_DETAIL, {
+      //we are returning the query as a prop.
+      //this will then be passed to the action
 
+      props: ({ownProps, query }) => ({
+            getTenantDetail(variables) {
+                  return query({
+                        variables:{...variables}
+                  });
+            }
+      })
+});
 
-    const cleanup = () => {
-        unsubscribe();
-    }
+const mapStateToProps = ({ tenantReducer }) => ({
+      tenant: tenantReducer.tenants
+});
 
-    return cleanup;
-};
-
-export const depsMapper = (context, actions) => {
-    return {
-        ...actions.tenantsLogicActions,
-        context: () => context
-    }
-};
+export const depsMapper = (context, actions) => ({
+      ...actions.logicActions,
+      context: () => context
+});
 
 export default composeAll(
-    composeWithTracker(composer),
-    useDeps(depsMapper)
-)(TenantDetail);
+      withRedux(mapStateToProps),
+      useDeps(depsMapper),
+      WITH_GET_TENANT_DETAIL
+)(tenantDetail);

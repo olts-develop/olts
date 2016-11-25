@@ -1,5 +1,5 @@
 /**
- * Created by mk on 31.05.16.
+ * Created by martin on 24.11.2016.
  */
 
 import {
@@ -20,7 +20,7 @@ import {
 } from './actionTypes';
 
 export default {
-      
+
       setTenantStatus(status){
             return {type: TENANT_STATUS, status}
       },
@@ -36,11 +36,11 @@ export default {
       updateTenant(tenant){
             return {type: TENANT_UPDATE,tenant}
       },
-      
+
       deleteTenant(tenant){
             return {type: TENANT_DELETE, tenant}
-      },       
-      
+      },
+
       selectTenant(tenant){
             return {type: TENANT_SELECT, tenant}
       },
@@ -48,7 +48,7 @@ export default {
       setTenantFatalError(fatal) {
             return {type: TENANT_FATAL, fatal}
       },
-      
+
       resetTenant(){
             return{type: TENANT_RESET}
       },

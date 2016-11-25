@@ -1,12 +1,9 @@
 /**
- * Created by mk on 30.05.16.
+ * Created by martin on 24.11.2016.
  */
 
-import tenantReducer from './tenantReducer';
-import {combineReducers} from 'redux';
+import tenantReducer from './tenantReducers';
 
 export default {
-      tenant: combineReducers({
-            tenantReducer
-      })
+      tenantReducer
 };

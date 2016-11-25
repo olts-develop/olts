@@ -1,5 +1,5 @@
 /**
- * Created by mk on 26.05.16.
+ * Created by martin on 24.11.2016.
  */
 
 
@@ -18,9 +18,9 @@ import {
       TENANT_SELECT_BY_ID,
       TENANT_SELECT_BY_SEARCH,
       TENANT_SELECT_ALL
-} from '../actions/actionTypes';
+} from './../actions/actionTypes';
 
-import * as StateFlags from '../../../configs/appStateFlags'
+import * as StateFlags from './../../../configs/appStateFlags'
 
 
 function status( state = {}, action) {
@@ -133,8 +133,10 @@ function createOrEdit(state = 0, action) {
 
 }
 
-export default combineReducers({
+const tenantReducer = combineReducers({
       status,
       select,
       createOrEdit
 });
+
+export default tenantReducer;

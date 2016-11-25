@@ -1,13 +1,11 @@
 /**
- * Created by mk on 09.05.16.
+ * Created by martin on 21.11.2016.
  */
 
-
 import tenantsLogicActions from './logicActions';
-import tenantsReduxActions from './reduxActions';
-
+import tenantsReduxAction from './reduxActions';
 
 export default {
       tenantsLogicActions,
-      tenantsReduxActions
+      tenantsReduxAction
 }

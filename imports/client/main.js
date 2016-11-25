@@ -7,19 +7,23 @@ import {createApp} from 'mantra-core';
 import initContext from './configs/context';
 
 //Redux
-import {combineReducers} from 'redux'
+import {combineReducers} from 'redux';
 
 
 //Modules
 import coreModule from './modules/core';
 import logonModule from './modules/logon';
+//import tenantModule from './modules/tenants';
 
 
 
 //Reducers
+console.log(...logonModule.reducers)
 const reducers = combineReducers({
-      ...logonModule.reducers,
+      ...logonModule.reducers
+//      ...tenantModule.reducers
 })
+
 
 const context = initContext({reducers});
 
@@ -27,5 +31,6 @@ const context = initContext({reducers});
 const app = createApp(context);
 app.loadModule(coreModule);
 app.loadModule(logonModule);
+//app.loadModule(tenantModule);
 
 app.init();

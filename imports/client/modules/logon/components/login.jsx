@@ -81,7 +81,7 @@ class login extends React.Component {
             const{logoutUser}=this.props;
             logoutUser();
       }
-      
+
       register() {
             FlowRouter.go('/register')
       }
